@@ -18,6 +18,7 @@ const SidebarCompact = () => {
 
   const closeSideMenus = () => {
     setOpenSidebarNotifications(false);
+    setOpenLogoutBtn(false);
   };
 
   const showLogoutBtn = () => {
@@ -27,29 +28,43 @@ const SidebarCompact = () => {
   return (
     <>
       <SidebarWrapper>
-        <div className="home-btn">
+        <div className="home-btn background-icon">
           <NavLink to="/">
             <AiIcons.AiFillHome className="nav-icon" onClick={closeSideMenus} />
           </NavLink>
         </div>
         <div className="icon-btns">
-          <Link to="/search" onClick={closeSideMenus}>
-            <AiIcons.AiOutlineSearch className="nav-icon search" />
-          </Link>
-          <Link to="/direct_message" className="mgn" onClick={closeSideMenus}>
-            <FiIcons.FiSend className="nav-icon" />
-          </Link>
-          <button onClick={showNotifications} className="mgn">
-            <FiIcons.FiHeart className="nav-icon" />
-          </button>
-          <Link to="/profile" className="mgn" onClick={closeSideMenus}>
-            <ProfileAvatar />
-          </Link>
+          <div className="background-icon">
+            <Link to="/search" onClick={closeSideMenus}>
+              <FiIcons.FiSearch className="nav-icon" />
+            </Link>
+          </div>
+          <div className="background-icon">
+            <Link to="/direct_message" className="mgn" onClick={closeSideMenus}>
+              <FiIcons.FiSend className="nav-icon" />
+            </Link>
+          </div>
+          <div className="background-icon">
+            <button onClick={showNotifications} className="mgn">
+              <FiIcons.FiHeart className="nav-icon" />
+            </button>
+          </div>
+          <div className="background-icon">
+            <Link
+              to="/profile"
+              className="profile-avatar mgn"
+              onClick={closeSideMenus}
+            >
+              <ProfileAvatar />
+            </Link>
+          </div>
         </div>
-        <button className="settings-btn" onClick={showLogoutBtn}>
-          <FiIcons.FiSettings className="nav-icon" onClick={closeSideMenus} />
-        </button>
-        {openLogoutBtn ? <Logout/> : ""}
+        <div className="background-icon settings-btn">
+          <button onClick={showLogoutBtn}>
+            <FiIcons.FiSettings className="nav-icon" onClick={closeSideMenus} />
+          </button>
+          {openLogoutBtn ? <Logout /> : ""}
+        </div>
       </SidebarWrapper>
       {openSidebarNotifications ? (
         <SidebarNotifications open={openSidebarNotifications} />
@@ -75,7 +90,7 @@ const SidebarWrapper = styled.nav`
   z-index: 1;
 
   .home-btn {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .icon-btns {
@@ -85,15 +100,12 @@ const SidebarWrapper = styled.nav`
     align-items: center;
   }
 
-  .mgn {
-    margin-top: 40px;
-  }
-
-  .search {
-    font-size: 30px;
+  .profile-avatar:hover {
+    transform: scale(1.1);
   }
 
   .settings-btn {
-    margin: 180px 0 40px 0;
+    margin-top: 160px;
+    margin-bottom: 20px;
   }
 `;
