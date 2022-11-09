@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
+
 import SidebarNotifications from "./SidebarNotifications";
-import ProfileAvatar from "./Profile_Avatar";
+import ProfileAvatar from "./ProfileAvatar";
 import Logout from "./Logout";
 
 const SidebarCompact = () => {
-  const [openSidebarNotifications, setOpenSidebarNotifications] = useState(false);
+  const [openSidebarNotifications, setOpenSidebarNotifications] =
+    useState(false);
   const [openLogoutBtn, setOpenLogoutBtn] = useState(false);
-
 
   const showNotifications = () => {
     setOpenSidebarNotifications(!openSidebarNotifications);
@@ -27,7 +28,7 @@ const SidebarCompact = () => {
 
   return (
     <>
-      <CompactCompactSidebarWrapper className="sidebar" className="sidebar">
+      <SidebarWrapper>
         <div className="home-btn background-icon">
           <NavLink to="/">
             <AiIcons.AiFillHome className="nav-icon" onClick={closeSideMenus} />
@@ -35,28 +36,24 @@ const SidebarCompact = () => {
         </div>
         <div className="icon-btns">
           <div className="background-icon">
-            <Link to="/search" onClick={closeSideMenus}>
+            <NavLink to="/search" onClick={closeSideMenus}>
               <FiIcons.FiSearch className="nav-icon" />
-            </Link>
+            </NavLink>
           </div>
           <div className="background-icon">
-            <Link to="/direct_message" className="mgn" onClick={closeSideMenus}>
+            <NavLink to="/direct_message" onClick={closeSideMenus}>
               <FiIcons.FiSend className="nav-icon" />
-            </Link>
+            </NavLink>
           </div>
           <div className="background-icon">
-            <button onClick={showNotifications} className="mgn">
+            <button onClick={showNotifications}>
               <FiIcons.FiHeart className="nav-icon" />
             </button>
           </div>
-          <div className="background-icon">
-            <Link
-              to="/profile"
-              className="profile-avatar mgn"
-              onClick={closeSideMenus}
-            >
+          <div className="background-icon profile-avatar">
+            <NavLink to="/profile" onClick={closeSideMenus}>
               <ProfileAvatar />
-            </Link>
+            </NavLink>
           </div>
         </div>
         <div className="background-icon settings-btn">
@@ -65,7 +62,7 @@ const SidebarCompact = () => {
           </button>
           {openLogoutBtn ? <Logout /> : ""}
         </div>
-      </CompactCompactSidebarWrapper>
+      </SidebarWrapper>
       {openSidebarNotifications ? (
         <SidebarNotifications open={openSidebarNotifications} />
       ) : (
@@ -77,8 +74,17 @@ const SidebarCompact = () => {
 
 export default SidebarCompact;
 
-const CompactCompactSidebarWrapper = styled.nav`
+const SidebarWrapper = styled.nav`
   width: 80px;
+  height: 100vh;
+  background: var(--white);
+  border-right: 1px solid var(--grey);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
 
   .home-btn {
     margin-top: 20px;
