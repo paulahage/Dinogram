@@ -1,12 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Sidebar from './Sidebar'
+import SidebarCompact from "./Sidebar_Compact";
+
 
 import SidebarCompact from './SidebarCompact'
 
 const SharedLayout = () => {
   return (
     <>
-      <SidebarCompact />
+      <Sidebar/>
+      {/* <SidebarCompact /> */}
       <Outlet/>
     </>
   )

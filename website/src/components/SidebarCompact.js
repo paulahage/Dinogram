@@ -27,7 +27,7 @@ const SidebarCompact = () => {
 
   return (
     <>
-      <CompactSidebarWrapper className="sidebar">
+      <CompactCompactSidebarWrapper className="sidebar" className="sidebar">
         <div className="home-btn background-icon">
           <NavLink to="/">
             <AiIcons.AiFillHome className="nav-icon" onClick={closeSideMenus} />
@@ -65,7 +65,7 @@ const SidebarCompact = () => {
           </button>
           {openLogoutBtn ? <Logout /> : ""}
         </div>
-      </CompactSidebarWrapper>
+      </CompactCompactSidebarWrapper>
       {openSidebarNotifications ? (
         <SidebarNotifications open={openSidebarNotifications} />
       ) : (
@@ -77,7 +77,7 @@ const SidebarCompact = () => {
 
 export default SidebarCompact;
 
-const CompactSidebarWrapper = styled.nav`
+const CompactCompactSidebarWrapper = styled.nav`
   width: 80px;
 
   .home-btn {
