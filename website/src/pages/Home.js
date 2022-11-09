@@ -1,14 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
+import Posts from "../components/Posts";
 
 const Home = () => {
   return (
-    <HomeWrapper>Home</HomeWrapper>
-  )
-}
+    <HomeWrapper>
+      <Posts />
+    </HomeWrapper>
+  );
+};
 
-export default Home
+export default Home;
 
 const HomeWrapper = styled.div`
-  text-align:center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
