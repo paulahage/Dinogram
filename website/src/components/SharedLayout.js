@@ -1,5 +1,5 @@
 import React from 'react'
-import SidebarCompact from './Sidebar_Compact'
+import SidebarCompact from './SidebarCompact'
 import { Outlet } from 'react-router-dom'
 
 const SharedLayout = () => {
