@@ -6,7 +6,7 @@
   --white: #ffff;
   --mainBackgroundColor: #fafafa;
   --grey: #dbdbdb;
-  --icons: #474747;
+  --icons: #262626;
 
   /* fonts */
   --light: 200;
@@ -45,6 +45,25 @@ button {
   cursor: pointer;
 }
 
+.logo {
+  font-family: "Leckerli One", cursive;
+  font-size: 28px;
+  color: var(--icons);
+  margin-top: 38px;
+  margin-bottom: 28px;
+}
+
+ .page-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: var(--bold);
+  color: var(--icons);
+  margin-left: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  top: -4px;
+  }
+
 .nav-icon {
   color: var(--icons);
   font-size: 27px;
@@ -52,13 +71,39 @@ button {
 
 .nav-icon:hover {
   transform: scale(1.1);
-
 }
 
 .background-icon {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+.background-icon:hover {
+  width: 200px;
+  background: var(--mainBackgroundColor);
+  border-radius: 100px;
+}
+
+
+
+@media screen and (max-width: 1220px) {
+  .background-icon {
   width: 80px;
-  height: 80px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+  padding-left: 0px;
+}
+  .background-icon:hover {
+    width: 50px;
+    background: var(--mainBackgroundColor);
+    border-radius: 100px;
+  }
 }
