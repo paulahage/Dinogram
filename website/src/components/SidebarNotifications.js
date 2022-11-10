@@ -20,12 +20,12 @@ const SidebarNotifications = (props) => {
 export default SidebarNotifications;
 
 const NotificationsWrapper = styled.div`
-  width: 600px;
+  width: 650px;
   height: 100vh;
   position: fixed;
   text-align: center;
   background: red;
-  padding: 20px 30px 10px 110px;
+  padding: 20px 30px 20px 275px;
 
   .title {
     font-weight: var(--bold);
@@ -40,5 +40,10 @@ const NotificationsWrapper = styled.div`
   .side-notifications.active {
     left: 0;
     transition: 1s;
+  }
+
+  @media screen and (max-width: 1220px) {
+    width: 600px;
+    padding: 20px 30px 20px 110px;
   }
 `;
