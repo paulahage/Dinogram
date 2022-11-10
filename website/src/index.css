@@ -4,8 +4,8 @@
   /* colors */
   --black: rgb(9, 9, 9);
   --white: #ffff;
-  --mainBackgroundColor: #fafafa;
   --grey: #dbdbdb;
+  --mainBackgroundColor: #fafafa;
   --icons: #262626;
 
   /* fonts */
@@ -45,24 +45,27 @@ button {
   cursor: pointer;
 }
 
+
+/* SIDEBAR COMPACT */
 .logo {
   font-family: "Leckerli One", cursive;
   font-size: 28px;
   color: var(--icons);
   margin-top: 38px;
   margin-bottom: 28px;
+  margin-left: 10px;
 }
 
- .page-title {
+.page-title {
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  font-weight: var(--bold);
+  font-size: 14.5px;
+  font-weight: var(--regular);
   color: var(--icons);
   margin-left: 15px;
   padding-bottom: 10px;
   position: relative;
   top: -4px;
-  }
+}
 
 .nav-icon {
   color: var(--icons);
@@ -89,21 +92,17 @@ button {
   border-radius: 100px;
 }
 
-
-
 @media screen and (max-width: 1220px) {
   .background-icon {
-  width: 80px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  padding-left: 0px;
-}
+    width: 80px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding-left: 0px;
+  }
   .background-icon:hover {
     width: 50px;
-    background: var(--mainBackgroundColor);
-    border-radius: 100px;
   }
 }
