@@ -2,10 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+import { useSidebarContext } from "../context/SidebarContext";
+
 const Logout = () => {
+  const { closeSideMenus } = useSidebarContext();
+
   return (
     <LogoutWrapper>
-      <NavLink to="/">
+      <NavLink to="/" onClick={closeSideMenus}>
         <p className="logout-btn">Logout</p>
       </NavLink>
     </LogoutWrapper>

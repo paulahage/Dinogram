@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSidebarContext } from "../context/SidebarContext";
 import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
@@ -8,22 +9,13 @@ import SidebarNotifications from "./SidebarNotifications";
 import Logout from "./Logout";
 
 const SidebarCompact = () => {
-  const [openSidebarNotifications, setOpenSidebarNotifications] =
-    useState(false);
-  const [openLogoutBtn, setOpenLogoutBtn] = useState(false);
-
-  const showNotifications = () => {
-    setOpenSidebarNotifications(!openSidebarNotifications);
-  };
-
-  const closeSideMenus = () => {
-    setOpenSidebarNotifications(false);
-    setOpenLogoutBtn(false);
-  };
-
-  const showLogoutBtn = () => {
-    setOpenLogoutBtn(!openLogoutBtn);
-  };
+  const {
+    closeSideMenus,
+    showNotifications,
+    showLogoutBtn,
+    openLogoutBtn,
+    openSidebarNotifications,
+  } = useSidebarContext();
 
   return (
     <>
