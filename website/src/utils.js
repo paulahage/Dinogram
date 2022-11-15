@@ -1,3 +1,3 @@
-export const BASE_URL = "http://16.170.225.124:7777";
+export const BASE_URL = "http://16.171.41.118:7777";
 
-export const URL_FEED = "http://16.170.225.124:7777/feed/";
+export const URL_FEED = "http://16.171.41.118:7777/feed";
