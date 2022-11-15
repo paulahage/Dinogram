@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useFeedPostsContext } from "../context/FeedPostsContext";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
-import * as FiIcons from "react-icons/fi";
 
 import ProfileAvatar from "./ProfileAvatar";
-import { BASE_URL, URL_FEED } from "../utils";
+import InteractionBar from "./InteractionBar";
+import { BASE_URL } from "../utils";
 
 const Posts = () => {
-  const [feedPosts, setFeedPosts] = useState([]);
-
-  const getPosts = async (url) => {
-    const response = await axios.get(url);
-    setFeedPosts(response.data);
-  };
-
-  useEffect(() => {
-    getPosts(URL_FEED);
-  }, []);
+  const { feedPosts } = useFeedPostsContext();
 
   return (
     feedPosts.map((feedPost, index) => {
@@ -31,10 +21,8 @@ const Posts = () => {
             </div>
             <BsIcons.BsThreeDots />
           </div>
-          <div className="post-img"/>
-          <div className="interaction-bar">
-            <FiIcons.FiHeart className="interaction-icons" />
-          </div>
+          <div className="post-img" />
+          <InteractionBar postInfo={feedPost} />
         </PostsWrapper>
       );
     })
@@ -80,17 +68,5 @@ const PostsWrapper = styled.div`
     height: 460px;
     background-color: var(--white);
     background-image: url(${props =>  props.pictureUrl});
-  }
-
-  .interaction-bar {
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .interaction-icons {
-    color: var(--icons);
-    font-size: 25px;
   }
 `;

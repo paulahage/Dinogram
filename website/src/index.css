@@ -5,8 +5,10 @@
   --black: rgb(9, 9, 9);
   --white: #ffff;
   --grey: #dbdbdb;
+  --dark_grey:#8E8E8E;
   --mainBackgroundColor: #fafafa;
   --icons: #262626;
+  --heart: #ED4956;
 
   /* fonts */
   --light: 200;
@@ -45,6 +47,32 @@ button {
   cursor: pointer;
 }
 
+.normal-text {
+  font-weight: var(--light);
+  color: var(--icons);
+  font-size: 14px;
+
+}
+
+.text-bold {
+  font-weight: var(--bold);
+  color: var(--icons);
+  font-size: 13px;
+}
+
+.name-user {
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  .interaction-icons {
+    color: var(--icons);
+    font-size: 25px;
+  }
+
+  .interaction-icons:hover {
+    color: var(--dark_grey);
+  }
 
 /* SIDEBAR COMPACT */
 .logo {
