@@ -27,7 +27,7 @@ const ActionsBar = () => {
 export default ActionsBar;
 
 const ActionsBarWrapper = styled.div`
-  width: 440px;
+  width: 444px;
   height: 75px;
   display: flex;
   align-items: center;

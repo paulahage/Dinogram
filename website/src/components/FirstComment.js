@@ -5,8 +5,8 @@ import * as HiIcons from "react-icons/hi";
 const FirstComment = ({ comments }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return comments.map((comment) => {
-    return <FirstCommentWrapper>
+  return comments.map((comment, index) => {
+    return <FirstCommentWrapper key={index}>
       <div>
         <span className="text-bold name-user">{comment.user.id}</span>
         <span className="normal-text">{comment.text}</span>
