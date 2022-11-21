@@ -10,8 +10,8 @@ const FirstComment = ({ comments }) => {
   return (
     <FirstCommentWrapper>
       <div>
-        <span className="text-bold name-user">{firstComment.user.id}</span>
-        <span className="normal-text">{firstComment.text}</span>
+        <span className="text-bold name-user">{firstComment?.user.id}</span>
+        <span className="normal-text">{firstComment?.text}</span>
       </div>
       <button onClick={handleLikeComment}>
         {isLikedComment ? (

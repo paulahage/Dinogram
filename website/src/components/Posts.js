@@ -1,4 +1,4 @@
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import React from "react";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
 
@@ -6,28 +6,22 @@ import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import { BASE_URL } from "../utils";
 
-const Posts = () => {
-  const { feedPosts } = useFeedPostsContext();
+const Posts = ({ post, postRef }) => {
 
   return (
-    feedPosts.map((feedPost, index) => {
-
-      return (
-        <PostsWrapper key={index} pictureUrl={BASE_URL + feedPost.post.picture}>
-          <div className="post-avatar">
-            <div className="post-author">
-              <ProfileAvatar url={feedPost.user.avatar} />
-              <span className="username">{feedPost.user.id}</span>
-            </div>
-            <BsIcons.BsThreeDots />
-          </div>
-          <div className="post-img" />
-          <InteractionBar postInfo={feedPost} />
-        </PostsWrapper>
-      );
-    })
-
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
+      <div ref={postRef} className="post-avatar">
+        <div className="post-author">
+          <ProfileAvatar url={post.user.avatar} />
+          <span className="username">{post.user.id}</span>
+        </div>
+        <BsIcons.BsThreeDots />
+      </div>
+      <div className="post-img" />
+      <InteractionBar postInfo={post} />
+    </PostsWrapper>
   );
+
 };
 
 export default Posts;
@@ -67,6 +61,23 @@ const PostsWrapper = styled.div`
   .post-img {
     height: 460px;
     background-color: var(--white);
-    background-image: url(${props =>  props.pictureUrl});
+    background-image: url(${(props) => props.pictureUrl});
   }
 `;
+
+// const { feedPosts } = useFeedPostsContext();
+// return feedPosts.map((feedPost, index) => {
+//   return (
+//     <PostsWrapper key={index} pictureUrl={BASE_URL + feedPost.post.picture}>
+//       <div className="post-avatar">
+//         <div className="post-author">
+//           <ProfileAvatar url={feedPost.user.avatar} />
+//           <span className="username">{feedPost.user.id}</span>
+//         </div>
+//         <BsIcons.BsThreeDots />
+//       </div>
+//       <div className="post-img" />
+//       <InteractionBar postInfo={feedPost} />
+//     </PostsWrapper>
+//   );
+// });
