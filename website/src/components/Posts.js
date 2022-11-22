@@ -58,7 +58,7 @@ const PostsWrapper = styled.div`
 
   .username {
     font-weight: var(--bold);
-    font-size: 14px;
+    font-size: var(--fs_regular);
     margin-left: 15px;
   }
 
