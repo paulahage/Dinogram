@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect} from "react";
-import axios from "axios";
-import { URL_FEED} from "../utils";
+import React, { useContext, useState, useEffect } from "react";
+import {fetchMorePosts, fetchPosts} from "../services/ApiService";
 
 const FeedPostsContext = React.createContext({});
 
@@ -8,9 +7,8 @@ export const FeedPostsProvider = ({ children }) => {
   const [feedPosts, setFeedPosts] = useState([]);
   const [lastPostId, setLastPostId] = useState("");
 
-  const getPosts = async (url) => {
-    const response = await axios.get(url);
-    const posts = response.data;
+  const getPosts = async () => {
+    const posts = await fetchPosts();
     setFeedPosts(posts);
 
     const lastPost = posts.at(-1);
@@ -18,16 +16,14 @@ export const FeedPostsProvider = ({ children }) => {
     setLastPostId(lastPostId);
   };
 
-  const getMorePosts = async (morePostsUrl) => {
-    const response = await axios.get(morePostsUrl);
-    setFeedPosts(feedPosts.concat(response.data));
+  const getMorePosts = async (lastPostId) => {
+    const morePosts = await fetchMorePosts(lastPostId);
+    setFeedPosts(feedPosts.concat(morePosts));
   };
 
   useEffect(() => {
-    getPosts(URL_FEED);
+    getPosts();
   }, []);
-
-
 
   return (
     <FeedPostsContext.Provider

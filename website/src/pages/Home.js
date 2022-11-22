@@ -1,6 +1,5 @@
 import React, { useCallback, useRef } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
-import { URL_INFINITE_FEED } from "../utils";
 import styled from "styled-components";
 import Posts from "../components/Posts";
 
@@ -13,7 +12,7 @@ const Home = () => {
     const lastPost = entries[0];
 
     if (lastPost.isIntersecting) {
-      getMorePosts(URL_INFINITE_FEED + lastPostId);
+      getMorePosts(lastPostId);
       observer.current.disconnect();
     }
   };
