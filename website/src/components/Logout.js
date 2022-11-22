@@ -34,7 +34,7 @@ const LogoutWrapper = styled.div`
 
   .logout-btn {
     font-weight: var(--regular);
-    font-size: 14.5px;
+    font-size: var(--fs_regular_plus);
     color: var(--icons);
   }
 
