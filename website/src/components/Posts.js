@@ -1,4 +1,4 @@
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import React from "react";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
 
@@ -7,25 +7,23 @@ import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
 
-const Posts = () => {
-  const { feedPosts } = useFeedPostsContext();
+const Posts = ({ post, postRef }) => {
 
-  return feedPosts.map((feedPost, index) => {
-    return (
-      <PostsWrapper key={index} pictureUrl={BASE_URL + feedPost.post.picture}>
-        <div className="post-avatar">
-          <div className="post-author">
-            <ProfileAvatar url={feedPost.user.avatar} />
-            <span className="username">{feedPost.user.id}</span>
-            <DatePost datePost={feedPost.post.date} />
-          </div>
-          <BsIcons.BsThreeDots />
+  return (
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
+      <div ref={postRef} className="post-avatar">
+        <div className="post-author">
+          <ProfileAvatar url={post.user.avatar} />
+          <span className="username">{post.user.id}</span>
+          <DatePost datePost={post.post.date} />
         </div>
-        <div className="post-img" />
-        <InteractionBar postInfo={feedPost} />
-      </PostsWrapper>
-    );
-  });
+        <BsIcons.BsThreeDots />
+      </div>
+      <div className="post-img" />
+      <InteractionBar postInfo={post} />
+    </PostsWrapper>
+  );
+
 };
 
 export default Posts;
