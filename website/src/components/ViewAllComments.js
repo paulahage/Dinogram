@@ -7,7 +7,7 @@ const ViewAllComments = ({ post }) => {
   if (commentCount <= 1) {
     return <span></span>
   }
-  
+
   return (
     <ViewAllCommentsWrapper>
       <span className="view-all-comments">
@@ -23,7 +23,7 @@ const ViewAllCommentsWrapper = styled.button`
   margin: 5px 0;
 
   .view-all-comments {
-    font-size: 14px;
+    font-size: var(--fs_regular);
     font-family: "Poppins", sans-serif;
     color: var(--dark_grey);
   }

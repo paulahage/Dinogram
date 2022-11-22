@@ -1,33 +1,29 @@
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import React from "react";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
 
+import { BASE_URL } from "../utils";
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
-import { BASE_URL } from "../utils";
+import DatePost from "./DatePost";
 
-const Posts = () => {
-  const { feedPosts } = useFeedPostsContext();
+const Posts = ({ post, postRef }) => {
 
   return (
-    feedPosts.map((feedPost, index) => {
-
-      return (
-        <PostsWrapper key={index} pictureUrl={BASE_URL + feedPost.post.picture}>
-          <div className="post-avatar">
-            <div className="post-author">
-              <ProfileAvatar url={feedPost.user.avatar} />
-              <span className="username">{feedPost.user.id}</span>
-            </div>
-            <BsIcons.BsThreeDots />
-          </div>
-          <div className="post-img" />
-          <InteractionBar postInfo={feedPost} />
-        </PostsWrapper>
-      );
-    })
-
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
+      <div ref={postRef} className="post-avatar">
+        <div className="post-author">
+          <ProfileAvatar url={post.user.avatar} />
+          <span className="username">{post.user.id}</span>
+          <DatePost datePost={post.post.date} />
+        </div>
+        <BsIcons.BsThreeDots />
+      </div>
+      <div className="post-img" />
+      <InteractionBar postInfo={post} />
+    </PostsWrapper>
   );
+
 };
 
 export default Posts;
@@ -48,7 +44,7 @@ const PostsWrapper = styled.div`
     align-items: center;
     width: 470px;
     height: 70px;
-    padding: 0 20px;
+    padding: 0 14px;
   }
 
   .post-author {
@@ -60,13 +56,13 @@ const PostsWrapper = styled.div`
 
   .username {
     font-weight: var(--bold);
-    font-size: 14px;
+    font-size: var(--fs_regular);
     margin-left: 15px;
   }
 
   .post-img {
     height: 460px;
     background-color: var(--white);
-    background-image: url(${props =>  props.pictureUrl});
+    background-image: url(${(props) => props.pictureUrl});
   }
 `;

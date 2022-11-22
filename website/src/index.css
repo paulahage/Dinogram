@@ -11,10 +11,15 @@
   --icons: #262626;
   --heart: #ED4956;
 
-  /* fonts */
+  /* fonts weight */
   --light: 200;
   --regular: 400;
   --bold: 600;
+
+  /* fonts size */
+  --fs_small: 13px;
+  --fs_regular:14px;
+  --fs_regular_plus: 14.5px;
 }
 
 /* GLOBAL STYLES */
@@ -51,14 +56,13 @@ button {
 .normal-text {
   font-weight: var(--light);
   color: var(--icons);
-  font-size: 14px;
-
+  font-size: var(--fs_regular);
 }
 
 .text-bold {
   font-weight: var(--bold);
   color: var(--icons);
-  font-size: 13px;
+  font-size: var(--fs_small);
 }
 
 .name-user {
@@ -87,7 +91,7 @@ button {
 
 .page-title {
   font-family: "Poppins", sans-serif;
-  font-size: 14.5px;
+  font-size: var(--fs_regular_plus);
   font-weight: var(--regular);
   color: var(--icons);
   margin-left: 15px;

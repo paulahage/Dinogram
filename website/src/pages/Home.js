@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
+import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
 
@@ -8,11 +9,37 @@ import SinglePost from "../components/SinglePost";
 
 const Home = () => {
   const { isSinglePostOpen, toggleSinglePost } = useSinglePostContext();
+  const { feedPosts, getMorePosts, lastPostId } = useFeedPostsContext();
+
+  const observer = useRef();
+
+  const lastPostDisplayCallback = (entries) => {
+    const lastPost = entries[0];
+
+    if (lastPost.isIntersecting) {
+      getMorePosts(lastPostId);
+      observer.current.disconnect();
+    }
+  };
+
+  observer.current = new IntersectionObserver(lastPostDisplayCallback);
+
+  const lastPostRef = useCallback((domElement) => {
+    if (domElement) {
+      observer.current.observe(domElement);
+    }
+  }, []);
 
   return (
     <HomeWrapper>
-      <Posts />
-      {isSinglePostOpen && (
+      {feedPosts.map((post, index) => {
+        if (index === feedPosts.length - 1) {
+          return <Posts post={post} key={index} postRef={lastPostRef} />;
+        }
+        return <Posts post={post} key={index} />;
+      })}
+      
+        {isSinglePostOpen && (
         <SinglePost handleClose={toggleSinglePost}/>
       )}
     </HomeWrapper>
