@@ -3,15 +3,13 @@ import styled from "styled-components";
 import * as HiIcons from "react-icons/hi";
 
 const FirstComment = ({ comments }) => {
-  const firstComment = comments[0];
-
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return (
-    <FirstCommentWrapper>
+  return comments.map((comment, index) => {
+    return <FirstCommentWrapper key={index}>
       <div>
-        <span className="text-bold name-user">{firstComment.user.id}</span>
-        <span className="normal-text">{firstComment.text}</span>
+        <span className="text-bold name-user">{comment.user.id}</span>
+        <span className="normal-text">{comment.text}</span>
       </div>
       <button onClick={handleLikeComment}>
         {isLikedComment ? (
@@ -21,7 +19,7 @@ const FirstComment = ({ comments }) => {
         )}
       </button>
     </FirstCommentWrapper>
-  );
+  })
 };
 
 export default FirstComment;
