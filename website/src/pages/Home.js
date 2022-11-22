@@ -1,11 +1,20 @@
 import React from "react";
+import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
+
 import Posts from "../components/Posts";
+import SinglePost from "../components/SinglePost";
+
 
 const Home = () => {
+  const { isSinglePostOpen, toggleSinglePost } = useSinglePostContext();
+
   return (
     <HomeWrapper>
       <Posts />
+      {isSinglePostOpen && (
+        <SinglePost handleClose={toggleSinglePost}/>
+      )}
     </HomeWrapper>
   );
 };
