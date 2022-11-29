@@ -19,7 +19,7 @@ const ActionsBar = ({ postInfo }) => {
             <HiIcons.HiOutlineHeart className="interaction-icons" />
           )}
         </button>
-        <button onClick={toggleSinglePost}>
+        <button onClick={()=> toggleSinglePost(postInfo)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
@@ -31,8 +31,8 @@ const ActionsBar = ({ postInfo }) => {
 export default ActionsBar;
 
 const ActionsBarWrapper = styled.div`
-  width: 444px;
-  height: 75px;
+  width: 100%;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;

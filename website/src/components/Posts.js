@@ -42,13 +42,13 @@ const PostsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 470px;
+    width: 100%;
     height: 70px;
     padding: 0 14px;
   }
 
   .post-author {
-    width: 400px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;

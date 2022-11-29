@@ -6,7 +6,7 @@
   --white: #ffff;
   --grey: #dbdbdb;
   --dark_grey:#8E8E8E;
-  --background_transparent: #0000009e;
+  --background_transparent: rgba(9, 9, 9, 0.677);
   --mainBackgroundColor: #fafafa;
   --icons: #262626;
   --heart: #ED4956;
@@ -51,6 +51,10 @@ button {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+hr {
+  background-color: var(--dark_grey);
 }
 
 .normal-text {

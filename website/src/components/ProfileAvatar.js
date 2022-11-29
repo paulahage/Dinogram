@@ -1,10 +1,13 @@
 import React from "react";
+import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
 import { BASE_URL } from "../utils";
 
-const ProfileAvatar = ({url}) => {
+const ProfileAvatar = ({ url }) => {
+  const { isSinglePostOpen } = useSinglePostContext();
+
   return (
-    <ProfileAvatarWrapper url={BASE_URL + url}/>
+    <ProfileAvatarWrapper url={BASE_URL + url} postIsOpen={isSinglePostOpen} />
   );
 };
 
