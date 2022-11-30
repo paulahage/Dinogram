@@ -1,15 +1,17 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 import styled from "styled-components";
 
 import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
-import { useEffect } from "react";
+import PreviewProfile from "../components/PreviewProfile";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { feedPosts, getMorePosts, lastPostId } = useFeedPostsContext();
+  const { hoverOver } = usePreviewProfileContext();
 
   const observer = useRef();
 
@@ -30,10 +32,9 @@ const Home = () => {
     }
   }, []);
 
-
   useEffect(() => {
     document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
-  }, [isSinglePostOpen])
+  }, [isSinglePostOpen]);
 
   return (
     <HomeWrapper>
@@ -43,9 +44,8 @@ const Home = () => {
         }
         return <Posts key={index} post={post} />;
       })}
-      {isSinglePostOpen && (
-        <SinglePost  posts={feedPosts} />
-      )}
+      {isSinglePostOpen && <SinglePost posts={feedPosts} />}
+      {hoverOver && <PreviewProfile posts={feedPosts} />}
     </HomeWrapper>
   );
 };

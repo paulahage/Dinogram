@@ -9,7 +9,6 @@ const InteractionBar = ({ postInfo }) => {
   const { post } = postInfo;
   const previewComments = post.commentsPreview;
 
-
   return (
     <InteractionBarWrapper>
       <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />

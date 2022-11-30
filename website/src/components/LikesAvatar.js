@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { BASE_URL } from "../utils";
 
 const LikesAvatar = ({ likes }) => {
-  
   if (likes.length === 1) {
     return (
       <LikesAvatarWrapper pictureUrl={BASE_URL + likes[0].avatar}>
