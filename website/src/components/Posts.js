@@ -6,6 +6,7 @@ import { BASE_URL } from "../utils";
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
+import Username from "./Username";
 
 const Posts = ({ post, postRef }) => {
 
@@ -14,7 +15,7 @@ const Posts = ({ post, postRef }) => {
       <div ref={postRef} className="post-avatar">
         <div className="post-author">
           <ProfileAvatar url={post.user.avatar} />
-          <span className="username">{post.user.id}</span>
+          <Username post={post} />
           <DatePost datePost={post.post.date} />
         </div>
         <BsIcons.BsThreeDots />
@@ -52,12 +53,6 @@ const PostsWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  .username {
-    font-weight: var(--bold);
-    font-size: var(--fs_regular);
-    margin-left: 15px;
   }
 
   .post-img {
