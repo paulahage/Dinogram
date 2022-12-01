@@ -1,6 +1,7 @@
 import { useLikesContext } from "../context/LikesContext";
 import styled from "styled-components";
 import * as HiIcons from "react-icons/hi";
+import { UsernameOnComments } from "./UsernameOnComments";
 
 const FirstComment = ({ comments }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
@@ -9,7 +10,8 @@ const FirstComment = ({ comments }) => {
     return (
       <FirstCommentWrapper key={index}>
         <div>
-          <span className="text-bold name-user">{comment.user.id}</span>
+          <UsernameOnComments post={comment}/>
+          {/* <span className="text-bold name-user">{comment.user.id}</span> */}
           <span className="normal-text">{comment.text}</span>
         </div>
         <button onClick={handleLikeComment}>
@@ -21,7 +23,7 @@ const FirstComment = ({ comments }) => {
         </button>
       </FirstCommentWrapper>
     );
-  })
+  });
 };
 
 export default FirstComment;

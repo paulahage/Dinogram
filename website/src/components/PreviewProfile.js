@@ -5,26 +5,30 @@ import PreviewProfileInfos from "./PreviewProfileInfos";
 import PreviewProfilePosts from "./PreviewProfilePosts";
 import ProfileAvatar from "./ProfileAvatar";
 
-const PreviewProfile = ({ posts }) => {
-  const { hoverUserId, handleMouseLeave} = usePreviewProfileContext();
+const PreviewProfile = ({ post }) => {
+  const { hoverUserId, handleMouseLeave } = usePreviewProfileContext();
 
-  const user = posts.find((post) => hoverUserId === post.user.id);
-  console.log('user', user);
+  const userPost = post.user.id;
+  const postsPreview = post.user.postsPreview;
 
-  const postsPreview = user.user.postsPreview;
 
-  return (
-    <PreviewProfileWrapper id="preview_profile" onMouseOut={handleMouseLeave} user={user}>
-      <div className="header">
-        <ProfileAvatar url={user.user.avatar} />
-        <span className="username">{user.user.id}</span>
-      </div>
-      <PreviewProfileInfos user={user} />
-      <div className="preview-posts">
-        <PreviewProfilePosts posts={postsPreview} />
-      </div>
-    </PreviewProfileWrapper>
-  );
+  if (hoverUserId === userPost) {
+    return (
+      <PreviewProfileWrapper
+        id="preview_profile"
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="header">
+          <ProfileAvatar url={post.user.avatar} />
+          <span className="username">{post.user.id}</span>
+        </div>
+        <PreviewProfileInfos user={post.user} />
+        <div className="preview-posts">
+          <PreviewProfilePosts posts={postsPreview} />
+        </div>
+      </PreviewProfileWrapper>
+    );
+  }
 };
 
 export default PreviewProfile;
@@ -41,8 +45,8 @@ const PreviewProfileWrapper = styled.div`
   justify-content: flex-start;
   z-index: 2;
   position: absolute;
-  top: 58px;
-  right: 185px;
+  top: 48px;
+  right: 20px;
 
   .header {
     width: 100%;

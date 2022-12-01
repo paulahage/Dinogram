@@ -4,6 +4,7 @@ import ViewAllComments from "./ViewAllComments";
 import {Likes} from "./Likes";
 import ActionsBar from "./ActionsBar";
 import FirstComment from "./FirstComment";
+import { UsernameOnComments } from "./UsernameOnComments";
 
 const InteractionBar = ({ postInfo }) => {
   const { post } = postInfo;
@@ -14,10 +15,11 @@ const InteractionBar = ({ postInfo }) => {
       <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />
       <Likes likes={post.likesPreview} likesCount={post.likesCount} />
       <div className="user-comment">
-        <span className="text-bold name-user">{postInfo.user.id}</span>
+        <UsernameOnComments post={postInfo}/>
+        {/* <span className="text-bold name-user">{postInfo.user.id}</span> */}
         <span className="normal-text">{post.text}</span>
       </div>
-      {post.commentsCount > 1 ?  <ViewAllComments postInfo={postInfo} /> : ""}
+      {post.commentsCount > 1 ? <ViewAllComments postInfo={postInfo} /> : ""}
       <FirstComment comments={previewComments} />
     </InteractionBarWrapper>
   );

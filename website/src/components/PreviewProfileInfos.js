@@ -5,15 +5,15 @@ const PreviewInfos = ({user}) => {
   return (
     <PreviewInfosWrapper>
       <div className="info">
-        <p className="data-numbers">{user.user.postsCount}</p>
+        <p className="data-numbers">{user.postsCount}</p>
         <p className="title">posts</p>
       </div>
       <div className="info">
-        <p className="data-numbers">{user.user.followersCount}</p>
+        <p className="data-numbers">{user.followersCount}</p>
         <p className="title">followers</p>
       </div>
       <div className="info">
-        <p className="data-numbers">{user.user.followingCount}</p>
+        <p className="data-numbers">{user.followingCount}</p>
         <p className="title">following</p>
       </div>
     </PreviewInfosWrapper>

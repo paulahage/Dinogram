@@ -14,9 +14,9 @@ const Username = ({ post }) => {
 
 export default Username;
 
-const UsernameWrapper = styled.div`
+const UsernameWrapper = styled.span`
+  cursor: pointer;
   font-weight: var(--bold);
   font-size: var(--fs_regular);
   margin-left: 15px;
-  cursor: pointer;
 `;

@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import * as BsIcons from "react-icons/bs";
+import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 
 import { BASE_URL } from "../utils";
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
 import Username from "./Username";
+import PreviewProfile from "../components/PreviewProfile";
 
 const Posts = ({ post, postRef }) => {
+  const { hoverOver } = usePreviewProfileContext();
 
   return (
     <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
@@ -20,11 +23,11 @@ const Posts = ({ post, postRef }) => {
         </div>
         <BsIcons.BsThreeDots />
       </div>
+      {hoverOver && <PreviewProfile post={post} />}
       <div className="post-img" />
       <InteractionBar postInfo={post} />
     </PostsWrapper>
   );
-
 };
 
 export default Posts;
@@ -38,6 +41,7 @@ const PostsWrapper = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .post-avatar {
     display: flex;

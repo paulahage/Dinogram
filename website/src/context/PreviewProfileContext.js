@@ -8,17 +8,13 @@ export const PreviewProfileProvider = ({ children }) => {
 
   const handleMouseEnter = (e) => {
     console.log("enter", e);
-
     setHoverOver(true);
     setHoverUserId(e.target.id);
   };
 
   const handleMouseLeave = (e) => {
     console.log("out", e);
-
-    if (e.target.id === "preview_profile") {
-      setHoverOver(false);
-    }
+    setHoverOver(false)
   };
 
   return (
