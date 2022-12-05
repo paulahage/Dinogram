@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import ViewAllComments from "./ViewAllComments";
-import {Likes} from "./Likes";
+import { Likes } from "./Likes";
 import ActionsBar from "./ActionsBar";
 import FirstComment from "./FirstComment";
 import { UsernameOnComments } from "./UsernameOnComments";
@@ -15,8 +15,7 @@ const InteractionBar = ({ postInfo }) => {
       <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />
       <Likes likes={post.likesPreview} likesCount={post.likesCount} />
       <div className="user-comment">
-        <UsernameOnComments post={postInfo}/>
-        {/* <span className="text-bold name-user">{postInfo.user.id}</span> */}
+        <UsernameOnComments user={postInfo.user} postId={post.id} />
         <span className="normal-text">{post.text}</span>
       </div>
       {post.commentsCount > 1 ? <ViewAllComments postInfo={postInfo} /> : ""}

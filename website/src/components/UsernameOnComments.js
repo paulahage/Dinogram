@@ -2,15 +2,12 @@ import React from "react";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 import styled from "styled-components";
 
-export const UsernameOnComments = ({ post }) => {
+export const UsernameOnComments = ({ user , postId}) => {
   const { handleMouseEnter } = usePreviewProfileContext();
 
-  console.log("post", post);
-
-
   return (
-    <UsernameOnCommentsWrapper onMouseOver={handleMouseEnter}>
-      {post.user.id}
+    <UsernameOnCommentsWrapper onMouseOver={(e)=>handleMouseEnter(e,user, postId)} >
+      {user.id}
     </UsernameOnCommentsWrapper>
   );
 };

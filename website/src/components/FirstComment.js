@@ -10,8 +10,7 @@ const FirstComment = ({ comments }) => {
     return (
       <FirstCommentWrapper key={index}>
         <div>
-          <UsernameOnComments post={comment}/>
-          {/* <span className="text-bold name-user">{comment.user.id}</span> */}
+          <UsernameOnComments user={comment.user} postId={comment.postId} />
           <span className="normal-text">{comment.text}</span>
         </div>
         <button onClick={handleLikeComment}>

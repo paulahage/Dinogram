@@ -6,7 +6,7 @@ const Username = ({ post }) => {
   const { handleMouseEnter } = usePreviewProfileContext();
 
   return (
-    <UsernameWrapper onMouseOver={handleMouseEnter} id={post.user.id}>
+    <UsernameWrapper onMouseOver={(e)=>handleMouseEnter(e,post.user,post.post.id)}>
       {post.user.id}
     </UsernameWrapper>
   );

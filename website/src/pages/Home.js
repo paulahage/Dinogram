@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
-import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 import styled from "styled-components";
 
 import Posts from "../components/Posts";

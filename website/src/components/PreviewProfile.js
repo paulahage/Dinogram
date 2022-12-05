@@ -1,32 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
+
 import PreviewProfileInfos from "./PreviewProfileInfos";
 import PreviewProfilePosts from "./PreviewProfilePosts";
 import ProfileAvatar from "./ProfileAvatar";
 
-const PreviewProfile = ({ post }) => {
-  const { hoverUserId, handleMouseLeave } = usePreviewProfileContext();
+const PreviewProfile = (props) => {
+  const { user, handleMouseLeave, mousePosition, postId, hoverOver } = usePreviewProfileContext();
+  const { top, left } = mousePosition;
 
-  const userPost = post.user.id;
-  const postsPreview = post.user.postsPreview;
+  const postsPreview = user.postsPreview;
 
-
-  if (hoverUserId === userPost) {
+  if (props.postId === postId) {
     return (
-      <PreviewProfileWrapper
-        id="preview_profile"
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className="header">
-          <ProfileAvatar url={post.user.avatar} />
-          <span className="username">{post.user.id}</span>
-        </div>
-        <PreviewProfileInfos user={post.user} />
-        <div className="preview-posts">
-          <PreviewProfilePosts posts={postsPreview} />
-        </div>
-      </PreviewProfileWrapper>
+      hoverOver && (
+        <PreviewProfileWrapper
+          id="preview_profile"
+          onMouseLeave={handleMouseLeave}
+          top={top}
+          left={left}
+        >
+          <div className="header">
+            <ProfileAvatar url={user.avatar} />
+            <span className="username">{user.id}</span>
+          </div>
+          <PreviewProfileInfos user={user} />
+          <div className="preview-posts">
+            <PreviewProfilePosts posts={postsPreview} />
+          </div>
+        </PreviewProfileWrapper>
+      )
     );
   }
 };
@@ -45,8 +49,8 @@ const PreviewProfileWrapper = styled.div`
   justify-content: flex-start;
   z-index: 2;
   position: absolute;
-  top: 48px;
-  right: 20px;
+  top: ${(props) => props.top + "px"};
+  left: ${(props) => props.left + "px"};
 
   .header {
     width: 100%;

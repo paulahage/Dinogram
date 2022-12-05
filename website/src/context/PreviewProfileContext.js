@@ -4,17 +4,19 @@ const PreviewProfileContext = React.createContext();
 
 export const PreviewProfileProvider = ({ children }) => {
   const [hoverOver, setHoverOver] = useState(false);
-  const [hoverUserId, setHoverUserId] = useState("");
+  const [user, setUser] = useState({});
+  const [mousePosition, setMousePosition] = useState({ top: 0, left: 0 });
+  const [postId, setPostId] = useState("");
 
-  const handleMouseEnter = (e) => {
-    console.log("enter", e);
+  const handleMouseEnter = (e, user, postId) => {
     setHoverOver(true);
-    setHoverUserId(e.target.id);
+    setUser(user);
+    setPostId(postId);
+    setMousePosition({ top: e.target.offsetTop + 22, left: 65 });
   };
 
-  const handleMouseLeave = (e) => {
-    console.log("out", e);
-    setHoverOver(false)
+  const handleMouseLeave = () => {
+    setHoverOver(false);
   };
 
   return (
@@ -23,7 +25,9 @@ export const PreviewProfileProvider = ({ children }) => {
         handleMouseEnter,
         hoverOver,
         handleMouseLeave,
-        hoverUserId,
+        user,
+        mousePosition,
+        postId
       }}
     >
       {children}
