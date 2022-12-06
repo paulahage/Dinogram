@@ -1,9 +1,14 @@
 import React, { useCallback, useRef } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
+import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
+
 import Posts from "../components/Posts";
+import SinglePost from "../components/SinglePost";
+import { useEffect } from "react";
 
 const Home = () => {
+  const { isSinglePostOpen } = useSinglePostContext();
   const { feedPosts, getMorePosts, lastPostId } = useFeedPostsContext();
 
   const observer = useRef();
@@ -25,14 +30,22 @@ const Home = () => {
     }
   }, []);
 
+
+  useEffect(() => {
+    document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
+  }, [isSinglePostOpen])
+
   return (
     <HomeWrapper>
       {feedPosts.map((post, index) => {
         if (index === feedPosts.length - 1) {
-          return <Posts post={post} key={index} postRef={lastPostRef} />;
+          return <Posts key={index} post={post} postRef={lastPostRef} />;
         }
-        return <Posts post={post} key={index} />;
+        return <Posts key={index} post={post} />;
       })}
+      {isSinglePostOpen && (
+        <SinglePost  posts={feedPosts} />
+      )}
     </HomeWrapper>
   );
 };
@@ -40,10 +53,14 @@ const Home = () => {
 export default Home;
 
 const HomeWrapper = styled.div`
-  width: 100%;
+  width: calc(100% + 155px);
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 1220px) {
+    width: calc(100% + 80px);
+  }
 `;

@@ -1,11 +1,13 @@
 import React from "react";
+import { useLikesContext } from "../context/LikesContext";
+import { useSinglePostContext } from "../context/SinglePostContext";
 import * as HiIcons from "react-icons/hi";
 import * as FiIcons from "react-icons/fi";
 import styled from "styled-components";
-import { useLikesContext } from "../context/LikesContext";
 
-const ActionsBar = () => {
+const ActionsBar = ({ postInfo }) => {
   const { handleLikedPost, isLikedPost } = useLikesContext();
+  const { toggleSinglePost } = useSinglePostContext();
 
   return (
     <ActionsBarWrapper>
@@ -17,7 +19,9 @@ const ActionsBar = () => {
             <HiIcons.HiOutlineHeart className="interaction-icons" />
           )}
         </button>
-        <FiIcons.FiMessageCircle className="interaction-icons" />
+        <button onClick={()=> toggleSinglePost(postInfo)}>
+          <FiIcons.FiMessageCircle className="interaction-icons" />
+        </button>
       </div>
       <FiIcons.FiBookmark className="interaction-icons icon-position" />
     </ActionsBarWrapper>
@@ -27,8 +31,8 @@ const ActionsBar = () => {
 export default ActionsBar;
 
 const ActionsBarWrapper = styled.div`
-  width: 444px;
-  height: 75px;
+  width: 100%;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;

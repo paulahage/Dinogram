@@ -1,15 +1,18 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useSinglePostContext } from '../context/SinglePostContext';
 
-const ViewAllComments = ({ post }) => {
-  const { commentCount } = post;
+const ViewAllComments = ({ postInfo }) => {
+  const { toggleSinglePost } = useSinglePostContext();
+
+  const { commentCount } = postInfo.post;
 
   if (commentCount <= 1) {
     return <span></span>
   }
 
   return (
-    <ViewAllCommentsWrapper>
+    <ViewAllCommentsWrapper onClick={()=> toggleSinglePost(postInfo)}>
       <span className="view-all-comments">
         View all {commentCount} comments
       </span>
@@ -20,7 +23,7 @@ const ViewAllComments = ({ post }) => {
 export default ViewAllComments
 
 const ViewAllCommentsWrapper = styled.button`
-  margin: 5px 0;
+  margin-top: 8px;
 
   .view-all-comments {
     font-size: var(--fs_regular);

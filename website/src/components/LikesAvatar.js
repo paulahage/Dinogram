@@ -2,24 +2,25 @@ import styled from "styled-components";
 import { BASE_URL } from "../utils";
 
 const LikesAvatar = ({ likes }) => {
+  
   if (likes.length === 1) {
     return (
-      <LikesWrapper pictureUrl={BASE_URL + likes[0]}>
+      <LikesAvatarWrapper pictureUrl={BASE_URL + likes[0].avatar}>
         <div className="avatars-likes" />
-      </LikesWrapper>
+      </LikesAvatarWrapper>
     );
   }
 
-  return likes.map((avatar, index) => (
-    <LikesWrapper key={index} pictureUrl={BASE_URL + avatar} order={index}>
+  return likes.map((like, index) => (
+    <LikesAvatarWrapper key={index} pictureUrl={BASE_URL + like.avatar} order={index}>
         <div className="avatars-likes" />
-    </LikesWrapper>
+    </LikesAvatarWrapper>
   ));
 };
 
 export default LikesAvatar;
 
-const LikesWrapper = styled.div`
+const LikesAvatarWrapper = styled.div`
   .avatars-likes {
     width: 22px;
     height: 22px;

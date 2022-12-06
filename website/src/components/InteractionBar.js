@@ -7,18 +7,17 @@ import FirstComment from "./FirstComment";
 
 const InteractionBar = ({ postInfo }) => {
   const { post } = postInfo;
-  const likesCount = post.previewLikes.avatars;
-  const previewComments = post.previewComments;
+  const previewComments = post.commentsPreview;
 
   return (
     <InteractionBarWrapper>
-      <ActionsBar likesCount={likesCount} />
-      <Likes likesCount={likesCount} />
-      <div>
+      <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />
+      <Likes likes={post.likesPreview} likesCount={post.likesCount} />
+      <div className="user-comment">
         <span className="text-bold name-user">{postInfo.user.id}</span>
         <span className="normal-text">{post.text}</span>
       </div>
-      <ViewAllComments post={post} />
+      {post.commentsCount > 1 ?  <ViewAllComments postInfo={postInfo} /> : ""}
       <FirstComment comments={previewComments} />
     </InteractionBarWrapper>
   );
@@ -27,10 +26,8 @@ const InteractionBar = ({ postInfo }) => {
 export default InteractionBar;
 
 const InteractionBarWrapper = styled.div`
-  padding: 15px;
-  margin-top: -28px;
+  padding: 5px 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
 `;

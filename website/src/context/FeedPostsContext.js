@@ -25,6 +25,7 @@ export const FeedPostsProvider = ({ children }) => {
     getPosts();
   }, []);
 
+
   return (
     <FeedPostsContext.Provider
       value={{

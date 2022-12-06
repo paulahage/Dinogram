@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import LikesAvatar from "./LikesAvatar";
 
-export const Likes = ({ likesCount }) => {
+export const Likes = ({ likes, likesCount }) => {
 
   return (
     <LikesWrapper>
       <div className="show-avatar">
-        <LikesAvatar likes={likesCount} />
+        <LikesAvatar likes={likes} />
       </div>
-      {likesCount.length === 1 ? (
+      {likesCount === 1 ? (
         <span className=" text-bold text-likes">
-          {likesCount.length} like
+          {likesCount} like
         </span>
       ) : (
         <span className="text-bold text-likes">
-          {likesCount.length} likes
+          {likesCount} likes
         </span>
       )}
     </LikesWrapper>
@@ -24,7 +24,7 @@ export const Likes = ({ likesCount }) => {
 const LikesWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 8px 0;
 
   .show-avatar {
     display: flex;
