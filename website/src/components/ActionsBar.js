@@ -1,4 +1,3 @@
-import React from "react";
 import { useLikesContext } from "../context/LikesContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import * as HiIcons from "react-icons/hi";
@@ -7,10 +6,10 @@ import styled from "styled-components";
 
 const ActionsBar = ({ postInfo }) => {
   const { handleLikedPost, isLikedPost } = useLikesContext();
-  const { toggleSinglePost } = useSinglePostContext();
+  const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
 
   return (
-    <ActionsBarWrapper>
+    <ActionsBarWrapper isSinglePostOpen={isSinglePostOpen}>
       <div className="interaction-bar">
         <button onClick={handleLikedPost}>
           {isLikedPost ? (
@@ -19,7 +18,7 @@ const ActionsBar = ({ postInfo }) => {
             <HiIcons.HiOutlineHeart className="interaction-icons" />
           )}
         </button>
-        <button onClick={()=> toggleSinglePost(postInfo)}>
+        <button onClick={() => handleMakeComment(postInfo)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
@@ -36,6 +35,7 @@ const ActionsBarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding:${props => props.isSinglePostOpen && "0 15px 0 15px"};
 
   .interaction-bar {
     width: 70px;
