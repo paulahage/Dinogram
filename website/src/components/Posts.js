@@ -6,24 +6,28 @@ import { BASE_URL } from "../utils";
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
+import Username from "./Username";
+import PreviewProfile from "../components/PreviewProfile";
 
 const Posts = ({ post, postRef }) => {
 
   return (
-    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
+    <PostsWrapper
+      pictureUrl={BASE_URL + post.post.picture}
+    >
       <div ref={postRef} className="post-avatar">
         <div className="post-author">
           <ProfileAvatar url={post.user.avatar} />
-          <span className="username">{post.user.id}</span>
+          <Username post={post} />
           <DatePost datePost={post.post.date} />
         </div>
         <BsIcons.BsThreeDots />
       </div>
+       <PreviewProfile postId={post.post.id} />
       <div className="post-img" />
       <InteractionBar postInfo={post} />
     </PostsWrapper>
   );
-
 };
 
 export default Posts;
@@ -37,6 +41,7 @@ const PostsWrapper = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .post-avatar {
     display: flex;
@@ -52,12 +57,6 @@ const PostsWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  .username {
-    font-weight: var(--bold);
-    font-size: var(--fs_regular);
-    margin-left: 15px;
   }
 
   .post-img {

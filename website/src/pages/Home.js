@@ -1,11 +1,10 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
 
 import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
-import { useEffect } from "react";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
@@ -30,10 +29,9 @@ const Home = () => {
     }
   }, []);
 
-
   useEffect(() => {
     document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
-  }, [isSinglePostOpen])
+  }, [isSinglePostOpen]);
 
   return (
     <HomeWrapper>
@@ -43,9 +41,7 @@ const Home = () => {
         }
         return <Posts key={index} post={post} />;
       })}
-      {isSinglePostOpen && (
-        <SinglePost  posts={feedPosts} />
-      )}
+      {isSinglePostOpen && <SinglePost posts={feedPosts} />}
     </HomeWrapper>
   );
 };
