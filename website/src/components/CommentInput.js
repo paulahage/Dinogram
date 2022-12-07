@@ -1,11 +1,19 @@
-import { useSinglePostContext } from "../context/SinglePostContext";
+import React, {useState} from "react";
+import { useFeedPostsContext } from "../context/FeedPostsContext";
 import styled from "styled-components";
 
 const CommentInput = () => {
-  const { focusRef, handleCommentSubmit, myComment, setMyComment } =
-    useSinglePostContext();
+  const { focusRef } = useFeedPostsContext();
+  const [myComment, setMyComment] = useState("");
 
-  const handleComment = (e) => setMyComment(e.target.value);
+  const handleComment = (e) => {
+    setMyComment(e.target.value);
+  };
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    setMyComment("");
+  };
 
   return (
     <CommentInputWrapper comment={myComment}>

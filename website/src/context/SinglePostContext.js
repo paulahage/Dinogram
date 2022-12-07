@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { fetchAllComments } from "../services/ApiService";
 
 const SinglePostContext = React.createContext();
@@ -7,9 +8,8 @@ export const SinglePostProvider = ({ children }) => {
   const [isSinglePostOpen, setIsSinglePostOpen] = useState(false);
   const [clickedPost, setClickedPost] = useState({});
   const [comments, setComments] = useState([]);
-  const [myComment, setMyComment] = useState("");
 
-  const focusRef = useRef();
+  const { focusRef } = useFeedPostsContext();
 
   const getAllComments = async (postId) => {
     const singlePost = await fetchAllComments(postId);
@@ -36,11 +36,6 @@ export const SinglePostProvider = ({ children }) => {
     }
   }
 
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    setMyComment("");
-  };
-
   useEffect(() => {
     if (clickedPost.post) {
       getAllComments(clickedPost.post.id);
@@ -56,10 +51,6 @@ export const SinglePostProvider = ({ children }) => {
         handleClose,
         comments,
         handleMakeComment,
-        focusRef,
-        handleCommentSubmit,
-        myComment,
-        setMyComment,
       }}
     >
       {children}

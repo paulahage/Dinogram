@@ -16,7 +16,6 @@ const Home = () => {
     const lastPost = entries[0];
 
     if (lastPost.isIntersecting) {
-      //console.log("last post aparecendo");
       getMorePosts(lastPostId);
       setLastPostId("");
 

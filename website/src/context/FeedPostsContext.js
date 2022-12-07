@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { fetchMorePosts, fetchPosts } from "../services/ApiService";
 
 const FeedPostsContext = React.createContext({});
@@ -6,6 +6,8 @@ const FeedPostsContext = React.createContext({});
 export const FeedPostsProvider = ({ children }) => {
   const [feedPosts, setFeedPosts] = useState([]);
   const [lastPostId, setLastPostId] = useState("");
+
+  const focusRef = useRef();
 
   const getLastPostId = (posts) => {
     const lastPost = posts.at(-1);
@@ -27,11 +29,8 @@ export const FeedPostsProvider = ({ children }) => {
 
   useEffect(() => {
     getPosts();
+    //eslint-disable-next-line
   }, []);
-
-  //console.log("feed posts", feedPosts);
-  //console.log("last Post Id", lastPostId);
-
 
   return (
     <FeedPostsContext.Provider
@@ -40,6 +39,7 @@ export const FeedPostsProvider = ({ children }) => {
         getMorePosts,
         lastPostId,
         setLastPostId,
+        focusRef,
       }}
     >
       {children}
