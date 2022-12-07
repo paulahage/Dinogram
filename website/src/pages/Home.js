@@ -8,7 +8,7 @@ import SinglePost from "../components/SinglePost";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
-  const { feedPosts, getMorePosts, lastPostId } = useFeedPostsContext();
+  const { feedPosts, getMorePosts, lastPostId, setLastPostId } = useFeedPostsContext();
 
   const observer = useRef();
 
@@ -16,7 +16,10 @@ const Home = () => {
     const lastPost = entries[0];
 
     if (lastPost.isIntersecting) {
+      //console.log("last post aparecendo");
       getMorePosts(lastPostId);
+      setLastPostId("");
+
       observer.current.disconnect();
     }
   };
