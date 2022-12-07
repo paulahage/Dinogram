@@ -12,7 +12,7 @@ const InteractionBar = ({ postInfo }) => {
 
   return (
     <InteractionBarWrapper>
-      <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />
+      <ActionsBar postInfo={postInfo} />
       <Likes likes={post.likesPreview} likesCount={post.likesCount} />
       <div className="user-comment">
         <UsernameOnComments user={postInfo.user} postId={post.id} />
