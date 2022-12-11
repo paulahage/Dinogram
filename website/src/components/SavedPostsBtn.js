@@ -1,25 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import * as FiIcons from "react-icons/fi";
+
 
 import { useSidebarContext } from "../context/SidebarContext";
 
-const Logout = () => {
+const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
   return (
-    <LogoutWrapper>
-      <NavLink to="/" onClick={closeSideMenus}>
-        <p className="logout-btn">Logout</p>
+    <SavedPostsBtnWrapper>
+      <NavLink to="/saved_posts" onClick={closeSideMenus} className="saved-posts-container">
+        <p className="saved-posts-btn">Saved</p>
+        <FiIcons.FiBookmark className="saved-icon" />
       </NavLink>
-    </LogoutWrapper>
+    </SavedPostsBtnWrapper>
   );
 };
 
-export default Logout;
+export default SavedPostsBtn;
 
-const LogoutWrapper = styled.div`
-  width: 154px;
+const SavedPostsBtnWrapper = styled.div`
+  width: 150px;
   height: 45px;
   border-radius: 10px;
   box-shadow: 0px 2px 18px 3px rgba(179, 179, 179, 1);
@@ -32,15 +35,28 @@ const LogoutWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  .logout-btn {
+  .saved-posts-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: flex-start;
+  }
+
+  .saved-posts-btn {
     font-weight: var(--regular);
     font-size: var(--fs_regular_plus);
     color: var(--icons);
   }
 
+  .saved-icon {
+    color: var(--icons);
+    font-size: 18px;
+    position: relative;
+    top:3px;
+  }
+
   @media screen and (max-width: 1220px) {
-    width: 60px;
-    height: 40px;
     top: 605px;
     left: 10px;
   }
