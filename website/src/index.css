@@ -5,11 +5,11 @@
   --black: rgb(9, 9, 9);
   --white: #ffff;
   --grey: #dbdbdb;
-  --dark_grey:#8E8E8E;
+  --dark_grey: #8e8e8e;
   --background_transparent: rgba(9, 9, 9, 0.677);
   --mainBackgroundColor: #fafafa;
   --icons: #262626;
-  --heart: #ED4956;
+  --heart: #ed4956;
 
   /* fonts weight */
   --light: 200;
@@ -18,7 +18,7 @@
 
   /* fonts size */
   --fs_small: 13px;
-  --fs_regular:14px;
+  --fs_regular: 14px;
   --fs_regular_plus: 14.5px;
 }
 
@@ -70,18 +70,18 @@ hr {
 }
 
 .name-user {
-    margin-right: 10px;
-    margin-bottom: 5px;
-  }
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
 
-  .interaction-icons {
-    color: var(--icons);
-    font-size: 25px;
-  }
+.interaction-icons {
+  color: var(--icons);
+  font-size: 25px;
+}
 
-  .interaction-icons:hover {
-    color: var(--dark_grey);
-  }
+.interaction-icons:hover {
+  color: var(--dark_grey);
+}
 
 /* SIDEBAR COMPACT */
 .logo {
