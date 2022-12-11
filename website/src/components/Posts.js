@@ -10,7 +10,6 @@ import Username from "./Username";
 import PreviewProfile from "../components/PreviewProfile";
 
 const Posts = ({ post, postRef }) => {
-
   return (
     <PostsWrapper
       pictureUrl={BASE_URL + post.post.picture}

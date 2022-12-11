@@ -1,5 +1,10 @@
 import axios from "axios";
-import { URL_FEED, URL_ALL_COMMENTS, URL_INFINITE_FEED } from "../utils";
+import {
+  URL_FEED,
+  URL_ALL_COMMENTS,
+  URL_INFINITE_FEED,
+  URL_USER_PROFILE,
+} from "../utils";
 
 export const fetchPosts = async () => {
   const response = await axios.get(URL_FEED);
@@ -16,6 +21,10 @@ export const fetchAllComments = async (postId) => {
   return response.data;
 }
 
+export const fetchUserProfile = async (userId) => {
+  const response = await axios.get(URL_USER_PROFILE + userId);
+  return response.data;
+}
 
 
 

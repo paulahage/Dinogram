@@ -15,7 +15,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/direct_message" element={<DirectMessage/>}/>
-          <Route path="/:user" element={<Profile />} />
+          <Route path=":userId" element={<Profile />} />
           <Route path="/saved_posts" element={<SavedPosts/>}/>
         </Route>
       </Routes>

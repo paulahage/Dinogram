@@ -57,7 +57,7 @@ const Sidebar = () => {
           </div>
           {/* --------PROFILE BTN-------- */}
           <div className="background-icon">
-            <NavLink to="/profile" onClick={closeSideMenus}>
+            <NavLink to="/:user" onClick={closeSideMenus}>
               <div className="my-profile-avatar" />
               <span className="page-title title-avatar-position">Profile</span>
             </NavLink>

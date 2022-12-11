@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import {fetchMorePosts, fetchPosts} from "../services/ApiService";
+import {
+  fetchMorePosts,
+  fetchPosts,
+} from "../services/ApiService";
 
 const FeedPostsContext = React.createContext({});
 
