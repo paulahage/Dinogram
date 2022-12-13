@@ -10,6 +10,9 @@
   --mainBackgroundColor: #fafafa;
   --icons: #262626;
   --heart: #ed4956;
+  --post_btn: #007bedc8;
+  --post_btn_disabled:#007aed92;
+  --hover_post: #02396C;
 
   /* fonts weight */
   --light: 200;
@@ -47,6 +50,14 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+input {
+  border: none;
+}
+
+textarea {
+  border: none;
 }
 
 button {

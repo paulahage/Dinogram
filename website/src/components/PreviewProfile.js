@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 
@@ -12,27 +11,25 @@ const PreviewProfile = (props) => {
 
   const postsPreview = user.postsPreview;
 
-  if (props.postId === postId) {
-    return (
-      hoverOver && (
-        <PreviewProfileWrapper
-          id="preview_profile"
-          onMouseLeave={handleMouseLeave}
-          top={top}
-          left={left}
-        >
-          <div className="header">
-            <ProfileAvatar url={user.avatar} />
-            <span className="username">{user.id}</span>
-          </div>
-          <PreviewProfileInfos user={user} />
-          <div className="preview-posts">
-            <PreviewProfilePosts posts={postsPreview} />
-          </div>
-        </PreviewProfileWrapper>
-      )
-    );
-  }
+  return (
+    (props.postId === postId && hoverOver) && (
+      <PreviewProfileWrapper
+        id="preview_profile"
+        onMouseLeave={handleMouseLeave}
+        top={top}
+        left={left}
+      >
+        <div className="header">
+          <ProfileAvatar url={user.avatar} />
+          <span className="username">{user.id}</span>
+        </div>
+        <PreviewProfileInfos user={user} />
+        <div className="preview-posts">
+          <PreviewProfilePosts posts={postsPreview} />
+        </div>
+      </PreviewProfileWrapper>
+    )
+  );
 };
 
 export default PreviewProfile;
