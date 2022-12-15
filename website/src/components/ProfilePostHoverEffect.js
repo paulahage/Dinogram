@@ -14,12 +14,10 @@ const ProfilePostHoverEffect = ({ post, userInfo}) => {
     >
       <div className="likes-count">
         <HiIcons.HiHeart className="icon" />
-        &nbsp;&nbsp;
         <span className="icon-title">{post.likesCount}</span>
       </div>
       <div>
         <FiIcons.FiMessageCircle className="icon" />
-        &nbsp;&nbsp;
         <span className="icon-title">{post.commentsCount}</span>
       </div>
     </ProfilePostHoverEffectWrapper>
