@@ -1,3 +1,4 @@
+import React from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
