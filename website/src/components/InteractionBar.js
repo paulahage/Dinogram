@@ -28,6 +28,7 @@ export default InteractionBar;
 
 const InteractionBarWrapper = styled.div`
   padding: 5px 15px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

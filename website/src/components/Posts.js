@@ -8,12 +8,11 @@ import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
 import Username from "./Username";
 import PreviewProfile from "../components/PreviewProfile";
+import CommentInput from "../components/CommentInput";
 
 const Posts = ({ post, postRef }) => {
   return (
-    <PostsWrapper
-      pictureUrl={BASE_URL + post.post.picture}
-    >
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
       <div ref={postRef} className="post-avatar">
         <div className="post-author">
           <ProfileAvatar url={post.user.avatar} />
@@ -22,9 +21,10 @@ const Posts = ({ post, postRef }) => {
         </div>
         <BsIcons.BsThreeDots />
       </div>
-       <PreviewProfile postId={post.post.id} />
+      <PreviewProfile postId={post.post.id} />
       <div className="post-img" />
       <InteractionBar postInfo={post} />
+      <CommentInput />
     </PostsWrapper>
   );
 };
@@ -33,7 +33,6 @@ export default Posts;
 
 const PostsWrapper = styled.div`
   width: 470px;
-  height: 750px;
   margin-top: 30px;
   background-color: var(--white);
   border: 1px solid var(--grey);
