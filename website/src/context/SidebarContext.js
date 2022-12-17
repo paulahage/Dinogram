@@ -4,20 +4,20 @@ const SidebarContext = React.createContext();
 
 export const SidebarProvider = ({ children }) => {
   const [openSidebarNotifications, setOpenSidebarNotifications] = useState(false);
-  const [openLogoutBtn, setOpenLogoutBtn] = useState(false);
+  const [openSavedPostsBtn, setOpenSavedPostsBtn] = useState(false);
 
   const showNotifications = () => {
     setOpenSidebarNotifications(!openSidebarNotifications);
-    setOpenLogoutBtn(false);
+    setOpenSavedPostsBtn(false);
   };
 
   const closeSideMenus = () => {
     setOpenSidebarNotifications(false);
-    setOpenLogoutBtn(false);
+    setOpenSavedPostsBtn(false);
   };
 
-  const showLogoutBtn = () => {
-    setOpenLogoutBtn(!openLogoutBtn);
+  const showSavedPostsBtn = () => {
+    setOpenSavedPostsBtn(!openSavedPostsBtn);
   };
 
   return (
@@ -25,8 +25,8 @@ export const SidebarProvider = ({ children }) => {
       value={{
         closeSideMenus,
         showNotifications,
-        showLogoutBtn,
-        openLogoutBtn,
+        showSavedPostsBtn,
+        openSavedPostsBtn,
         openSidebarNotifications,
       }}
     >

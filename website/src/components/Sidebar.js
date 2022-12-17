@@ -6,14 +6,14 @@ import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
 
 import SidebarNotifications from "./SidebarNotifications";
-import Logout from "./Logout";
+import SavedPostsBtn from "./SavedPostsBtn";
 
-const SidebarCompact = () => {
+const Sidebar = () => {
   const {
     closeSideMenus,
     showNotifications,
-    showLogoutBtn,
-    openLogoutBtn,
+    showSavedPostsBtn,
+    openSavedPostsBtn,
     openSidebarNotifications,
   } = useSidebarContext();
 
@@ -43,7 +43,7 @@ const SidebarCompact = () => {
           </div>
           {/* --------DM BTN-------- */}
           <div className="background-icon">
-            <NavLink to="/direct_message" onClick={closeSideMenus}>
+            <NavLink to="/direct/inbox" onClick={closeSideMenus}>
               <FiIcons.FiSend className="nav-icon send-icon" />
               <span className="page-title">Messages</span>
             </NavLink>
@@ -66,7 +66,7 @@ const SidebarCompact = () => {
         {/* --------SETTINGS BTN-------- */}
         <div className="icon-container">
           <div className="background-icon settings-btn">
-            <button onClick={showLogoutBtn}>
+            <button onClick={showSavedPostsBtn}>
               <FiIcons.FiSettings
                 className="nav-icon icon-position"
                 onClick={closeSideMenus}
@@ -74,7 +74,7 @@ const SidebarCompact = () => {
               <span className="page-title">Settings</span>
             </button>
           </div>
-          {openLogoutBtn ? <Logout /> : ""}
+          {openSavedPostsBtn ? <SavedPostsBtn /> : ""}
         </div>
       </SidebarWrapper>
       {/* --------SIDE NOTIFICATIONS-------- */}
@@ -87,7 +87,7 @@ const SidebarCompact = () => {
   );
 };
 
-export default SidebarCompact;
+export default Sidebar;
 
 const SidebarWrapper = styled.nav`
   width: 245px;

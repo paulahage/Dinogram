@@ -51,14 +51,16 @@ const Home = () => {
 export default Home;
 
 const HomeWrapper = styled.div`
-  width: calc(100% + 155px);
+  width: calc(100% - 245px);
   height: 100%;
+  margin-left: 201px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 1220px) {
-    width: calc(100% + 80px);
+    width: calc(100% - 80px);
+    margin-left: 80px;
   }
 `;

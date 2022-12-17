@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
 import DirectMessage from "./pages/Direct_Message";
+import SavedPosts from "./pages/SavedPosts";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/direct_message" element={<DirectMessage/>}/>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/direct/inbox" element={<DirectMessage/>}/>
+          <Route path="/:user" element={<Profile />} />
+          <Route path="/:userId/saved" element={<SavedPosts/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
