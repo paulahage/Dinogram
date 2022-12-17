@@ -25,6 +25,8 @@ const Profile = () => {
     //eslint-disable-next-line
   }, []);
 
+  console.log('user', user);
+
   return (
     <ProfileWrapper>
       <div className="profile-info-container">
