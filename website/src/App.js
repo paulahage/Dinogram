@@ -14,9 +14,9 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/direct_message" element={<DirectMessage/>}/>
+          <Route path="/direct/inbox" element={<DirectMessage/>}/>
           <Route path="/:user" element={<Profile />} />
-          <Route path="/saved_posts" element={<SavedPosts/>}/>
+          <Route path="/:userId/saved" element={<SavedPosts/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
