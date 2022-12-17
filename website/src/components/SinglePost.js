@@ -7,8 +7,10 @@ import * as BsIcons from "react-icons/bs";
 
 import ProfileAvatar from "./ProfileAvatar";
 import DatePost from "./DatePost";
-import InteractionBar from "./InteractionBar";
 import AllComments from "./AllComments";
+import ActionsBar from "./ActionsBar";
+import {Likes} from "./Likes";
+import CommentInput from "./CommentInput";
 
 const SinglePost = () => {
   const { toggleSinglePost, clickedPost, handleClose } = useSinglePostContext();
@@ -33,6 +35,9 @@ const SinglePost = () => {
             <BsIcons.BsThreeDots />
           </div>
           <AllComments postInfo={clickedPost} />
+          <ActionsBar postInfo={clickedPost} />
+          <Likes likes={clickedPost.post.likesPreview} likesCount={clickedPost.post.likesCount} />
+          <CommentInput />
         </div>
       </div>
     </SinglePostWrapper>

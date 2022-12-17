@@ -12,7 +12,7 @@ const InteractionBar = ({ postInfo }) => {
 
   return (
     <InteractionBarWrapper>
-      <ActionsBar likesCount={post.likesCount} postInfo={postInfo} />
+      <ActionsBar postInfo={postInfo} />
       <Likes likes={post.likesPreview} likesCount={post.likesCount} />
       <div className="user-comment">
         <UsernameOnComments user={postInfo.user} postId={post.id} />
@@ -28,6 +28,7 @@ export default InteractionBar;
 
 const InteractionBarWrapper = styled.div`
   padding: 5px 15px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
