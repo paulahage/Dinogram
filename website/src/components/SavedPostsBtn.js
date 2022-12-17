@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
 
-
 import { useSidebarContext } from "../context/SidebarContext";
 
 const SavedPostsBtn = () => {
@@ -11,7 +10,11 @@ const SavedPostsBtn = () => {
 
   return (
     <SavedPostsBtnWrapper>
-      <NavLink to="/saved_posts" onClick={closeSideMenus} className="saved-posts-container">
+      <NavLink
+        to="/:userId/saved"
+        onClick={closeSideMenus}
+        className="saved-posts-container"
+      >
         <p className="saved-posts-btn">Saved</p>
         <FiIcons.FiBookmark className="saved-icon" />
       </NavLink>

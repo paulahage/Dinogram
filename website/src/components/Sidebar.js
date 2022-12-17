@@ -43,7 +43,7 @@ const Sidebar = () => {
           </div>
           {/* --------DM BTN-------- */}
           <div className="background-icon">
-            <NavLink to="/direct_message" onClick={closeSideMenus}>
+            <NavLink to="/direct/inbox" onClick={closeSideMenus}>
               <FiIcons.FiSend className="nav-icon send-icon" />
               <span className="page-title">Messages</span>
             </NavLink>
