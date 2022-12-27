@@ -8,6 +8,7 @@ import { FeedPostsProvider } from "./context/FeedPostsContext";
 import { LikesProvider } from "./context/LikesContext";
 import { SinglePostProvider } from "./context/SinglePostContext";
 import { PreviewProfileProvider } from "./context/PreviewProfileContext";
+import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,7 +18,9 @@ root.render(
         <SidebarProvider>
           <PreviewProfileProvider>
             <SinglePostProvider>
-              <App />
+              <PostOptionsMenuProvider>
+                <App />
+              </PostOptionsMenuProvider>
             </SinglePostProvider>
           </PreviewProfileProvider>
         </SidebarProvider>

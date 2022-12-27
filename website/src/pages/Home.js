@@ -1,14 +1,17 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { useFeedPostsContext } from "../context/FeedPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import styled from "styled-components";
 
 import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
+import PostOptionsMenu from "../components/PostOptionsMenu";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { feedPosts, getMorePosts, lastPostId, setLastPostId } = useFeedPostsContext();
+  const { isOptionsMenuOpen } = usePostOptionsMenuContext();
 
   const observer = useRef();
 
@@ -35,8 +38,12 @@ const Home = () => {
     document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
   }, [isSinglePostOpen]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOptionsMenuOpen ? "hidden" : "auto";
+  }, [isOptionsMenuOpen]);
+
   return (
-    <HomeWrapper>
+    <HomeWrapper isOptionsMenuOpen={isOptionsMenuOpen} isSinglePostOpen={isSinglePostOpen}>
       {feedPosts.map((post, index) => {
         if (index === feedPosts.length - 1) {
           return <Posts key={index} post={post} postRef={lastPostRef} />;
@@ -44,6 +51,7 @@ const Home = () => {
         return <Posts key={index} post={post} />;
       })}
       {isSinglePostOpen && <SinglePost posts={feedPosts} />}
+      {isOptionsMenuOpen && <PostOptionsMenu />}
     </HomeWrapper>
   );
 };
@@ -54,6 +62,7 @@ const HomeWrapper = styled.div`
   width: calc(100% - 245px);
   height: 100%;
   margin-left: 201px;
+  padding-right: ${(props) => props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,5 +71,6 @@ const HomeWrapper = styled.div`
   @media screen and (max-width: 1220px) {
     width: calc(100% - 80px);
     margin-left: 80px;
+    padding-right: ${(props) => props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
   }
 `;
