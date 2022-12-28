@@ -7,11 +7,14 @@ import styled from "styled-components";
 import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
 import PostOptionsMenu from "../components/PostOptionsMenu";
+import AlertMessage from "../components/AlertMessage";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
-  const { feedPosts, getMorePosts, lastPostId, setLastPostId } = useFeedPostsContext();
-  const { isOptionsMenuOpen } = usePostOptionsMenuContext();
+  const { feedPosts, getMorePosts, lastPostId, setLastPostId } =
+    useFeedPostsContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } =
+    usePostOptionsMenuContext();
 
   const observer = useRef();
 
@@ -43,7 +46,11 @@ const Home = () => {
   }, [isOptionsMenuOpen]);
 
   return (
-    <HomeWrapper isOptionsMenuOpen={isOptionsMenuOpen} isSinglePostOpen={isSinglePostOpen}>
+    <HomeWrapper
+      isOptionsMenuOpen={isOptionsMenuOpen}
+      isSinglePostOpen={isSinglePostOpen}
+    >
+      {isCopiedToClipboard && <AlertMessage />}
       {feedPosts.map((post, index) => {
         if (index === feedPosts.length - 1) {
           return <Posts key={index} post={post} postRef={lastPostRef} />;
@@ -67,10 +74,12 @@ const HomeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   @media screen and (max-width: 1220px) {
     width: calc(100% - 80px);
     margin-left: 80px;
-    padding-right: ${(props) => props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
+    padding-right: ${(props) =>
+      props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
   }
 `;

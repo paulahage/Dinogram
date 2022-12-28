@@ -3,13 +3,17 @@ import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import styled from "styled-components";
 
 const PostOptionsMenu = () => {
-  const { handleCloseMenu, handleUnfollow } = usePostOptionsMenuContext();
+  const { handleCloseMenu, handleUnfollow, copyToClipboard} = usePostOptionsMenuContext();
 
   return (
     <PostOptionsMenuWrapper onClick={handleCloseMenu}>
       <div className="menu-container">
-        <button className="unfollow-btn" onClick={handleUnfollow}>Unfollow</button>
-        <button className="copy-link-btn">Copy Link</button>
+        <button className="unfollow-btn" onClick={handleUnfollow}>
+          Unfollow
+        </button>
+        <button className="copy-link-btn" onClick={copyToClipboard}>
+          Copy Link
+        </button>
       </div>
     </PostOptionsMenuWrapper>
   );
@@ -26,6 +30,7 @@ const PostOptionsMenuWrapper = styled.div`
   left: 0;
   z-index: 4;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
