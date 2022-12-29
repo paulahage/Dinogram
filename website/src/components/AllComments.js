@@ -23,6 +23,7 @@ const AllComments = ({ postInfo }) => {
     } else {
       setAllComments(allComments.concat(comments));
     }
+    //eslint-disable-next-line
   }, [comments]);
 
   return (

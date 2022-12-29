@@ -13,6 +13,7 @@
   --post_btn: #007bedc8;
   --post_btn_disabled:#007aed92;
   --hover_post: #02396C;
+  --alert_success: #1b9b04;
 
   /* fonts weight */
   --light: 200;
@@ -23,6 +24,7 @@
   --fs_small: 13px;
   --fs_regular: 14px;
   --fs_regular_plus: 14.5px;
+  --fs_large: 16px;
 }
 
 /* GLOBAL STYLES */

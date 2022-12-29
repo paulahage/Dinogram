@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import * as BsIcons from "react-icons/bs";
 
 import { BASE_URL } from "../utils";
 import ProfileAvatar from "./ProfileAvatar";
@@ -9,6 +8,7 @@ import DatePost from "./DatePost";
 import Username from "./Username";
 import PreviewProfile from "../components/PreviewProfile";
 import CommentInput from "../components/CommentInput";
+import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
   return (
@@ -19,7 +19,7 @@ const Posts = ({ post, postRef }) => {
           <Username post={post} />
           <DatePost datePost={post.post.date} />
         </div>
-        <BsIcons.BsThreeDots />
+        <DotsKebabButton post={post} />
       </div>
       <PreviewProfile postId={post.post.id} />
       <div className="post-img" />
