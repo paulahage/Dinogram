@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 
@@ -12,7 +13,8 @@ const PreviewProfile = (props) => {
   const postsPreview = user.postsPreview;
 
   return (
-    (props.postId === postId && hoverOver) && (
+    props.postId === postId &&
+    hoverOver && (
       <PreviewProfileWrapper
         id="preview_profile"
         onMouseLeave={handleMouseLeave}
@@ -21,7 +23,10 @@ const PreviewProfile = (props) => {
       >
         <div className="header">
           <ProfileAvatar url={user.avatar} />
-          <span className="username">{user.id}</span>
+          <NavLink to={`/${user.id}`} className="username">
+            {user.id}
+          </NavLink>
+          <span className="username"></span>
         </div>
         <PreviewProfileInfos user={user} />
         <div className="preview-posts">
@@ -61,6 +66,7 @@ const PreviewProfileWrapper = styled.div`
   }
 
   .username {
+    color: var(--icons);
     font-weight: var(--bold);
     font-size: var(--fs_regular);
     margin-left: 15px;

@@ -1,15 +1,86 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from "react";
+import { useSinglePostContext } from "../context/SinglePostContext";
+import { useParams } from "react-router-dom";
+import { fetchUserProfile } from "../services/ApiService";
+import styled from "styled-components";
+
+import ProfileAvatar from "../components/ProfileAvatar";
+import ProfileInfos from "../components/ProfileInfos";
+import ProfilePosts from "../components/ProfilePosts";
+import SinglePost from "../components/SinglePost";
 
 const Profile = () => {
-  return (
-    <ProfileWrapper>Profile</ProfileWrapper>
-  )
-}
+  const { isSinglePostOpen } = useSinglePostContext();
+  const [user, setUser] = useState({ user: {}, posts: [] });
 
-export default Profile
+  let { userId } = useParams();
+
+  const getUserProfile = async (userId) => {
+    const userProfile = await fetchUserProfile(userId);
+    setUser(userProfile);
+  };
+
+  useEffect(() => {
+    getUserProfile(userId);
+    //eslint-disable-next-line
+  }, []);
+
+  console.log('user', user);
+
+  return (
+    <ProfileWrapper>
+      <div className="profile-info-container">
+        <ProfileAvatar url={user.user.avatar} userProfile={user} />
+        <div className="info-container">
+          <p className="username">{user.user.id}</p>
+          <ProfileInfos user={user.user} />
+        </div>
+      </div>
+      <ProfilePosts userInfo={user} />
+      {isSinglePostOpen && <SinglePost />}
+    </ProfileWrapper>
+  );
+};
+
+export default Profile;
 
 const ProfileWrapper = styled.div`
- text-align: center;
+  width: calc(100% - 245px);
+  height: 100%;
+  margin-left: 245px;
+  padding: 40px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  .profile-info-container {
+    width: 100%;
+    border-bottom: 1px solid var(--grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 45px;
+    margin-bottom: 45px;
+  }
+
+  .info-container {
+    margin-left: 80px;
+  }
+
+  .username {
+    font-size: var(--fs_xl);
+    font-weight: var(--light);
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 1220px) {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+    padding: 40px 40px;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 40px 20px;
+  }
 `;
