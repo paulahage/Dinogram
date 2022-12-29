@@ -25,8 +25,6 @@ const Profile = () => {
     //eslint-disable-next-line
   }, []);
 
-  console.log('user', user);
-
   return (
     <ProfileWrapper>
       <div className="profile-info-container">
@@ -69,7 +67,7 @@ const ProfileWrapper = styled.div`
   }
 
   .username {
-    font-size: var(--fs_xl);
+    font-size: var(--fs_xxl);
     font-weight: var(--light);
     margin-bottom: 20px;
   }

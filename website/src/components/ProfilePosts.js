@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils";
 import ProfilePostHoverEffect from "./ProfilePostHoverEffect";
 
 const ProfilePosts = ({ userInfo }) => {
+  console.log('user info', userInfo);
 
   const { posts } = userInfo;
 
@@ -13,10 +14,7 @@ const ProfilePosts = ({ userInfo }) => {
         return (
           <div className="picture-container" key={post.id}>
             <PostPicture className="post" src={BASE_URL + post.picture} />
-            <ProfilePostHoverEffect
-              post={post}
-              userInfo={userInfo}
-            />
+            <ProfilePostHoverEffect post={post} userInfo={userInfo} />
           </div>
         );
       })}
@@ -36,12 +34,12 @@ const ProfilePostsWrapper = styled.div`
   place-items: center;
   place-content: center;
 
-  .hover-effect {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
+  // .hover-effect {
+  //   width: 100%;
+  //   aspect-ratio: 1 / 1;
+  //   z-index: 1;
+  //   background-color: rgba(0, 0, 0, 0.3);
+  // }
 
   .picture-container {
     position: relative;

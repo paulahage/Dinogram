@@ -25,7 +25,9 @@
   --fs_regular: 14px;
   --fs_regular_plus: 14.5px;
   --fs_large: 15px;
-  --fs_xl:26px;
+  --fs_xl:20px;
+  --fs_xxl:26px;
+
 }
 
 /* GLOBAL STYLES */
@@ -95,6 +97,10 @@ hr {
 
 .interaction-icons:hover {
   color: var(--dark_grey);
+}
+
+.interaction-icons.active:hover {
+  color: var(--icons);
 }
 
 /* SIDEBAR COMPACT */
