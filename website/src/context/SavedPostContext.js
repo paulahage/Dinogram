@@ -1,25 +1,26 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 
 const SavedPostContext = React.createContext();
 
 export const SavedPostProvider = ({ children }) => {
-  const [isPostSaved, setIsPostSaved] = useState(false);
-
   const savedPostsOnStorage = JSON.parse(localStorage.getItem("savedPosts")) || [];
 
   const savePost = (post) => {
-    const hasSamePostOnStorage = savedPostsOnStorage.find((savedPost) => savedPost.post.id === post.post.id);
+    savedPostsOnStorage.push(post);
+    localStorage.setItem("savedPosts", JSON.stringify(savedPostsOnStorage));
+  };
 
-    if (!hasSamePostOnStorage) {
-      savedPostsOnStorage.push(post);
+  const removePost = (post) => {
+    const postToRemoveIndex = savedPostsOnStorage.findIndex((savedPost) => savedPost.post.id === post.post.id);
+
+    if (postToRemoveIndex > -1) {
+      savedPostsOnStorage.splice(postToRemoveIndex, 1);
       localStorage.setItem("savedPosts", JSON.stringify(savedPostsOnStorage));
-      setIsPostSaved(true);
     }
   };
 
   return (
-    <SavedPostContext.Provider value={{ savePost, isPostSaved }}>
+    <SavedPostContext.Provider value={{ savedPostsOnStorage, savePost, removePost }}>
       {children}
     </SavedPostContext.Provider>
   );

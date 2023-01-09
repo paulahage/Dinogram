@@ -4,8 +4,6 @@ import { BASE_URL } from "../utils";
 import ProfilePostHoverEffect from "./ProfilePostHoverEffect";
 
 const ProfilePosts = ({ userInfo }) => {
-  console.log('user info', userInfo);
-
   const { posts } = userInfo;
 
   return (

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { useLikesContext } from "../context/LikesContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import * as HiIcons from "react-icons/hi";
@@ -9,7 +10,28 @@ import { useSavedPostContext } from "../context/SavedPostContext";
 const ActionsBar = ({ postInfo }) => {
   const { handleLikedPost, isLikedPost } = useLikesContext();
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
-  const { savePost, isPostSaved } = useSavedPostContext();
+  const { savedPostsOnStorage, savePost, removePost } = useSavedPostContext();
+
+  const [isPostSaved, setIsPostSaved] = useState(false);
+
+  const handleSavePost = () => {
+    const hasSamePostOnStorage = savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+
+    if (!hasSamePostOnStorage) {
+      savePost(postInfo)
+      setIsPostSaved(true);
+      return;
+    }
+    removePost(postInfo);
+    setIsPostSaved(false);
+  };
+
+  useEffect(() => {
+    if (savedPostsOnStorage.length) {
+      setIsPostSaved(true);
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <ActionsBarWrapper isSinglePostOpen={isSinglePostOpen}>
@@ -25,15 +47,15 @@ const ActionsBar = ({ postInfo }) => {
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
-      {isPostSaved ? (
-        <button onClick={() => savePost(postInfo)}>
-          <FiIcons.FiBookmark className="interaction-icons icon-position active" />
-        </button>
-      ) : (
-        <button onClick={() => savePost(postInfo)}>
-          <FiIcons.FiBookmark className="interaction-icons icon-position" />
-        </button>
-      )}
+      <button onClick={handleSavePost}>
+        <FiIcons.FiBookmark
+          className={
+            isPostSaved
+              ? "interaction-icons icon-position active"
+              : "interaction-icons icon-position"
+          }
+        />
+      </button>
     </ActionsBarWrapper>
   );
 };
