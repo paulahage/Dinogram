@@ -1,12 +1,41 @@
+import React, { useEffect, useState } from "react";
 import { useLikesContext } from "../context/LikesContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import * as HiIcons from "react-icons/hi";
 import * as FiIcons from "react-icons/fi";
+
 import styled from "styled-components";
+import { useSavedPostContext } from "../context/SavedPostContext";
 
 const ActionsBar = ({ postInfo }) => {
   const { handleLikedPost, isLikedPost } = useLikesContext();
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
+  const { savedPostsOnStorage, savePost, removePost } = useSavedPostContext();
+
+  const [isPostSaved, setIsPostSaved] = useState(false);
+
+  const getPostOnStorage = () => {
+    return savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+  }
+
+  const handleSavePost = () => {
+    const hasPostOnStorage = getPostOnStorage();
+
+    if (!hasPostOnStorage) {
+      savePost(postInfo);
+      setIsPostSaved(true);
+      return;
+    }
+    removePost(postInfo);
+    setIsPostSaved(false);
+  };
+
+  useEffect(() => {
+    if (savedPostsOnStorage.length) {
+      setIsPostSaved(getPostOnStorage());
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <ActionsBarWrapper isSinglePostOpen={isSinglePostOpen}>
@@ -22,7 +51,15 @@ const ActionsBar = ({ postInfo }) => {
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
-      <FiIcons.FiBookmark className="interaction-icons icon-position" />
+      <button onClick={handleSavePost}>
+        <FiIcons.FiBookmark
+          className={
+            isPostSaved
+              ? "interaction-icons icon-position active"
+              : "interaction-icons icon-position"
+          }
+        />
+      </button>
     </ActionsBarWrapper>
   );
 };
@@ -35,7 +72,7 @@ const ActionsBarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding:${props => props.isSinglePostOpen && "0 15px 0 15px"};
+  padding: ${(props) => props.isSinglePostOpen && "0 15px 0 15px"};
 
   .interaction-bar {
     width: 70px;
@@ -47,6 +84,10 @@ const ActionsBarWrapper = styled.div`
   .icon-position {
     position: relative;
     top: 2px;
+  }
+
+  .icon-position.active {
+    fill: var(--icons);
   }
 
   .heart-btn-color {

@@ -43,7 +43,7 @@ const ProfilePostHoverEffectWrapper = styled.div`
   }
 
   .icon {
-    font-size: var(--fs_xl);
+    font-size: var(--fs_xxl);
     fill: var(--mainBackgroundColor);
     color: var(--mainBackgroundColor);
   }
