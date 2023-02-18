@@ -14,11 +14,15 @@ const ActionsBar = ({ postInfo }) => {
 
   const [isPostSaved, setIsPostSaved] = useState(false);
 
-  const handleSavePost = () => {
-    const hasSamePostOnStorage = savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+  const getPostOnStorage = () => {
+    return savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+  }
 
-    if (!hasSamePostOnStorage) {
-      savePost(postInfo)
+  const handleSavePost = () => {
+    const hasPostOnStorage = getPostOnStorage();
+
+    if (!hasPostOnStorage) {
+      savePost(postInfo);
       setIsPostSaved(true);
       return;
     }
@@ -28,7 +32,7 @@ const ActionsBar = ({ postInfo }) => {
 
   useEffect(() => {
     if (savedPostsOnStorage.length) {
-      setIsPostSaved(true);
+      setIsPostSaved(getPostOnStorage());
     }
     //eslint-disable-next-line
   }, []);
