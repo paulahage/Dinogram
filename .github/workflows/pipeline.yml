@@ -34,5 +34,6 @@ jobs:
       with:
           folder: ./website/build
           bucket: ${{ secrets.S3_BUCKET }}
+          bucket-region: eu-north-1
 
     
