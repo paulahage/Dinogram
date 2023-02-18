@@ -1,5 +1,4 @@
 import React from "react";
-//import { useParams } from "react-router-dom";
 import { useSinglePostContext } from "../context/SinglePostContext";
 
 import styled from "styled-components";
@@ -9,7 +8,6 @@ import SinglePost from "../components/SinglePost";
 
 
 const SavedPosts = () => {
-  //const { userId } = useParams();
   const { isSinglePostOpen } = useSinglePostContext();
 
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));

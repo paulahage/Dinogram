@@ -14,7 +14,7 @@ const SavedPostsBtn = () => {
   return (
     <SavedPostsBtnWrapper windowSize={windowHeight}>
       <NavLink
-        to="/:userId/saved"
+        to="/settings/saved"
         onClick={closeSideMenus}
         className="saved-posts-container"
       >
