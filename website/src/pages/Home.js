@@ -11,10 +11,8 @@ import AlertMessage from "../components/AlertMessage";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
-  const { feedPosts, getMorePosts, lastPostId, setLastPostId } =
-    useFeedPostsContext();
-  const { isOptionsMenuOpen, isCopiedToClipboard } =
-    usePostOptionsMenuContext();
+  const { feedPosts, getMorePosts, lastPostId, setLastPostId } = useFeedPostsContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
 
   const observer = useRef();
 
@@ -57,7 +55,7 @@ const Home = () => {
         }
         return <Posts key={index} post={post} />;
       })}
-      {isSinglePostOpen && <SinglePost posts={feedPosts} />}
+      {isSinglePostOpen && <SinglePost/>}
       {isOptionsMenuOpen && <PostOptionsMenu />}
     </HomeWrapper>
   );
