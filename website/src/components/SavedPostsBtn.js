@@ -8,8 +8,11 @@ import { useSidebarContext } from "../context/SidebarContext";
 const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
+  const windowHeight = window.innerHeight;
+  console.log('size window', windowHeight);
+
   return (
-    <SavedPostsBtnWrapper>
+    <SavedPostsBtnWrapper windowSize={windowHeight}>
       <NavLink
         to="/:userId/saved"
         onClick={closeSideMenus}
@@ -30,7 +33,7 @@ const SavedPostsBtnWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 0px 2px 18px 3px rgba(179, 179, 179, 1);
   position: absolute;
-  top: 593px;
+  top: ${(props) => props.windowSize - 115}px;
   left: 37px;
   text-align: center;
   background: var(--white);
@@ -56,11 +59,11 @@ const SavedPostsBtnWrapper = styled.div`
     color: var(--icons);
     font-size: 18px;
     position: relative;
-    top:3px;
+    top: 3px;
   }
 
   @media screen and (max-width: 1220px) {
-    top: 605px;
+    top: ${(props) => props.windowSize - 115}px;
     left: 10px;
   }
 `;
