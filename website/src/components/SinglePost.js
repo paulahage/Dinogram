@@ -3,7 +3,6 @@ import { useSinglePostContext } from "../context/SinglePostContext";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import * as Io5Icons from "react-icons/io5";
-import * as BsIcons from "react-icons/bs";
 
 import ProfileAvatar from "./ProfileAvatar";
 import DatePost from "./DatePost";
@@ -11,6 +10,8 @@ import AllComments from "./AllComments";
 import ActionsBar from "./ActionsBar";
 import {Likes} from "./Likes";
 import CommentInput from "./CommentInput";
+import DotsKebabButton from "./DotsKebabButton";
+
 
 const SinglePost = () => {
   const { toggleSinglePost, clickedPost, handleClose } = useSinglePostContext();
@@ -32,11 +33,14 @@ const SinglePost = () => {
               <span className="username">{clickedPost.user.id}</span>
               <DatePost datePost={clickedPost.post.date} />
             </div>
-            <BsIcons.BsThreeDots />
+            <DotsKebabButton post={clickedPost} />
           </div>
           <AllComments postInfo={clickedPost} />
           <ActionsBar postInfo={clickedPost} />
-          <Likes likes={clickedPost.post.likesPreview} likesCount={clickedPost.post.likesCount} />
+          <Likes
+            likes={clickedPost.post.likesPreview}
+            likesCount={clickedPost.post.likesCount}
+          />
           <CommentInput />
         </div>
       </div>
