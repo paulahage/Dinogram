@@ -28,11 +28,13 @@ const AllComments = ({ postInfo }) => {
 
   return (
     <AllCommentsWrapper>
-      {allComments.map((comment, index) => comment.text && (
-        <div className="all-comments-container" key={index}>
-          <SingleComment comment={comment} postInfo={postInfo} />
-          {comment.comments.length ? <ViewReplies comment={comment} /> : ""}
-        </div>)
+      {allComments.map((comment, index) => {
+        return comment.text && (
+          <div className="all-comments-container" key={index}>
+            <SingleComment comment={comment} />
+            {comment.comments.length ? <ViewReplies comment={comment} /> : ""}
+          </div>)
+      }
       )}
     </AllCommentsWrapper>
   );
