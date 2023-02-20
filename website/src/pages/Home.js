@@ -69,7 +69,8 @@ const HomeWrapper = styled.div`
   width: calc(100% - 245px);
   height: 100%;
   margin-left: 201px;
-  padding-right: ${(props) => props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
+  padding-right: ${(props) =>
+    props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,4 +83,10 @@ const HomeWrapper = styled.div`
     padding-right: ${(props) =>
       props.isOptionsMenuOpen || props.isSinglePostOpen ? "17px" : "0px"};
   }
+
+  @media screen and (max-width: 765px) {
+    width: 100%;
+    margin-left: 0px;
+  }
+
 `;

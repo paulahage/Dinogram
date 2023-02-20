@@ -7,6 +7,7 @@ import * as FiIcons from "react-icons/fi";
 
 import SidebarNotifications from "./SidebarNotifications";
 import SavedPostsBtn from "./SavedPostsBtn";
+import SidebarMobile from "./SidebarMobile";
 
 const Sidebar = () => {
   const {
@@ -77,6 +78,7 @@ const Sidebar = () => {
           {openSavedPostsBtn ? <SavedPostsBtn /> : ""}
         </div>
       </SidebarWrapper>
+      <SidebarMobile />
       {/* --------SIDE NOTIFICATIONS-------- */}
       {openSidebarNotifications ? (
         <SidebarNotifications open={openSidebarNotifications} />
@@ -102,11 +104,65 @@ const SidebarWrapper = styled.nav`
   align-items: flex-start;
   z-index: 1;
 
+  .logo {
+    font-family: "Leckerli One", cursive;
+    font-size: 28px;
+    color: var(--icons);
+    margin-top: 38px;
+    margin-bottom: 28px;
+    margin-left: 10px;
+  }
+
   .icon-container {
     width: 200px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .home-btn {
+    margin-top: 20px;
+  }
+
+  .background-icon {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+    padding-left: 10px;
+  }
+
+  .background-icon:hover {
+    width: 200px;
+    background: var(--mainBackgroundColor);
+    border-radius: 100px;
+  }
+
+  .nav-icon {
+    color: var(--icons);
+    font-size: 27px;
+  }
+
+  .nav-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .icon-position {
+    position: relative;
+    top: 3px;
+  }
+
+  .page-title {
+    font-family: "Poppins", sans-serif;
+    font-size: var(--fs_regular_plus);
+    font-weight: var(--regular);
+    color: var(--icons);
+    margin-left: 15px;
+    padding-bottom: 10px;
+    position: relative;
+    top: -4px;
   }
 
   .icon-btns {
@@ -116,24 +172,10 @@ const SidebarWrapper = styled.nav`
     align-items: center;
   }
 
-  .home-btn {
-    margin-top: 20px;
-  }
-
-  .icon-position {
-    position: relative;
-    top: 3px;
-  }
-
   .send-icon {
     position: relative;
     top: 6px;
     right: 1px;
-  }
-
-  .settings-btn {
-    margin-top: 160px;
-    margin-bottom: 20px;
   }
 
   .my-profile-avatar {
@@ -160,20 +202,17 @@ const SidebarWrapper = styled.nav`
     top: -6px;
   }
 
+  .settings-btn {
+    margin-top: 160px;
+    margin-bottom: 20px;
+  }
+
   @media screen and (max-width: 1220px) {
     width: 80px;
     align-items: center;
     padding-left: 0px;
 
     .logo {
-      display: none;
-    }
-
-    .page-title {
-      display: none;
-    }
-
-    .page-title-avatar {
       display: none;
     }
 
@@ -184,6 +223,23 @@ const SidebarWrapper = styled.nav`
       align-items: center;
     }
 
+    .background-icon {
+      width: 80px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      padding-left: 0px;
+    }
+    .background-icon:hover {
+      width: 50px;
+    }
+
+    .page-title {
+      display: none;
+    }
+
     .my-profile-avatar {
       width: 40px;
       height: 40px;
@@ -191,5 +247,9 @@ const SidebarWrapper = styled.nav`
       position: relative;
       top: 3px;
     }
+  }
+
+  @media screen and (max-width: 765px) {
+    display: none;
   }
 `;

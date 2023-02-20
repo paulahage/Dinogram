@@ -62,4 +62,17 @@ const PostsWrapper = styled.div`
     background-color: var(--white);
     background-image: url(${(props) => props.pictureUrl});
   }
+
+  @media screen and (max-width: 765px) {
+    width: 70%;
+    margin-top: 70px;
+    margin-bottom: 15px;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+    margin-top: 60px;
+    border: none;
+    border-radius: 0;
+  }
 `;
