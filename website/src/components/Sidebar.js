@@ -7,7 +7,6 @@ import * as FiIcons from "react-icons/fi";
 
 import SidebarNotifications from "./SidebarNotifications";
 import SavedPostsBtn from "./SavedPostsBtn";
-import SidebarMobile from "./SidebarMobile";
 
 const Sidebar = () => {
   const {
@@ -78,7 +77,6 @@ const Sidebar = () => {
           {openSavedPostsBtn ? <SavedPostsBtn /> : ""}
         </div>
       </SidebarWrapper>
-      <SidebarMobile />
       {/* --------SIDE NOTIFICATIONS-------- */}
       {openSidebarNotifications ? (
         <SidebarNotifications open={openSidebarNotifications} />
@@ -249,7 +247,7 @@ const SidebarWrapper = styled.nav`
     }
   }
 
-  @media screen and (max-width: 765px) {
-    display: none;
-  }
+  // @media screen and (max-width: 765px) {
+  //   display: none;
+  // }
 `;

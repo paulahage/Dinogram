@@ -12,7 +12,7 @@ import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
   return (
-    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture} firstPost={post[0]}>
       <div ref={postRef} className="post-avatar">
         <div className="post-author">
           <ProfileAvatar url={post.user.avatar} />
@@ -65,13 +65,11 @@ const PostsWrapper = styled.div`
 
   @media screen and (max-width: 765px) {
     width: 70%;
-    margin-top: 70px;
-    margin-bottom: 15px;
+    margin-top: ${(props)=> props.firstPost ? "70px" : ""};
   }
 
   @media screen and (max-width: 550px) {
     width: 100%;
-    margin-top: 60px;
     border: none;
     border-radius: 0;
   }

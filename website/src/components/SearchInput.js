@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
-
 
 const SearchInput = () => {
   const [mySearch, setMySearch] = useState("");
 
-  const handleSearch = (e) => {
-    setMySearch(e.target.value);
-    console.log('search',mySearch);
-  }
-
   const handleSubmitSearch = (e) => {
     e.prevent.Default();
     setMySearch("");
-  }
+  };
 
   return (
     <SearchInputWrapper>
@@ -24,7 +18,7 @@ const SearchInput = () => {
           className="search-area"
           placeholder="Search"
           value={mySearch}
-          onChange={handleSearch}
+          onChange={(e) => setMySearch(e.target.value)}
         ></input>
       </form>
     </SearchInputWrapper>
@@ -41,6 +35,7 @@ const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-left: 15px;
 
   .search-icon-input {
     font-size: 16px;
@@ -54,8 +49,8 @@ const SearchInputWrapper = styled.div`
     font-size: var(--fs_regular);
     font-weight: var(--light);
     color: var(--dark_grey);
-    background-color: var(--search_input);
+    background: transparent;
     margin-left: 10px;
-    outline:none;
+    outline: none;
   }
 `;
