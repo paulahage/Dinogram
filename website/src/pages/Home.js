@@ -87,6 +87,10 @@ const HomeWrapper = styled.div`
   @media screen and (max-width: 765px) {
     width: 100%;
     margin-left: 0px;
+    padding-top: 100px;
   }
 
+  @media screen and (max-width: 550px) {
+    padding-top: 90px;
+  }
 `;

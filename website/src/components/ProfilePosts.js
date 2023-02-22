@@ -36,14 +36,13 @@ const ProfilePostsWrapper = styled.div`
   }
 
   @media screen and (max-width: 765px) {
-    grid-gap: 1px 1px;
+    grid-gap: 1px;
 
   }
 `;
 
 const PostPicture = styled.img`
   width: 100%;
-  aspect-ratio: 1 / 1;
   object-fit: cover;
   cursor: pointer;
 `;

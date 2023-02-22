@@ -7,27 +7,27 @@ import * as FiIcons from "react-icons/fi";
 const BottomNavbarMobile = () => {
   return (
     <BottomNavbarMobileWrapper>
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? "icon-active" : "")}
-        end
-      >
-        <AiIcons.AiFillHome className="nav-icon-mobile" />
-      </NavLink>
-      <NavLink
-        to="/:user"
-        className={({ isActive }) => (isActive ? "icon-active" : "")}
-        end
-      >
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "icon-active" : "")}
+          end
+        >
+          <AiIcons.AiFillHome className="nav-icon-mobile" />
+        </NavLink>
+        <NavLink
+          to="/:user"
+          className={({ isActive }) => (isActive ? "icon-active" : "")}
+          end
+        >
         <div className="my-profile-avatar-mobile" />
-      </NavLink>
-      <NavLink
-        to="/settings/saved"
-        className={({ isActive }) => (isActive ? "icon-active" : "")}
-        end
-      >
-        <FiIcons.FiBookmark className="nav-icon-mobile" />
-      </NavLink>
+        </NavLink>
+        <NavLink
+          to="/settings/saved"
+          className={({ isActive }) => (isActive ? "icon-active" : "")}
+          end
+        >
+          <FiIcons.FiBookmark className="nav-icon-mobile" />
+        </NavLink>
     </BottomNavbarMobileWrapper>
   );
 };
@@ -54,13 +54,12 @@ const BottomNavbarMobileWrapper = styled.div`
   }
 
   .icon-active {
-    width: 42px;
-    height: 42px;
-    background-color: var(--grey_transparent);
+    border: 1px solid var(--grey_transparent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 5px;
   }
 
   .my-profile-avatar-mobile {

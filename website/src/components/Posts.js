@@ -11,8 +11,9 @@ import CommentInput from "../components/CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
+
   return (
-    <PostsWrapper pictureUrl={BASE_URL + post.post.picture} firstPost={post[0]}>
+    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
       <div ref={postRef} className="post-avatar">
         <div className="post-author">
           <ProfileAvatar url={post.user.avatar} />
@@ -65,7 +66,8 @@ const PostsWrapper = styled.div`
 
   @media screen and (max-width: 765px) {
     width: 70%;
-    margin-top: ${(props)=> props.firstPost ? "70px" : ""};
+    margin-top: 0px;
+    margin-bottom:20px ;
   }
 
   @media screen and (max-width: 550px) {

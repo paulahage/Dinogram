@@ -27,7 +27,6 @@ const TopNavbarMobileWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
   padding: 0 15px;
   background-color: var(--white);
   border-bottom: 1px solid var(--grey_transparent);
@@ -40,5 +39,10 @@ const TopNavbarMobileWrapper = styled.div`
 
   @media screen and (max-width: 550px) {
     border-bottom: none;
+    height: 90px;
+    align-items: flex-start;
+    padding-top: 15px;
   }
 `;
+
+

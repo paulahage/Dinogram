@@ -81,8 +81,8 @@ const ProfileWrapper = styled.div`
   @media screen and (max-width: 765px) {
     width: 100%;
     margin-left: 0px;
-    margin-top: 70px;
-    margin-bottom: 15px;
+    margin-top: 60px;
+    padding-bottom: 100px;
   }
 
   @media screen and (max-width: 570px) {

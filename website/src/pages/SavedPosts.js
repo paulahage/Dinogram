@@ -84,7 +84,7 @@ const SavedPostsWrapper = styled.div`
   @media screen and (max-width: 765px) {
     width: 100%;
     margin-left: 0px;
-    margin-top: 70px;
+    margin-top: 60px;
     margin-bottom: 15px;
 
     .saved-posts {
