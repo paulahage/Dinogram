@@ -3,15 +3,20 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 
-const Username = ({ post }) => {
+const Username = ({ postInfos }) => {
   const { handleMouseEnter } = usePreviewProfileContext();
 
   return (
     <UsernameWrapper
-      onMouseOver={(e) => handleMouseEnter(e, post.user, post.post.id)}
+      onMouseOver={(e) =>
+        handleMouseEnter(e, postInfos.userWithPostsPreview, postInfos.id)
+      }
     >
-      <NavLink to={`/${post.user.id}`} className="username-link">
-        {post.user.id}
+      <NavLink
+        to={`/${postInfos.userWithPostsPreview.id}`}
+        className="username-link"
+      >
+        {postInfos.userWithPostsPreview.id}
       </NavLink>
     </UsernameWrapper>
   );

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import * as Io5Icons from "react-icons/io5";
 
 import ProfileAvatar from "./ProfileAvatar";
-import DatePost from "./DatePost";
+//import DatePost from "./DatePost";
 import AllComments from "./AllComments";
 import ActionsBar from "./ActionsBar";
 import {Likes} from "./Likes";
@@ -31,7 +31,7 @@ const SinglePost = () => {
             <div className="post-author">
               <ProfileAvatar url={clickedPost.user.avatar} />
               <span className="username">{clickedPost.user.id}</span>
-              <DatePost datePost={clickedPost.post.date} />
+              {/* <DatePost datePost={clickedPost.post.date} /> */}
             </div>
             <DotsKebabButton post={clickedPost} />
           </div>

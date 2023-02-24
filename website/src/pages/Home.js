@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useEffect } from "react";
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import styled from "styled-components";
@@ -11,10 +11,8 @@ import AlertMessage from "../components/AlertMessage";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
-  const { feedPosts, getMorePosts, lastPostId, setLastPostId } =
-    useFeedPostsContext();
-  const { isOptionsMenuOpen, isCopiedToClipboard } =
-    usePostOptionsMenuContext();
+  const { feed, getMorePosts, lastPostId, setLastPostId } = useFeedAndPostsContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
 
   const observer = useRef();
 
@@ -51,13 +49,13 @@ const Home = () => {
       isSinglePostOpen={isSinglePostOpen}
     >
       {isCopiedToClipboard && <AlertMessage />}
-      {feedPosts.map((post, index) => {
-        if (index === feedPosts.length - 1) {
+      {feed.map((post, index) => {
+        if (index === feed.length - 1) {
           return <Posts key={index} post={post} postRef={lastPostRef} />;
         }
         return <Posts key={index} post={post} />;
       })}
-      {isSinglePostOpen && <SinglePost posts={feedPosts} />}
+      {isSinglePostOpen && <SinglePost posts={feed} />}
       {isOptionsMenuOpen && <PostOptionsMenu />}
     </HomeWrapper>
   );

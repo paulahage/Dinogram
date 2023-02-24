@@ -6,20 +6,27 @@ import ActionsBar from "./ActionsBar";
 import FirstComment from "./FirstComment";
 import { UsernameOnComments } from "./UsernameOnComments";
 
-const InteractionBar = ({ postInfo }) => {
-  const { post } = postInfo;
-  const previewComments = post.commentsPreview;
-
+const InteractionBar = ({ postInfos }) => {
   return (
     <InteractionBarWrapper>
-      <ActionsBar postInfo={postInfo} />
-      <Likes likes={post.likesPreview} likesCount={post.likesCount} />
+      <ActionsBar postInfos={postInfos} />
+      <Likes
+        likes={postInfos.likesUsersPreview}
+        likesCount={postInfos.likesCount}
+      />
       <div className="user-comment">
-        <UsernameOnComments user={postInfo.user} postId={post.id} />
-        <span className="normal-text">{post.text}</span>
+        <UsernameOnComments
+          user={postInfos.userWithPostsPreview}
+          postId={postInfos.id}
+        />
+        <span className="normal-text">key: text here</span>
       </div>
-      {post.commentsCount > 1 ? <ViewAllComments postInfo={postInfo} /> : ""}
-      <FirstComment comments={previewComments} />
+      {postInfos.commentsCount > 1 ? (
+        <ViewAllComments postInfos={postInfos} />
+      ) : (
+        ""
+      )}
+      <FirstComment previewComments={postInfos.commentsPreview} />
     </InteractionBarWrapper>
   );
 };

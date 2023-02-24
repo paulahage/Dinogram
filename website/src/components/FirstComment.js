@@ -3,14 +3,14 @@ import styled from "styled-components";
 import * as HiIcons from "react-icons/hi";
 import { UsernameOnComments } from "./UsernameOnComments";
 
-const FirstComment = ({ comments }) => {
+const FirstComment = ({ previewComments }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return comments.map((comment, index) => {
+  return previewComments.length && previewComments.map((comment, index) => {
     return (
       <FirstCommentWrapper key={index}>
         <div>
-          <UsernameOnComments user={comment.user} postId={comment.postId} />
+          <UsernameOnComments user={comment.user} postId={comment.id} />
           <span className="normal-text">{comment.text}</span>
         </div>
         <button onClick={handleLikeComment}>

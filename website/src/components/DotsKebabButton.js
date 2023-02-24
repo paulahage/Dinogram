@@ -3,11 +3,11 @@ import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import * as BsIcons from "react-icons/bs";
 import styled from "styled-components";
 
-const DotsKebabButton = ({post}) => {
+const DotsKebabButton = ({postInfos}) => {
   const { openMenu } = usePostOptionsMenuContext();
 
   return (
-    <DotsKebabButtonWrapper onClick={()=> openMenu(post)}>
+    <DotsKebabButtonWrapper onClick={()=> openMenu(postInfos)}>
       <BsIcons.BsThreeDots className="dots-btn " />
     </DotsKebabButtonWrapper>
   );

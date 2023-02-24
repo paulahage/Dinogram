@@ -7,7 +7,7 @@ import * as FiIcons from "react-icons/fi";
 import styled from "styled-components";
 import { useSavedPostContext } from "../context/SavedPostContext";
 
-const ActionsBar = ({ postInfo }) => {
+const ActionsBar = ({ postInfos }) => {
   const { handleLikedPost, isLikedPost } = useLikesContext();
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
   const { savedPostsOnStorage, savePost, removePost } = useSavedPostContext();
@@ -15,18 +15,18 @@ const ActionsBar = ({ postInfo }) => {
   const [isPostSaved, setIsPostSaved] = useState(false);
 
   const getPostOnStorage = () => {
-    return savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+    return savedPostsOnStorage.find((savedPost) => savedPost.id === postInfos.id);
   }
 
   const handleSavePost = () => {
     const hasPostOnStorage = getPostOnStorage();
 
     if (!hasPostOnStorage) {
-      savePost(postInfo);
+      savePost(postInfos);
       setIsPostSaved(true);
       return;
     }
-    removePost(postInfo);
+    removePost(postInfos);
     setIsPostSaved(false);
   };
 
@@ -47,7 +47,7 @@ const ActionsBar = ({ postInfo }) => {
             <HiIcons.HiOutlineHeart className="interaction-icons" />
           )}
         </button>
-        <button onClick={() => handleMakeComment(postInfo)}>
+        <button onClick={() => handleMakeComment(postInfos)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>

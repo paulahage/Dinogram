@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import { fetchAllComments } from "../services/ApiService";
 
 const SinglePostContext = React.createContext();
@@ -9,15 +9,15 @@ export const SinglePostProvider = ({ children }) => {
   const [clickedPost, setClickedPost] = useState({});
   const [comments, setComments] = useState([]);
 
-  const { focusRef } = useFeedPostsContext();
+  const { focusRef } = useFeedAndPostsContext();
 
   const getAllComments = async (postId) => {
     const singlePost = await fetchAllComments(postId);
     setComments(singlePost.post.comments);
   };
 
-  const toggleSinglePost = (postInfo) => {
-    setClickedPost(postInfo);
+  const toggleSinglePost = (postInfos) => {
+    setClickedPost(postInfos);
     setIsSinglePostOpen(!isSinglePostOpen);
   };
 
