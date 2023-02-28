@@ -4,7 +4,7 @@ import { BASE_URL } from "../utils";
 
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
-//import DatePost from "./DatePost";
+import DatePost from "./DatePost";
 import Username from "./Username";
 import PreviewProfile from "../components/PreviewProfile";
 import CommentInput from "../components/CommentInput";
@@ -19,7 +19,7 @@ const Posts = ({ post, postRef }) => {
            <div className="post-author">
              <ProfileAvatar url={post.userWithPostsPreview.avatar} />
              <Username postInfos={post} />
-             {/* <DatePost datePost={postInfos.date} /> */}
+             <DatePost datePost={post.date} />
            </div>
            <DotsKebabButton postInfos={post} />
          </div>

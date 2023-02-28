@@ -10,7 +10,7 @@ const SingleComment = ({ comment, postInfos }) => {
 
   return (
     <SingleCommentWrapper>
-      <ProfileAvatar url={comment.userWithPostsPreview?.avatar} />
+      <ProfileAvatar url={comment.user?.avatar} />
       <div className="comments-info">
         <p className="normal-text">
           <span className="text-bold name-user">{comment.user.id}</span>

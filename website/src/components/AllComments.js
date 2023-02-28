@@ -10,7 +10,8 @@ const AllComments = ({ postInfos, comments }) => {
     text: postInfos?.text,
     user: {
       id: postInfos?.userId,
-    }
+      avatar: postInfos?.userWithPostsPreview?.avatar,
+    },
   };
 
   const [allComments, setAllComments] = useState([postUserComment]);

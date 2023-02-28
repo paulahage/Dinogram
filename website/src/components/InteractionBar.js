@@ -19,7 +19,7 @@ const InteractionBar = ({ postInfos }) => {
           user={postInfos.userWithPostsPreview}
           postId={postInfos.id}
         />
-        <span className="normal-text">key: text here</span>
+        <span className="normal-text">{postInfos.text}</span>
       </div>
       {postInfos.commentsCount > 1 ? (
         <ViewAllComments postInfos={postInfos} />
