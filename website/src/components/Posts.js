@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import { BASE_URL } from "../utils";
-//import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
@@ -12,12 +11,6 @@ import CommentInput from "../components/CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
-  //const { postInfos, getPostInfos } = useFeedAndPostsContext();
-
-  useEffect(() => {
-    //getPostInfos(post.id);
-    //eslint-disable-next-line
-  }, []);
 
    return (
      post.id && (

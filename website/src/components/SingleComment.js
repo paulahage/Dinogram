@@ -5,24 +5,28 @@ import * as HiIcons from "react-icons/hi";
 
 import ProfileAvatar from './ProfileAvatar';
 
-const SingleComment = ({ comment, postInfo }) => {
+const SingleComment = ({ comment, postInfos }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
   return (
     <SingleCommentWrapper>
-      <ProfileAvatar url={comment.user.avatar} />
+      <ProfileAvatar url={comment.userWithPostsPreview?.avatar} />
       <div className="comments-info">
-        <p className="normal-text user-comment">
+        <p className="normal-text">
           <span className="text-bold name-user">{comment.user.id}</span>
           {comment.text}
         </p>
-        {postInfo.user.id !== comment.user.id ? <button onClick={handleLikeComment}>
-          {isLikedComment ? (
-            <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
-          ) : (
-            <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
-          )}
-        </button> : ""}
+        {postInfos.userId !== comment.userId ? (
+          <button onClick={handleLikeComment}>
+            {isLikedComment ? (
+              <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
+            ) : (
+              <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
+            )}
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </SingleCommentWrapper>
   );
@@ -42,7 +46,8 @@ const SingleCommentWrapper = styled.div`
     width: 88%;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
+    margin-left: 10px;
   }
 
   .like-btn {

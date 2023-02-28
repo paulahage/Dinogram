@@ -14,7 +14,7 @@ const InteractionBar = ({ postInfos }) => {
         likes={postInfos.likesUsersPreview}
         likesCount={postInfos.likesCount}
       />
-      <div className="user-comment">
+      <div>
         <UsernameOnComments
           user={postInfos.userWithPostsPreview}
           postId={postInfos.id}
@@ -24,7 +24,7 @@ const InteractionBar = ({ postInfos }) => {
       {postInfos.commentsCount > 1 ? (
         <ViewAllComments postInfos={postInfos} />
       ) : (
-        ""
+         ""
       )}
       <FirstComment previewComments={postInfos.commentsPreview} />
     </InteractionBarWrapper>

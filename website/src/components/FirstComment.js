@@ -6,7 +6,7 @@ import { UsernameOnComments } from "./UsernameOnComments";
 const FirstComment = ({ previewComments }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return previewComments.length && previewComments.map((comment, index) => {
+  return previewComments.length ? previewComments.map((comment, index) => {
     return (
       <FirstCommentWrapper key={index}>
         <div>
@@ -22,7 +22,7 @@ const FirstComment = ({ previewComments }) => {
         </button>
       </FirstCommentWrapper>
     );
-  });
+  }) : "";
 };
 
 export default FirstComment;

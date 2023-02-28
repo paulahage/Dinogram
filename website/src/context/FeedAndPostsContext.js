@@ -1,12 +1,10 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { fetchMorePosts, fetchFeed } from "../services/ApiService";
-import { fetchPostInfos } from "../services/ApiService";
 
 const FeedAndPostsContext = React.createContext({});
 
 export const FeedAndPostsProvider = ({ children }) => {
   const [feed, setFeed] = useState([]);
-  const [postInfos, setPostInfos] = useState({});
 
   const [lastPostId, setLastPostId] = useState("");
 
@@ -30,11 +28,6 @@ export const FeedAndPostsProvider = ({ children }) => {
     getLastPostId(morePosts);
   };
 
-  const getPostInfos = async (postId) => {
-    const infos = await fetchPostInfos(postId);
-    setPostInfos(infos);
-  };
-
   useEffect(() => {
     getFeed();
     //eslint-disable-next-line
@@ -48,8 +41,6 @@ export const FeedAndPostsProvider = ({ children }) => {
         lastPostId,
         setLastPostId,
         focusRef,
-        getPostInfos,
-        postInfos,
       }}
     >
       {children}

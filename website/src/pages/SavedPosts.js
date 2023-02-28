@@ -6,7 +6,6 @@ import { BASE_URL } from "../utils";
 import ProfilePostHoverEffect from "../components/ProfilePostHoverEffect";
 import SinglePost from "../components/SinglePost";
 
-
 const SavedPosts = () => {
   const { isSinglePostOpen } = useSinglePostContext();
 
@@ -18,14 +17,13 @@ const SavedPosts = () => {
       <div className="saved-posts">
         {savedPostsList?.map((savedPost) => {
           return (
-            <div className="picture-container" key={savedPost.post.id}>
+            <div className="picture-container" key={savedPost.id}>
               <SavedPostPicture
                 className="post"
-                src={BASE_URL + savedPost.post.picture}
+                src={BASE_URL + savedPost?.picture}
               />
               <ProfilePostHoverEffect
-                post={savedPost.post}
-                userInfo={savedPost}
+                post={savedPost}
               />
             </div>
           );

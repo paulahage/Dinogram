@@ -55,7 +55,7 @@ const Home = () => {
         }
         return <Posts key={index} post={post} />;
       })}
-      {isSinglePostOpen && <SinglePost posts={feed} />}
+      {isSinglePostOpen && <SinglePost />}
       {isOptionsMenuOpen && <PostOptionsMenu />}
     </HomeWrapper>
   );
