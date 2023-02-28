@@ -33,8 +33,7 @@ const SavedPostsBtnWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 0px 2px 18px 3px rgba(179, 179, 179, 1);
   position: absolute;
-  top: ${(props) => props.windowSize - 115}px;
-  left: 37px;
+  bottom: 100px;
   text-align: center;
   background: var(--white);
   display: flex;
@@ -63,7 +62,6 @@ const SavedPostsBtnWrapper = styled.div`
   }
 
   @media screen and (max-width: 1220px) {
-    top: ${(props) => props.windowSize - 115}px;
     left: 10px;
   }
 `;
