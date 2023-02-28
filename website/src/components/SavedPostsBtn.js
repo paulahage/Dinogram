@@ -9,7 +9,6 @@ const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
   const windowHeight = window.innerHeight;
-  console.log('size window', windowHeight);
 
   return (
     <SavedPostsBtnWrapper windowSize={windowHeight}>

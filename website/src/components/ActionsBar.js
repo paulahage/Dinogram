@@ -72,7 +72,8 @@ const ActionsBarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${(props) => props.isSinglePostOpen && "0 15px 0 15px"};
+  padding: ${(props) => props.isSinglePostOpen && "20px 15px 20px 15px"};
+  border-top: ${(props)=> props.isSinglePostOpen && "1px solid var(--grey)"};
 
   .interaction-bar {
     width: 70px;
