@@ -13,11 +13,15 @@ const InteractionBar = ({ postInfo }) => {
   return (
     <InteractionBarWrapper>
       <ActionsBar postInfo={postInfo} />
-      <Likes likes={post.likesPreview} likesCount={post.likesCount} />
-      <div className="user-comment">
-        <UsernameOnComments user={postInfo.user} postId={post.id} />
-        <span className="normal-text">{post.text}</span>
-      </div>
+      {post.likesCount > 0 && (
+        <Likes likes={post.likesPreview} likesCount={post.likesCount} />
+      )}
+      {post.text && (
+        <div className="user-comment">
+          <UsernameOnComments user={postInfo.user} postId={post.id} />
+          <span className="normal-text">{post.text}</span>
+        </div>
+      )}
       {post.commentsCount > 1 ? <ViewAllComments postInfo={postInfo} /> : ""}
       <FirstComment comments={previewComments} />
     </InteractionBarWrapper>
