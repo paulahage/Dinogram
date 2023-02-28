@@ -5,7 +5,7 @@ import * as HiIcons from "react-icons/hi";
 
 import ProfileAvatar from './ProfileAvatar';
 
-const SingleComment = ({ comment, postInfo }) => {
+const SingleComment = ({ comment}) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
   return (
@@ -16,13 +16,13 @@ const SingleComment = ({ comment, postInfo }) => {
           <span className="text-bold name-user">{comment.user.id}</span>
           {comment.text}
         </p>
-        {postInfo.user.id !== comment.user.id ? <button onClick={handleLikeComment}>
+         <button onClick={handleLikeComment}>
           {isLikedComment ? (
             <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
           ) : (
             <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
           )}
-        </button> : ""}
+        </button>
       </div>
     </SingleCommentWrapper>
   );
@@ -37,6 +37,7 @@ const SingleCommentWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: 10px 0;
+  z-index: 50;
 
   .comments-info {
     width: 88%;

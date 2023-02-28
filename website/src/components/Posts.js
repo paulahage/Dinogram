@@ -61,5 +61,7 @@ const PostsWrapper = styled.div`
     height: 460px;
     background-color: var(--white);
     background-image: url(${(props) => props.pictureUrl});
+    background-size: 100%;
+    background-repeat: no-repeat;
   }
 `;
