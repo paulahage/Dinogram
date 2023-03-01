@@ -2,19 +2,17 @@ import React from 'react'
 import styled from 'styled-components';
 import { useSinglePostContext } from '../context/SinglePostContext';
 
-const ViewAllComments = ({ postInfo }) => {
+const ViewAllComments = ({ postInfos }) => {
   const { toggleSinglePost } = useSinglePostContext();
 
-  const { commentCount } = postInfo.post;
-
-  if (commentCount <= 1) {
+  if (postInfos.commentsCount <= 1) {
     return <span></span>
   }
 
   return (
-    <ViewAllCommentsWrapper onClick={()=> toggleSinglePost(postInfo)}>
+    <ViewAllCommentsWrapper onClick={()=> toggleSinglePost(postInfos)}>
       <span className="view-all-comments">
-        View all {commentCount} comments
+        View all {postInfos.commentsCount} comments
       </span>
     </ViewAllCommentsWrapper>
   );

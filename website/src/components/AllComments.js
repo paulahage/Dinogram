@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useSinglePostContext } from "../context/SinglePostContext";
 import styled from "styled-components";
 
 import ViewReplies from "./ViewReplies";
 import SingleComment from "./SingleComment";
 
-const AllComments = ({ postInfo }) => {
+const AllComments = ({ postInfos, comments }) => {
   const postUserComment = {
     comments: [],
-    text: postInfo.post.text,
-    user: postInfo.user,
+    text: postInfos?.text,
+    user: {
+      id: postInfos?.userId,
+      avatar: postInfos?.userWithPostsPreview?.avatar,
+    },
   };
 
   const [allComments, setAllComments] = useState([postUserComment]);
-  const { comments } = useSinglePostContext();
 
   useEffect(() => {
-    if (!comments.length) return;
+    if (!comments?.length) return;
 
     if (allComments.length > 1) {
       setAllComments([postUserComment].concat(comments));
@@ -28,14 +29,12 @@ const AllComments = ({ postInfo }) => {
 
   return (
     <AllCommentsWrapper>
-      {allComments.map((comment, index) => {
-        return comment.text && (
-          <div className="all-comments-container" key={index}>
-            <SingleComment comment={comment} />
-            {comment.comments.length ? <ViewReplies comment={comment} /> : ""}
-          </div>)
-      }
-      )}
+      {allComments.map((comment, index) =>  (
+        <div className="all-comments-container" key={index}>
+          <SingleComment comment={comment} postInfos={postInfos} />
+          {comment.comments.length ? <ViewReplies comment={comment} /> : ""}
+        </div>
+      ))}
     </AllCommentsWrapper>
   );
 };

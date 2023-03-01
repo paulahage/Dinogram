@@ -12,7 +12,7 @@ const ProfilePosts = ({ userInfo }) => {
         return (
           <div className="picture-container" key={post.id}>
             <PostPicture className="post" src={BASE_URL + post.picture} />
-            <ProfilePostHoverEffect post={post} userInfo={userInfo} />
+            <ProfilePostHoverEffect post={post}/>
           </div>
         );
       })}

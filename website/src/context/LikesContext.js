@@ -14,7 +14,7 @@ export const LikesProvider = ({ children }) => {
 
   const removeLikeOnPost = (post) => {
     const postToRemoveIndex = likedPostsOnStorage.findIndex(
-      (likedPost) => likedPost.post.id === post.post.id
+      (likedPost) => likedPost.id === post.id
     );
 
     if (postToRemoveIndex > -1) {

@@ -10,9 +10,15 @@ const LikesAvatar = ({ likes }) => {
     );
   }
 
-  return likes?.map((like, index) => (
-    <LikesAvatarWrapper key={index} pictureUrl={BASE_URL + like.avatar} order={index}>
-        <div className="avatars-likes" />
+  const likesPreview = likes.slice(0, 3);
+
+  return likesPreview.map((like, index) => (
+    <LikesAvatarWrapper
+      key={index}
+      pictureUrl={BASE_URL + like.avatar}
+      order={index + 1}
+    >
+      <div className="avatars-likes" />
     </LikesAvatarWrapper>
   ));
 };
@@ -25,7 +31,7 @@ const LikesAvatarWrapper = styled.div`
     height: 22px;
     display: flex;
     flex-direction: column;
-    order: ${(props) => props.order};
+    order: ${(props) => props.order };
     position: relative;
     margin-right: -8px;
     z-index: ${(props) => (props.order === 0 ? 1 : 0)};

@@ -242,11 +242,6 @@ const SidebarWrapper = styled.nav`
     top: -6px;
   }
 
-  // .settings-btn {
-  //   margin-top: 160px;
-  //   margin-bottom: 20px;
-  // }
-
   @media screen and (max-width: 1220px) {
     width: 80px;
     align-items: center;

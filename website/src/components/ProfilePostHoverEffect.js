@@ -4,13 +4,12 @@ import * as HiIcons from "react-icons/hi";
 import * as FiIcons from "react-icons/fi";
 import { useSinglePostContext } from "../context/SinglePostContext";
 
-const ProfilePostHoverEffect = ({ post, userInfo}) => {
+const ProfilePostHoverEffect = ({ post }) => {
   const { toggleSinglePost } = useSinglePostContext();
-  const userPostInfo = { user: userInfo.user, post: post };
 
   return (
     <ProfilePostHoverEffectWrapper
-      onClick={() => toggleSinglePost(userPostInfo)}
+      onClick={() => toggleSinglePost(post)}
     >
       <div className="likes-count">
         <HiIcons.HiHeart className="icon" />

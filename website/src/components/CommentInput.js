@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { useFeedPostsContext } from "../context/FeedPostsContext";
+import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import styled from "styled-components";
 import { useSinglePostContext } from "../context/SinglePostContext";
 
 const CommentInput = () => {
-  const { focusRef } = useFeedPostsContext();
+  const { focusRef } = useFeedAndPostsContext();
   const [myComment, setMyComment] = useState("");
 
   const { isSinglePostOpen } = useSinglePostContext();

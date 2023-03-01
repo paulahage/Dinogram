@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
 import { BASE_URL } from "../utils";
+
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
@@ -11,23 +11,24 @@ import CommentInput from "../components/CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
-
-  return (
-    <PostsWrapper pictureUrl={BASE_URL + post.post.picture}>
-      <div ref={postRef} className="post-avatar">
-        <div className="post-author">
-          <ProfileAvatar url={post.user.avatar} />
-          <Username post={post} />
-          <DatePost datePost={post.post.date} />
-        </div>
-        <DotsKebabButton post={post} />
-      </div>
-      <PreviewProfile postId={post.post.id} />
-      <div className="post-img" />
-      <InteractionBar postInfo={post} />
-      <CommentInput />
-    </PostsWrapper>
-  );
+   return (
+     post.id && (
+       <PostsWrapper pictureUrl={BASE_URL + post.picture}>
+         <div ref={postRef} className="post-avatar">
+           <div className="post-author">
+             <ProfileAvatar url={post.userWithPostsPreview.avatar} />
+             <Username postInfos={post} />
+             <DatePost datePost={post.date} />
+           </div>
+           <DotsKebabButton postInfos={post} />
+         </div>
+         <PreviewProfile postId={post.id} />
+         <div className="post-img" />
+         <InteractionBar postInfos={post} />
+         <CommentInput />
+       </PostsWrapper>
+     )
+   );
 };
 
 export default Posts;
@@ -62,14 +63,15 @@ const PostsWrapper = styled.div`
     height: 460px;
     background-color: var(--white);
     background-image: url(${(props) => props.pictureUrl});
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
   }
 
   @media screen and (max-width: 765px) {
     width: 70%;
     margin-top: 0px;
-    margin-bottom:20px ;
+    margin-bottom: 20px;
   }
 
   @media screen and (max-width: 550px) {

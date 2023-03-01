@@ -28,10 +28,10 @@ const Profile = () => {
   return (
     <ProfileWrapper>
       <div className="profile-info-container">
-        <ProfileAvatar url={user.user.avatar} userProfile={user} />
+        <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
-          <p className="username">{user.user.id}</p>
-          <ProfileInfos user={user.user} />
+          <p className="username">{user.id}</p>
+          <ProfileInfos user={user} />
         </div>
       </div>
       <ProfilePosts userInfo={user} />

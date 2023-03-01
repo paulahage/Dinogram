@@ -11,7 +11,7 @@ export const SavedPostProvider = ({ children }) => {
   };
 
   const removePost = (post) => {
-    const postToRemoveIndex = savedPostsOnStorage.findIndex((savedPost) => savedPost.post.id === post.post.id);
+    const postToRemoveIndex = savedPostsOnStorage.findIndex((savedPost) => savedPost.id === post.id);
 
     if (postToRemoveIndex > -1) {
       savedPostsOnStorage.splice(postToRemoveIndex, 1);

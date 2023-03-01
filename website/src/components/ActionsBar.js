@@ -7,7 +7,7 @@ import * as FiIcons from "react-icons/fi";
 import styled from "styled-components";
 import { useSavedPostContext } from "../context/SavedPostContext";
 
-const ActionsBar = ({ postInfo }) => {
+const ActionsBar = ({ postInfos }) => {
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
   const { savedPostsOnStorage, savePost, removePost } = useSavedPostContext();
   const { likedPostsOnStorage, likePost, removeLikeOnPost } = useLikesContext();
@@ -16,24 +16,22 @@ const ActionsBar = ({ postInfo }) => {
   const [isLikedPost, setIsLikedPost] = useState(false);
 
   const getPostOnStorage = () => {
-    return savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
+    return savedPostsOnStorage.find((savedPost) => savedPost.id === postInfos.id);
   };
 
   const getLikedPostOnStorage = () => {
-    return likedPostsOnStorage.find(
-      (likedPost) => likedPost.post.id === postInfo.post.id
-    );
+    return likedPostsOnStorage.find((likedPost) => likedPost.id === postInfos.id);
   };
 
   const handleSavePost = () => {
     const hasPostOnStorage = getPostOnStorage();
 
     if (!hasPostOnStorage) {
-      savePost(postInfo);
+      savePost(postInfos);
       setIsPostSaved(true);
       return;
     }
-    removePost(postInfo);
+    removePost(postInfos);
     setIsPostSaved(false);
   };
 
@@ -41,11 +39,11 @@ const ActionsBar = ({ postInfo }) => {
     const hasLikedPostOnStorage = getLikedPostOnStorage();
 
     if (!hasLikedPostOnStorage) {
-      likePost(postInfo);
+      likePost(postInfos);
       setIsLikedPost(true);
       return;
     }
-    removeLikeOnPost(postInfo);
+    removeLikeOnPost(postInfos);
     setIsLikedPost(false);
   };
 
@@ -72,7 +70,7 @@ const ActionsBar = ({ postInfo }) => {
             }
           />
         </button>
-        <button onClick={() => handleMakeComment(postInfo)}>
+        <button onClick={() => handleMakeComment(postInfos)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
