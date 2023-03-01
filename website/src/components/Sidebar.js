@@ -21,19 +21,27 @@ const Sidebar = () => {
     <>
       <SidebarWrapper>
         {/* --------LOGO-------- */}
-        <NavLink to="/" onClick={closeSideMenus}>
-          <p className="logo">Dinogram</p>
-        </NavLink>
-        {/* --------HOME BTN-------- */}
-        <div className="icon-container">
+        <div className="logo-container">
+          <div className="full-logo">
+            <NavLink to="/" onClick={closeSideMenus}>
+              <p className="logo">Dinogram</p>
+            </NavLink>
+          </div>
+          {/* --------LOGO BTN-------- */}
+          <div className="logo-btn">
+            <NavLink to="/" onClick={closeSideMenus}>
+              <img src="/favicon-32x32.png" alt="dinogram logo" />
+            </NavLink>
+          </div>
+        </div>
+        <div className="icon-btns">
+          {/* --------HOME BTN-------- */}
           <div className="home-btn background-icon">
             <NavLink to="/" onClick={closeSideMenus}>
               <AiIcons.AiFillHome className="nav-icon icon-position" />
               <span className="page-title">Home</span>
             </NavLink>
           </div>
-        </div>
-        <div className="icon-btns">
           {/* --------SEARCH BTN-------- */}
           <div className="background-icon">
             <NavLink to="/search" onClick={closeSideMenus}>
@@ -102,11 +110,94 @@ const SidebarWrapper = styled.nav`
   align-items: flex-start;
   z-index: 1;
 
+  .logo {
+    font-family: "Leckerli One", cursive;
+    font-size: 28px;
+    color: var(--icons);
+    margin-top: 38px;
+    margin-bottom: 28px;
+    margin-left: 10px;
+  }
+
+  .logo-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .full-logo {
+    opacity: 1;
+      animation: fade 1s ease-out;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  .logo-btn {
+    display: none;
+  }
+
   .icon-container {
     width: 200px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+  }
+
+  .home-btn {
+    margin-top: 20px;
+  }
+
+  .background-icon {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+    padding-left: 10px;
+  }
+
+  .background-icon:hover {
+    width: 200px;
+    background: var(--mainBackgroundColor);
+    border-radius: 100px;
+  }
+
+  .nav-icon {
+    color: var(--icons);
+    font-size: 27px;
+  }
+
+  .nav-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .icon-position {
+    position: relative;
+    top: 3px;
+  }
+
+  .page-title {
+    font-family: "Poppins", sans-serif;
+    font-size: var(--fs_regular_plus);
+    font-weight: var(--regular);
+    color: var(--icons);
+    margin-left: 15px;
+    padding-bottom: 10px;
+    position: relative;
+    top: -4px;
   }
 
   .icon-btns {
@@ -116,15 +207,6 @@ const SidebarWrapper = styled.nav`
     align-items: center;
   }
 
-  .home-btn {
-    margin-top: 20px;
-  }
-
-  .icon-position {
-    position: relative;
-    top: 3px;
-  }
-
   .send-icon {
     position: relative;
     top: 6px;
@@ -132,8 +214,8 @@ const SidebarWrapper = styled.nav`
   }
 
   .settings-btn {
-    margin-top: 160px;
-    margin-bottom: 20px;
+    margin-top: 125px;
+    margin-bottom: 50px;
   }
 
   .my-profile-avatar {
@@ -163,18 +245,31 @@ const SidebarWrapper = styled.nav`
   @media screen and (max-width: 1220px) {
     width: 80px;
     align-items: center;
+    justify-content: space-between;
     padding-left: 0px;
 
-    .logo {
-      display: none;
+    .logo-container {
+      justify-content: center;
     }
 
-    .page-title {
+    .full-logo {
       display: none;
+      opacity: 0;
     }
 
-    .page-title-avatar {
-      display: none;
+    .logo-btn {
+      display: block;
+      opacity: 1;
+      animation: fade 1s ease-out;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
     }
 
     .icon-container {
@@ -184,12 +279,21 @@ const SidebarWrapper = styled.nav`
       align-items: center;
     }
 
-    .my-profile-avatar {
-      width: 40px;
-      height: 40px;
-      background-size: 30px;
-      position: relative;
-      top: 3px;
+    .background-icon {
+      width: 80px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      padding-left: 0px;
+    }
+    .background-icon:hover {
+      width: 50px;
+    }
+
+    .page-title {
+      display: none;
     }
   }
 `;

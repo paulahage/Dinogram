@@ -16,7 +16,7 @@ const SingleComment = ({ comment, postInfos }) => {
           <span className="text-bold name-user">{comment.user.id}</span>
           {comment.text}
         </p>
-        {postInfos.userId !== comment.userId ? (
+        {postInfos?.userId !== comment.user.id ? (
           <button onClick={handleLikeComment}>
             {isLikedComment ? (
               <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
@@ -41,6 +41,7 @@ const SingleCommentWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: 10px 0;
+  z-index: 50;
 
   .comments-info {
     width: 88%;

@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import styled from "styled-components";
+import { useSinglePostContext } from "../context/SinglePostContext";
 
 const CommentInput = () => {
   const { focusRef } = useFeedAndPostsContext();
   const [myComment, setMyComment] = useState("");
+
+  const { isSinglePostOpen } = useSinglePostContext();
 
   const handleComment = (e) => {
     setMyComment(e.target.value);
@@ -16,7 +19,10 @@ const CommentInput = () => {
   };
 
   return (
-    <CommentInputWrapper comment={myComment}>
+    <CommentInputWrapper
+      comment={myComment}
+      isSinglePostOpen={isSinglePostOpen}
+    >
       <form className="form-container" onSubmit={handleCommentSubmit}>
         <textarea
           ref={focusRef}
@@ -73,5 +79,9 @@ const CommentInputWrapper = styled.div`
 
   .post-btn:hover {
     color: ${(props) => props.comment && "var(--hover_post)"};
+  }
+
+  @media screen and (max-width: 550px) {
+    border-top: ${(props)=> props.isSinglePostOpen ? "1px solid var(--grey)" : "none"};
   }
 `;

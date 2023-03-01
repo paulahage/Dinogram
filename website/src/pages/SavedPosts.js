@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 
 import styled from "styled-components";
@@ -10,6 +10,10 @@ const SavedPosts = () => {
   const { isSinglePostOpen } = useSinglePostContext();
 
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));
+
+  useEffect(() => {
+    document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
+  }, [isSinglePostOpen]);
 
   return (
     <SavedPostsWrapper>
@@ -62,7 +66,7 @@ const SavedPostsWrapper = styled.div`
     gap: 23px;
     place-items: center;
     place-content: center;
-    margin-top: 45px;
+    margin: 45px 0px;
   }
 
   .picture-container {
@@ -75,8 +79,22 @@ const SavedPostsWrapper = styled.div`
     padding: 40px 40px;
   }
 
-  @media screen and (max-width: 800px) {
-    padding: 40px 20px;
+  @media screen and (max-width: 765px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+    margin-bottom: 15px;
+
+    .saved-posts {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .saved-posts {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 `;
 

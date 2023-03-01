@@ -11,7 +11,6 @@ import CommentInput from "../components/CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
-
    return (
      post.id && (
        <PostsWrapper pictureUrl={BASE_URL + post.picture}>
@@ -64,5 +63,20 @@ const PostsWrapper = styled.div`
     height: 460px;
     background-color: var(--white);
     background-image: url(${(props) => props.pictureUrl});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  @media screen and (max-width: 765px) {
+    width: 70%;
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+    border: none;
+    border-radius: 0;
   }
 `;
