@@ -78,7 +78,20 @@ const ProfileWrapper = styled.div`
     padding: 40px 40px;
   }
 
-  @media screen and (max-width: 800px) {
-    padding: 40px 20px;
+  @media screen and (max-width: 765px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+    padding-bottom: 100px;
+  }
+
+  @media screen and (max-width: 570px) {
+    .profile-info-container {
+      justify-content: space-around;
+    }
+
+    .info-container {
+      margin-left: 20px;
+    }
   }
 `;

@@ -110,6 +110,15 @@ const SidebarWrapper = styled.nav`
   align-items: flex-start;
   z-index: 1;
 
+  .logo {
+    font-family: "Leckerli One", cursive;
+    font-size: 28px;
+    color: var(--icons);
+    margin-top: 38px;
+    margin-bottom: 28px;
+    margin-left: 10px;
+  }
+
   .logo-container {
     width: 100%;
     height: 80px;
@@ -146,16 +155,56 @@ const SidebarWrapper = styled.nav`
     position: relative;
   }
 
-  .icon-btns {
+  .home-btn {
+    margin-top: 20px;
+  }
+
+  .background-icon {
+    width: 200px;
+    height: 50px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    margin-top: 30px;
+    padding-left: 10px;
+  }
+
+  .background-icon:hover {
+    width: 200px;
+    background: var(--mainBackgroundColor);
+    border-radius: 100px;
+  }
+
+  .nav-icon {
+    color: var(--icons);
+    font-size: 27px;
+  }
+
+  .nav-icon:hover {
+    transform: scale(1.1);
   }
 
   .icon-position {
     position: relative;
     top: 3px;
+  }
+
+  .page-title {
+    font-family: "Poppins", sans-serif;
+    font-size: var(--fs_regular_plus);
+    font-weight: var(--regular);
+    color: var(--icons);
+    margin-left: 15px;
+    padding-bottom: 10px;
+    position: relative;
+    top: -4px;
+  }
+
+  .icon-btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 
   .send-icon {
@@ -193,6 +242,11 @@ const SidebarWrapper = styled.nav`
     top: -6px;
   }
 
+  // .settings-btn {
+  //   margin-top: 160px;
+  //   margin-bottom: 20px;
+  // }
+
   @media screen and (max-width: 1220px) {
     width: 80px;
     align-items: center;
@@ -223,19 +277,28 @@ const SidebarWrapper = styled.nav`
       }
     }
 
-    .page-title {
-      display: none;
-    }
-
-    .page-title-avatar {
-      display: none;
-    }
-
     .icon-container {
       width: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .background-icon {
+      width: 80px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      padding-left: 0px;
+    }
+    .background-icon:hover {
+      width: 50px;
+    }
+
+    .page-title {
+      display: none;
     }
   }
 `;
