@@ -8,15 +8,22 @@ import styled from "styled-components";
 import { useSavedPostContext } from "../context/SavedPostContext";
 
 const ActionsBar = ({ postInfo }) => {
-  const { handleLikedPost, isLikedPost } = useLikesContext();
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
   const { savedPostsOnStorage, savePost, removePost } = useSavedPostContext();
+  const { likedPostsOnStorage, likePost, removeLikeOnPost } = useLikesContext();
 
   const [isPostSaved, setIsPostSaved] = useState(false);
+  const [isLikedPost, setIsLikedPost] = useState(false);
 
   const getPostOnStorage = () => {
     return savedPostsOnStorage.find((savedPost) => savedPost.post.id === postInfo.post.id);
-  }
+  };
+
+  const getLikedPostOnStorage = () => {
+    return likedPostsOnStorage.find(
+      (likedPost) => likedPost.post.id === postInfo.post.id
+    );
+  };
 
   const handleSavePost = () => {
     const hasPostOnStorage = getPostOnStorage();
@@ -30,9 +37,25 @@ const ActionsBar = ({ postInfo }) => {
     setIsPostSaved(false);
   };
 
+  const handleLikePost = () => {
+    const hasLikedPostOnStorage = getLikedPostOnStorage();
+
+    if (!hasLikedPostOnStorage) {
+      likePost(postInfo);
+      setIsLikedPost(true);
+      return;
+    }
+    removeLikeOnPost(postInfo);
+    setIsLikedPost(false);
+  };
+
   useEffect(() => {
     if (savedPostsOnStorage.length) {
       setIsPostSaved(getPostOnStorage());
+    }
+
+    if (likedPostsOnStorage.length) {
+      setIsLikedPost(getLikedPostOnStorage());
     }
     //eslint-disable-next-line
   }, []);
@@ -40,12 +63,14 @@ const ActionsBar = ({ postInfo }) => {
   return (
     <ActionsBarWrapper isSinglePostOpen={isSinglePostOpen}>
       <div className="interaction-bar">
-        <button onClick={handleLikedPost}>
-          {isLikedPost ? (
-            <HiIcons.HiHeart className="interaction-icons heart-btn-color" />
-          ) : (
-            <HiIcons.HiOutlineHeart className="interaction-icons" />
-          )}
+        <button onClick={handleLikePost}>
+          <HiIcons.HiOutlineHeart
+            className={
+              isLikedPost
+                ? "interaction-icons heart-btn-color"
+                : "interaction-icons"
+            }
+          />
         </button>
         <button onClick={() => handleMakeComment(postInfo)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
@@ -72,7 +97,8 @@ const ActionsBarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${(props) => props.isSinglePostOpen && "0 15px 0 15px"};
+  padding: ${(props) => props.isSinglePostOpen && "20px 15px 20px 15px"};
+  border-top: ${(props)=> props.isSinglePostOpen && "1px solid var(--grey)"};
 
   .interaction-bar {
     width: 70px;
@@ -91,6 +117,7 @@ const ActionsBarWrapper = styled.div`
   }
 
   .heart-btn-color {
+    fill: var(--heart);
     color: var(--heart);
   }
 `;

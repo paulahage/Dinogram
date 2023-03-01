@@ -68,7 +68,7 @@ const SinglePostWrapper = styled.div`
   }
 
   .post-container {
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +82,7 @@ const SinglePostWrapper = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: var(--black);
     z-index: 3;
   }
 
