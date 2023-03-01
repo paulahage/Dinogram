@@ -35,4 +35,8 @@ const ProfileInfosWrapper = styled.div`
     font-weight: var(--regular);
     color: var(--icons);
   }
+
+  @media screen and (max-width: 570px) {
+    width: 200px;
+  }
 `;

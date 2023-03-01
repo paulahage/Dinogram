@@ -4,30 +4,33 @@ import "./index.css";
 import App from "./App";
 
 import { SidebarProvider } from "./context/SidebarContext";
-import { FeedPostsProvider } from "./context/FeedPostsContext";
+import { FeedAndPostsProvider } from "./context/FeedAndPostsContext";
 import { LikesProvider } from "./context/LikesContext";
 import { SinglePostProvider } from "./context/SinglePostContext";
 import { PreviewProfileProvider } from "./context/PreviewProfileContext";
 import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
+import { UserLoggedProvider } from "./context/UserLoggedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <FeedPostsProvider>
-      <LikesProvider>
-        <SavedPostProvider>
-          <SidebarProvider>
-            <PreviewProfileProvider>
-              <SinglePostProvider>
-                <PostOptionsMenuProvider>
-                  <App />
-                </PostOptionsMenuProvider>
-              </SinglePostProvider>
-            </PreviewProfileProvider>
-          </SidebarProvider>
-        </SavedPostProvider>
-      </LikesProvider>
-    </FeedPostsProvider>
+    <UserLoggedProvider>
+      <FeedAndPostsProvider>
+        <LikesProvider>
+          <SavedPostProvider>
+            <SidebarProvider>
+              <PreviewProfileProvider>
+                <SinglePostProvider>
+                  <PostOptionsMenuProvider>
+                    <App />
+                  </PostOptionsMenuProvider>
+                </SinglePostProvider>
+              </PreviewProfileProvider>
+            </SidebarProvider>
+          </SavedPostProvider>
+        </LikesProvider>
+      </FeedAndPostsProvider>
+    </UserLoggedProvider>
   </React.StrictMode>
 );

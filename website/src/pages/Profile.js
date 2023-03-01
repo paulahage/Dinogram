@@ -28,10 +28,10 @@ const Profile = () => {
   return (
     <ProfileWrapper>
       <div className="profile-info-container">
-        <ProfileAvatar url={user.user.avatar} userProfile={user} />
+        <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
-          <p className="username">{user.user.id}</p>
-          <ProfileInfos user={user.user} />
+          <p className="username">{user.id}</p>
+          <ProfileInfos user={user} />
         </div>
       </div>
       <ProfilePosts userInfo={user} />
@@ -78,7 +78,20 @@ const ProfileWrapper = styled.div`
     padding: 40px 40px;
   }
 
-  @media screen and (max-width: 800px) {
-    padding: 40px 20px;
+  @media screen and (max-width: 765px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+    padding-bottom: 100px;
+  }
+
+  @media screen and (max-width: 570px) {
+    .profile-info-container {
+      justify-content: space-around;
+    }
+
+    .info-container {
+      margin-left: 20px;
+    }
   }
 `;

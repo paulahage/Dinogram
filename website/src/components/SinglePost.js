@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import * as Io5Icons from "react-icons/io5";
+import { fetchPostInfos } from "../services/ApiService";
 
 import ProfileAvatar from "./ProfileAvatar";
 import DatePost from "./DatePost";
@@ -12,14 +13,30 @@ import {Likes} from "./Likes";
 import CommentInput from "./CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
-
 const SinglePost = () => {
   const { toggleSinglePost, clickedPost, handleClose } = useSinglePostContext();
 
+  const [postInfos, setPostInfos] = useState({});
+  const [comments, setComments] = useState([]);
+
+  const getPostInfos = async (postId) => {
+    const infos = await fetchPostInfos(postId);
+    setPostInfos(infos);
+    setComments(infos.comments);
+  };
+
+  useEffect(() => {
+    if (clickedPost.id) {
+      getPostInfos(clickedPost.id);
+    }
+    //eslint-disable-next-line
+  }, []);
+
   return (
+    postInfos.id && (
     <SinglePostWrapper
       onClick={handleClose}
-      urlPicture={BASE_URL + clickedPost.post.picture}
+      urlPicture={BASE_URL + postInfos.picture}
     >
       <button className="close-btn" onClick={toggleSinglePost}>
         <Io5Icons.IoClose />
@@ -29,22 +46,25 @@ const SinglePost = () => {
         <div className="infos-post">
           <div className="post-avatar">
             <div className="post-author">
-              <ProfileAvatar url={clickedPost.user.avatar} />
-              <span className="username">{clickedPost.user.id}</span>
-              <DatePost datePost={clickedPost.post.date} />
+              <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
+              <span className="username">
+                {postInfos.userId}
+              </span>
+              <DatePost datePost={postInfos.date} />
             </div>
-            <DotsKebabButton post={clickedPost} />
+            <DotsKebabButton postInfos={postInfos} />
           </div>
-          <AllComments postInfo={clickedPost} />
-          <ActionsBar postInfo={clickedPost} />
+          <AllComments postInfos={postInfos} comments={comments} />
+          <ActionsBar postInfos={postInfos} />
           <Likes
-            likes={clickedPost.post.likesPreview}
-            likesCount={clickedPost.post.likesCount}
+            likes={postInfos.likesUsers}
+            likesCount={postInfos.likesCount}
           />
           <CommentInput />
         </div>
       </div>
     </SinglePostWrapper>
+    )
   );
 };
 
@@ -68,7 +88,7 @@ const SinglePostWrapper = styled.div`
   }
 
   .post-container {
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +102,7 @@ const SinglePostWrapper = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: var(--black);
     z-index: 3;
   }
 
@@ -137,10 +158,5 @@ const SinglePostWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .user-comment {
-    width: 88%;
-    margin-left: 8px;
   }
 `;
