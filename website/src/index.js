@@ -10,6 +10,7 @@ import { SinglePostProvider } from "./context/SinglePostContext";
 import { PreviewProfileProvider } from "./context/PreviewProfileContext";
 import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
+import { CommentProvider } from "./context/CommentContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,11 +20,13 @@ root.render(
         <SavedPostProvider>
           <SidebarProvider>
             <PreviewProfileProvider>
-              <SinglePostProvider>
-                <PostOptionsMenuProvider>
-                  <App />
-                </PostOptionsMenuProvider>
-              </SinglePostProvider>
+              <CommentProvider>
+                <SinglePostProvider>
+                  <PostOptionsMenuProvider>
+                    <App />
+                  </PostOptionsMenuProvider>
+                </SinglePostProvider>
+              </CommentProvider>
             </PreviewProfileProvider>
           </SidebarProvider>
         </SavedPostProvider>

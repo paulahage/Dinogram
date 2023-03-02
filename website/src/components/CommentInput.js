@@ -1,21 +1,24 @@
-import React, {useState} from "react";
+import React from "react";
 import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import styled from "styled-components";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { useCommentContext } from "../context/CommentContext";
 
-const CommentInput = () => {
+const CommentInput = ({
+  postInfos,
+  setUpdatebleComments,
+  updatebleComments,
+  setUpdatebleCommentsCount,
+  updatebleCommentsCount,
+}) => {
   const { focusRef } = useFeedAndPostsContext();
-  const [myComment, setMyComment] = useState("");
-
   const { isSinglePostOpen } = useSinglePostContext();
+  const { handleCommentSubmit, handleComment, myComment } = useCommentContext();
 
-  const handleComment = (e) => {
-    setMyComment(e.target.value);
-  };
-
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    setMyComment("");
+  const submitComment = async (e) => {
+    const singleComment = await handleCommentSubmit(e, postInfos.id);
+    setUpdatebleComments([...updatebleComments, singleComment]);
+    setUpdatebleCommentsCount(updatebleCommentsCount + 1);
   };
 
   return (
@@ -23,7 +26,7 @@ const CommentInput = () => {
       comment={myComment}
       isSinglePostOpen={isSinglePostOpen}
     >
-      <form className="form-container" onSubmit={handleCommentSubmit}>
+      <form className="form-container" onSubmit={submitComment}>
         <textarea
           ref={focusRef}
           className="comment-area"
