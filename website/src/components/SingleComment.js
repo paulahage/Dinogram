@@ -41,7 +41,6 @@ const SingleCommentWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: 10px 0;
-  z-index: 50;
 
   .comments-info {
     width: 88%;

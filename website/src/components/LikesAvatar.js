@@ -34,7 +34,6 @@ const LikesAvatarWrapper = styled.div`
     order: ${(props) => props.order };
     position: relative;
     margin-right: -8px;
-    z-index: ${(props) => (props.order === 0 ? 1 : 0)};
     border-radius: 50%;
     border: 2px solid var(--mainBackgroundColor);
     background-image: url(${(props) => props.pictureUrl});

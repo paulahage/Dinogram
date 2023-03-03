@@ -1,25 +1,41 @@
-import React, {  useState } from "react";
+import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
+import { useSidebarContext } from "../context/SidebarContext";
+import { useSearchUserContext } from "../context/SearchUserContext";
 
 const SearchInput = () => {
-  const [mySearch, setMySearch] = useState("");
+  const { setMySearch } = useSearchUserContext();
+  const { toggleSearchSideWindow } = useSidebarContext();
+  const isSearchWindowOpen = toggleSearchSideWindow;
+  const searchValue = useRef("");
 
   const handleSubmitSearch = (e) => {
     e.prevent.Default();
-    setMySearch("");
   };
 
+  const handleSearch = () => {
+    setMySearch(searchValue.current.value);
+  }
+
+  useEffect(() => {
+    if (isSearchWindowOpen) {
+      searchValue.current.focus();
+    }
+    //eslint-disable-next-line
+  }, [])
+
   return (
-    <SearchInputWrapper>
+    <SearchInputWrapper isSearchWindowOpen={isSearchWindowOpen}>
       <FiIcons.FiSearch className="search-icon-input" />
       <form onSubmit={handleSubmitSearch}>
         <input
           className="search-area"
           placeholder="Search"
-          value={mySearch}
-          onChange={(e) => setMySearch(e.target.value)}
-        ></input>
+          // value={mySearch}
+          ref={searchValue}
+          onChange={handleSearch}
+        />
       </form>
     </SearchInputWrapper>
   );
@@ -35,7 +51,10 @@ const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-left: 15px;
+  margin-left: ${(props) => (props.isSearchWindowOpen ? "25px" : "15px")};
+  //margin-bottom: ${(props) => (props.isSearchWindowOpen ? "25px" : "0px")};
+
+
 
   .search-icon-input {
     font-size: 16px;

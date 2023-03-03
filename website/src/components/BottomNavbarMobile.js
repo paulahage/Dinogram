@@ -39,7 +39,7 @@ const BottomNavbarMobileWrapper = styled.div`
   height: 60px;
   position: fixed;
   bottom: 0;
-  z-index: 6;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;

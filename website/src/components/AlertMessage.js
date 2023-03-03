@@ -21,7 +21,7 @@ export default AlertMessage;
 const AlertMessageWrapper = styled.div`
   width: 300px;
   height: 38px;
-  z-index: 10;
+  z-index: 6;
   background-color: var(--mainBackgroundColor);
   border-radius: 15px;
   box-shadow: 0px 0px 14px 4px rgba(0, 0, 0, 0.69);

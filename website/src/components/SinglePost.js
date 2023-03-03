@@ -105,7 +105,6 @@ const SinglePostWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: contain;
     background-color: var(--black);
-    z-index: 3;
   }
 
   .infos-post {

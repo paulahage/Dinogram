@@ -11,6 +11,7 @@ import { PreviewProfileProvider } from "./context/PreviewProfileContext";
 import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
 import { CommentProvider } from "./context/CommentContext";
+import { SearchUserProvider } from "./context/SearchUserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,15 +20,17 @@ root.render(
       <LikesProvider>
         <SavedPostProvider>
           <SidebarProvider>
-            <PreviewProfileProvider>
-              <CommentProvider>
-                <SinglePostProvider>
-                  <PostOptionsMenuProvider>
-                    <App />
-                  </PostOptionsMenuProvider>
-                </SinglePostProvider>
-              </CommentProvider>
-            </PreviewProfileProvider>
+            <SearchUserProvider>
+              <PreviewProfileProvider>
+                <CommentProvider>
+                  <SinglePostProvider>
+                    <PostOptionsMenuProvider>
+                      <App />
+                    </PostOptionsMenuProvider>
+                  </SinglePostProvider>
+                </CommentProvider>
+              </PreviewProfileProvider>
+            </SearchUserProvider>
           </SidebarProvider>
         </SavedPostProvider>
       </LikesProvider>

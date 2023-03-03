@@ -49,7 +49,7 @@ const PreviewProfileWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  z-index: 2;
+  z-index: 5;
   position: absolute;
   top: ${(props) => props.top + "px"};
   left: ${(props) => props.left + "px"};

@@ -4,6 +4,7 @@ import {
   URL_INFINITE_FEED,
   URL_USER_PROFILE,
   URL_POST,
+  URL_SEARCH_USERS,
 } from "../utils";
 
 export const fetchFeed = async () => {
@@ -29,9 +30,11 @@ export const fetchUserProfile = async (userId) => {
 export const postComment = async (url, comment) => {
   const response = await axios.post(url, comment);
   return response;
-}
+};
 
-
-
-
-
+export const fetchSearchedUsers = async (search) => {
+  if (search) {
+    const response = await axios.get(URL_SEARCH_USERS + search);
+    return response;
+  }
+};
