@@ -6,27 +6,49 @@ const SearchUserContext = React.createContext();
 export const SearchUserProvider = ({ children }) => {
   const [mySearch, setMySearch] = useState("");
   const [usersList, setUsersList] = useState([]);
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [typingTimeOutId, setTypingTimeOutId] = useState();
 
   const searchUsers = async (mySearch) => {
-    try {
-      const search = await fetchSearchedUsers(mySearch);
-
-      if (search.status === 200) {
-        setUsersList(search.data);
-      }
-    } catch (error) {
-      if (error.response.status === 429) {
-      }
+    if (typingTimeOutId) {
+      console.log("clear time out");
+      clearTimeout(typingTimeOutId);
     }
+
+    if (mySearch) {
+      setLoadingSearch(true);
+
+      const timeOutId = setTimeout(async () => {
+        const search = await fetchSearchedUsers(mySearch);
+        if (search.status === 200) {
+          setLoadingSearch(false);
+          setUsersList(search.data);
+        }
+      }, 2000);
+      setTypingTimeOutId(timeOutId);
+      return;
+    }
+
+    setLoadingSearch(false);
+    setUsersList([]);
   };
 
   useEffect(() => {
     searchUsers(mySearch);
+    //eslint-disable-next-line
   }, [mySearch]);
 
   return (
     <SearchUserContext.Provider
-      value={{ mySearch, setMySearch, usersList }}
+      value={{
+        mySearch,
+        setMySearch,
+        usersList,
+        loadingSearch,
+        isFocused,
+        setIsFocused,
+      }}
     >
       {children}
     </SearchUserContext.Provider>

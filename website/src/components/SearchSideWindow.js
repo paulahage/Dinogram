@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SearchInput from "./SearchInput";
 import { useSearchUserContext } from "../context/SearchUserContext";
@@ -6,18 +6,28 @@ import UserSearched from "./UserSearched";
 
 const SearchSideWindow = ({ open }) => {
   const sidebarIsOpen = open;
-  const { usersList } = useSearchUserContext();
+  const { usersList, setIsFocused } = useSearchUserContext();
+
+  useEffect(() => {
+    setIsFocused(true);
+    //eslint-disable-next-line
+  }, []);
 
   return (
-    <SearchSideWindowWrapper sidebarIsOpen={sidebarIsOpen}>
+    <SearchSideWindowWrapper
+      sidebarIsOpen={sidebarIsOpen}
+      usersList={usersList}
+    >
       <div className="search-container">
         <h2 className="title">Search</h2>
         <SearchInput />
       </div>
       <div className="search-result-container">
-        {usersList.length ? usersList.map((user) => {
-          return <UserSearched user={user} key={user.id}/>;
-        })  : ""}
+        {usersList.length
+          ? usersList.map((user) => {
+              return <UserSearched user={user} key={user.id} />;
+            })
+          : "No recent searches."}
       </div>
     </SearchSideWindowWrapper>
   );
@@ -78,23 +88,16 @@ const SearchSideWindowWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: ${(props) =>
+      props.usersList.length ? "flex-start" : "center"};
     overflow-y: auto;
     overflow-x: hidden;
     padding-top: 15px;
     padding-bottom: 100px;
+    color: var(--dark_grey);
+    font-weight: var(--regular);
+    font-size: var(--fs_small);
   }
-
-  // .side-notifications {
-  //   top: 0;
-  //   left: -100%;
-  //   transition: 1s ;
-  // }
-
-  // .side-notifications.active {
-  //   left: 0;
-  //   transition: 1s;
-  // }
 
   @media screen and (max-width: 1220px) {
     width: 450px;

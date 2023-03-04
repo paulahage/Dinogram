@@ -33,8 +33,6 @@ export const postComment = async (url, comment) => {
 };
 
 export const fetchSearchedUsers = async (search) => {
-  if (search) {
-    const response = await axios.get(URL_SEARCH_USERS + search);
-    return response;
-  }
+  const response = await axios.get(URL_SEARCH_USERS + search);
+  return response;
 };
