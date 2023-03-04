@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSidebarContext } from "../context/SidebarContext";
+import { useUserLoggedContext } from "../context/UserLoggedContext";
+import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
@@ -17,9 +19,11 @@ const Sidebar = () => {
     openSidebarNotifications,
   } = useSidebarContext();
 
+  const { loggedUser } = useUserLoggedContext();
+
   return (
     <>
-      <SidebarWrapper>
+      <SidebarWrapper userAvatar={BASE_URL + loggedUser.avatar}>
         {/* --------LOGO-------- */}
         <div className="logo-container">
           <div className="full-logo">
@@ -65,7 +69,7 @@ const Sidebar = () => {
           </div>
           {/* --------PROFILE BTN-------- */}
           <div className="background-icon">
-            <NavLink to="/:user" onClick={closeSideMenus}>
+            <NavLink to={`${loggedUser.id}`} onClick={closeSideMenus}>
               <div className="my-profile-avatar" />
               <span className="page-title title-avatar-position">Profile</span>
             </NavLink>
@@ -226,10 +230,10 @@ const SidebarWrapper = styled.nav`
     top: 3px;
     border-radius: 50%;
     border: 2px solid var(--grey);
-    background-image: url("../images/dino_avatar.png");
+    background-image: url(${(props)=>props.userAvatar});
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 20px;
+    background-size: cover;
   }
 
   .my-profile-avatar:hover {
