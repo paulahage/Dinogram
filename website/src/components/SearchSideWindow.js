@@ -69,11 +69,8 @@ const SearchSideWindowWrapper = styled.div`
   border-top-right-radius: 3%;
   border-bottom-right-radius: 3%;
   z-index: 2;
-  top: 0;
-  left: ${(props) => (props.sidebarIsOpen ? "0" : "-100%")};
-  transition: ${(props) => (props.sidebarIsOpen ? "1s" : "2s")};
+  transition: 1s;
   animation: openSearchWindow 0.5s linear;
-  transform: ${(props) => (props.sidebarIsOpen ? "" : "translateX(-10px)")};
 
   -webkit-box-shadow: 4px 0px 30px -4px rgba(142, 142, 142, 1);
   -moz-box-shadow: 4px 0px 30px -4px rgba(142, 142, 142, 1);
@@ -87,7 +84,7 @@ const SearchSideWindowWrapper = styled.div`
 
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: 0;
     }
   }
 
@@ -135,8 +132,6 @@ const SearchSideWindowWrapper = styled.div`
     flex-direction: column;
     padding: 60px 0px 0px 0px;
     border-bottom-left-radius: 3%;
-    top: ${(props) => (props.sidebarIsOpen ? "0px" : "-100%")};
-    left: auto;
     right: 10px;
 
     -webkit-box-shadow: 0px 0px 30px -4px rgba(142, 142, 142, 1);
