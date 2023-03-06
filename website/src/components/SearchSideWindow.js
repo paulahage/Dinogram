@@ -3,25 +3,49 @@ import styled from "styled-components";
 import SearchInput from "./SearchInput";
 import { useSearchUserContext } from "../context/SearchUserContext";
 import UserSearched from "./UserSearched";
+import { useWindowSize } from "../services/WindowSizeService";
 
 const SearchSideWindow = ({ open }) => {
   const sidebarIsOpen = open;
-  const { usersList, setIsFocused } = useSearchUserContext();
+  const { usersList, setIsInputFocused, mySearch } = useSearchUserContext();
+  const screenSize = useWindowSize();
 
   useEffect(() => {
-    setIsFocused(true);
+    setIsInputFocused(true);
     //eslint-disable-next-line
   }, []);
 
-  return (
+  return screenSize > 765 ? (
     <SearchSideWindowWrapper
       sidebarIsOpen={sidebarIsOpen}
       usersList={usersList}
+      screenSize={screenSize}
     >
       <div className="search-container">
         <h2 className="title">Search</h2>
         <SearchInput />
       </div>
+      <div className="search-result-container">
+        {usersList.length
+          ? usersList.map((user) => {
+              return <UserSearched user={user} key={user.id} />;
+            })
+          : "No recent searches."}
+      </div>
+    </SearchSideWindowWrapper>
+  ) : (
+    <SearchSideWindowWrapper
+      sidebarIsOpen={sidebarIsOpen}
+      usersList={usersList}
+      screenSize={screenSize}
+    >
+      {mySearch ? (
+        ""
+      ) : (
+        <div className="search-container">
+          <h2 className="title">Recent</h2>
+        </div>
+      )}
       <div className="search-result-container">
         {usersList.length
           ? usersList.map((user) => {
@@ -78,7 +102,7 @@ const SearchSideWindowWrapper = styled.div`
 
   .title {
     font-weight: var(--bold);
-    font-size: 22px;
+    font-size: var(--fs_xl);
     margin-left: 25px;
     margin-bottom: 30px;
   }
@@ -102,5 +126,57 @@ const SearchSideWindowWrapper = styled.div`
   @media screen and (max-width: 1220px) {
     width: 450px;
     padding: 20px 0px 20px 80px;
+  }
+
+  @media screen and (max-width: 765px) {
+    width: 375px;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 0px 0px 0px;
+    border-bottom-left-radius: 3%;
+    top: ${(props) => (props.sidebarIsOpen ? "0px" : "-100%")};
+    left: auto;
+    right: 10px;
+
+    -webkit-box-shadow: 0px 0px 30px -4px rgba(142, 142, 142, 1);
+    -moz-box-shadow: 0px 0px 30px -4px rgba(142, 142, 142, 1);
+    box-shadow: 0px 0px 30px -4px rgba(142, 142, 142, 1);
+
+    @keyframes openSearchWindow {
+      from {
+        opacity: 0.25;
+        transform: translateY(-100%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .search-container {
+      padding-top: 5px;
+      border-bottom: 0px;
+      padding-bottom: 0px;
+      border-top: 1px solid var(--grey_transparent);
+    }
+
+    .title {
+      font-size: var(--fs_large);
+      margin-left: 25px;
+      margin-bottom: 30px;
+    }
+
+    .search-result-container {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    width: ${(props) => props.screenSize - 100 + "px"};
+    min-width: 250px;
+    padding: 90px 0px 0px 0px;
   }
 `;

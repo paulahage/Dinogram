@@ -44,7 +44,7 @@ const Sidebar = () => {
           </div>
           {/* --------SEARCH BTN-------- */}
           <div className="background-icon">
-            <button to="/search" onClick={showSearchSideWindow}>
+            <button onClick={showSearchSideWindow}>
               <FiIcons.FiSearch className="nav-icon icon-position" />
               <span className="page-title">Search</span>
             </button>

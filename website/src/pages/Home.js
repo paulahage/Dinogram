@@ -8,11 +8,13 @@ import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
 import PostOptionsMenu from "../components/PostOptionsMenu";
 import AlertMessage from "../components/AlertMessage";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { feed, getMorePosts, lastPostId, setLastPostId } = useFeedAndPostsContext();
   const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
+  const { closeSideMenus } = useSidebarContext();
 
   const observer = useRef();
 
@@ -47,6 +49,7 @@ const Home = () => {
     <HomeWrapper
       isOptionsMenuOpen={isOptionsMenuOpen}
       isSinglePostOpen={isSinglePostOpen}
+      onClick={closeSideMenus}
     >
       {isCopiedToClipboard && <AlertMessage />}
       {feed.map((post, index) => {

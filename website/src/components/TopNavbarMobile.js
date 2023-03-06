@@ -1,17 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
 import SearchInput from "./SearchInput";
+import SearchSideWindow from "./SearchSideWindow";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const TopNavbarMobile = () => {
+  const { toggleSearchSideWindow } = useSidebarContext();
   return (
-    <TopNavbarMobileWrapper>
-      <NavLink to="/">
-        <p className="logo-mobile">Dinogram</p>
-      </NavLink>
-      <SearchInput />
-    </TopNavbarMobileWrapper>
+    <>
+      <TopNavbarMobileWrapper>
+        <NavLink to="/">
+          <p className="logo-mobile">Dinogram</p>
+        </NavLink>
+        <SearchInput />
+      </TopNavbarMobileWrapper>
+      {/* --------SEARCH SIDE WINDOW-------- */}
+      {toggleSearchSideWindow ? (
+        <SearchSideWindow open={toggleSearchSideWindow} />
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

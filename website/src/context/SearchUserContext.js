@@ -7,12 +7,11 @@ export const SearchUserProvider = ({ children }) => {
   const [mySearch, setMySearch] = useState("");
   const [usersList, setUsersList] = useState([]);
   const [loadingSearch, setLoadingSearch] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [typingTimeOutId, setTypingTimeOutId] = useState();
 
   const searchUsers = async (mySearch) => {
     if (typingTimeOutId) {
-      console.log("clear time out");
       clearTimeout(typingTimeOutId);
     }
 
@@ -46,8 +45,8 @@ export const SearchUserProvider = ({ children }) => {
         setMySearch,
         usersList,
         loadingSearch,
-        isFocused,
-        setIsFocused,
+        isInputFocused,
+        setIsInputFocused,
       }}
     >
       {children}

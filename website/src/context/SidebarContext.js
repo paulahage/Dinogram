@@ -28,6 +28,7 @@ export const SidebarProvider = ({ children }) => {
         showSavedPostsBtn,
         openSavedPostsBtn,
         toggleSearchSideWindow,
+        setToggleSearchSideWindow,
       }}
     >
       {children}

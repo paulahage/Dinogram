@@ -72,6 +72,17 @@ const UserSearchedWrapper = styled.div`
     margin: 0px 5px;
   }
 
-  @media screen and (max-width: 1220px) {
+  @media screen and (max-width: 550px) {
+    padding-left: 10px;
+
+    .user-followers-info {
+      font-size: var(--fs_small);
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    .user-followers-info {
+      font-size: var(--fs_xsmall);
+    }
   }
 `;

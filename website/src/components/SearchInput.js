@@ -1,16 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
-import * as RiIcons from "react-icons/ri"
+import * as RiIcons from "react-icons/ri";
 import { useSidebarContext } from "../context/SidebarContext";
 import { useSearchUserContext } from "../context/SearchUserContext";
+import { useWindowSize } from "../services/WindowSizeService";
 
 const SearchInput = () => {
-  const { mySearch, setMySearch, loadingSearch, setIsFocused, isFocused } =  useSearchUserContext();
-  const { toggleSearchSideWindow } = useSidebarContext();
-  const isSearchWindowOpen = toggleSearchSideWindow;
+  const {
+    mySearch,
+    setMySearch,
+    loadingSearch,
+    setIsInputFocused,
+    isInputFocused,
+  } = useSearchUserContext();
+  const { toggleSearchSideWindow, setToggleSearchSideWindow } = useSidebarContext();
+  const screenSize = useWindowSize();
   const searchValue = useRef("");
   const form = useRef();
+
+  const isSearchSideWindowOpen = toggleSearchSideWindow;
 
   const handleSubmitSearch = (e) => {
     e.prevent.Default();
@@ -20,25 +29,34 @@ const SearchInput = () => {
     setMySearch(searchValue.current.value);
   };
 
+  const enableSearch = () => {
+    setIsInputFocused(true);
+    setToggleSearchSideWindow(true);
+  }
+
   const clearInput = () => {
     setMySearch("");
-    setIsFocused(false);
+    setIsInputFocused(false);
+
+    if (screenSize < 765) {
+      setToggleSearchSideWindow(false);
+    }
   };
 
   useEffect(() => {
-    if (isSearchWindowOpen) {
+    if (isSearchSideWindowOpen) {
       searchValue.current.focus();
     }
-    setIsFocused(false);
+    setIsInputFocused(false);
 
     //eslint-disable-next-line
   }, []);
 
   return (
     <SearchInputWrapper
-      isSearchWindowOpen={isSearchWindowOpen}
+      isSearchSideWindowOpen={isSearchSideWindowOpen}
       loadingSearch={loadingSearch}
-      isFocused={isFocused}
+      isFocused={isInputFocused}
     >
       <FiIcons.FiSearch className="search-icon-input" />
       <form onSubmit={handleSubmitSearch} ref={form}>
@@ -48,8 +66,8 @@ const SearchInput = () => {
           ref={searchValue}
           value={mySearch}
           onChange={handleSearch}
-          onBlur={() => setIsFocused(false)}
-          onClick={() => setIsFocused(true)}
+          onBlur={() => setIsInputFocused(false)}
+          onClick={enableSearch}
         />
       </form>
       <div className="handle-icons" onClick={clearInput}>
@@ -110,7 +128,7 @@ const SearchInputWrapper = styled.div`
   .close-icon-input {
     width: 38px;
     color: var(--dark_grey);
-    cursor:pointer;
+    cursor: pointer;
     display: ${(props) => (props.isFocused ? "block" : "none")};
   }
 `;

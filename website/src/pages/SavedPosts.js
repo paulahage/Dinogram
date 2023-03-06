@@ -5,9 +5,11 @@ import styled from "styled-components";
 import { BASE_URL } from "../utils";
 import ProfilePostHoverEffect from "../components/ProfilePostHoverEffect";
 import SinglePost from "../components/SinglePost";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const SavedPosts = () => {
   const { isSinglePostOpen } = useSinglePostContext();
+  const { closeSideMenus } = useSidebarContext();
 
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));
 
@@ -16,7 +18,7 @@ const SavedPosts = () => {
   }, [isSinglePostOpen]);
 
   return (
-    <SavedPostsWrapper>
+    <SavedPostsWrapper onClick={closeSideMenus}>
       <p className="saved-title">All saved Posts</p>
       <div className="saved-posts">
         {savedPostsList?.map((savedPost) => {
@@ -26,9 +28,7 @@ const SavedPosts = () => {
                 className="post"
                 src={BASE_URL + savedPost?.picture}
               />
-              <ProfilePostHoverEffect
-                post={savedPost}
-              />
+              <ProfilePostHoverEffect post={savedPost} />
             </div>
           );
         })}
