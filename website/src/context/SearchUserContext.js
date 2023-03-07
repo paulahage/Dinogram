@@ -9,6 +9,7 @@ export const SearchUserProvider = ({ children }) => {
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [typingTimeOutId, setTypingTimeOutId] = useState();
+  const [searchedUser, setSearchedUser] = useState({});
 
   const searchUsers = async (mySearch) => {
     if (typingTimeOutId) {
@@ -33,6 +34,23 @@ export const SearchUserProvider = ({ children }) => {
     setUsersList([]);
   };
 
+  const checkUserMatchSearch = () => {
+    if (searchedUser.id) {
+      if (!searchedUser.id.includes(mySearch)) {
+        return "This user doesn't exist";
+      }
+    }
+    return "Start typing to search";
+  };
+
+  const changeInputFocusState = (state) => {
+    setIsInputFocused(state);
+  };
+
+  const updateMySearch = (search) => {
+    setMySearch(search);
+  };
+
   useEffect(() => {
     searchUsers(mySearch);
     //eslint-disable-next-line
@@ -42,11 +60,13 @@ export const SearchUserProvider = ({ children }) => {
     <SearchUserContext.Provider
       value={{
         mySearch,
-        setMySearch,
         usersList,
         loadingSearch,
         isInputFocused,
-        setIsInputFocused,
+        setSearchedUser,
+        checkUserMatchSearch,
+        changeInputFocusState,
+        updateMySearch,
       }}
     >
       {children}

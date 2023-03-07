@@ -14,7 +14,6 @@ const Sidebar = () => {
     showSearchSideWindow,
     showSavedPostsBtn,
     openSavedPostsBtn,
-    toggleSearchSideWindow,
   } = useSidebarContext();
 
   return (
@@ -86,11 +85,7 @@ const Sidebar = () => {
         </div>
       </SidebarWrapper>
       {/* --------SEARCH SIDE WINDOW-------- */}
-      {toggleSearchSideWindow ? (
-        <SearchSideWindow open={toggleSearchSideWindow} />
-      ) : (
-        ""
-      )}
+      <SearchSideWindow />
     </>
   );
 };

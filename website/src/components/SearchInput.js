@@ -9,9 +9,9 @@ import { useWindowSize } from "../services/WindowSizeService";
 const SearchInput = () => {
   const {
     mySearch,
-    setMySearch,
+    updateMySearch,
     loadingSearch,
-    setIsInputFocused,
+    changeInputFocusState,
     isInputFocused,
   } = useSearchUserContext();
   const { toggleSearchSideWindow, setToggleSearchSideWindow } = useSidebarContext();
@@ -26,17 +26,20 @@ const SearchInput = () => {
   };
 
   const handleSearch = () => {
-    setMySearch(searchValue.current.value);
+    updateMySearch(searchValue.current.value);
   };
 
   const enableSearch = () => {
-    setIsInputFocused(true);
-    setToggleSearchSideWindow(true);
-  }
+    changeInputFocusState(true);
+
+    if (screenSize < 765) {
+      setToggleSearchSideWindow(true);
+    }
+  };
 
   const clearInput = () => {
-    setMySearch("");
-    setIsInputFocused(false);
+    updateMySearch("");
+    changeInputFocusState(false);
 
     if (screenSize < 765) {
       setToggleSearchSideWindow(false);
@@ -46,9 +49,10 @@ const SearchInput = () => {
   useEffect(() => {
     if (isSearchSideWindowOpen) {
       searchValue.current.focus();
+      changeInputFocusState(true);
+    } else {
+      changeInputFocusState(false);
     }
-    setIsInputFocused(false);
-
     //eslint-disable-next-line
   }, []);
 
@@ -66,7 +70,7 @@ const SearchInput = () => {
           ref={searchValue}
           value={mySearch}
           onChange={handleSearch}
-          onBlur={() => setIsInputFocused(false)}
+          onBlur={() => changeInputFocusState(false)}
           onClick={enableSearch}
         />
       </form>

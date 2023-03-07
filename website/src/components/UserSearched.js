@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import ProfileAvatar from "./ProfileAvatar";
 import { useSidebarContext } from "../context/SidebarContext";
+import { useSearchUserContext } from "../context/SearchUserContext";
 
 const UserSearched = ({ user }) => {
   const { showSearchSideWindow } = useSidebarContext();
+  const { updateMySearch, setSearchedUser } = useSearchUserContext();
+
+  useEffect(() => {
+    setSearchedUser(user);
+    //eslint-disable-next-line
+  }, []);
 
   return (
-    <UserSearchedWrapper>
-      <NavLink to={user.id} className="search-result-user" onClick={showSearchSideWindow}>
+    <UserSearchedWrapper onClick={() => updateMySearch("")}>
+      <NavLink
+        to={user.id}
+        className="search-result-user"
+        onClick={showSearchSideWindow}
+      >
         <ProfileAvatar url={user.avatar} />
         <div className="user-searched-infos">
           <p className="username-searched">{user.id}</p>
