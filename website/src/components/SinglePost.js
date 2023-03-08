@@ -34,36 +34,38 @@ const SinglePost = () => {
 
   return (
     postInfos.id && (
-    <SinglePostWrapper
-      onClick={handleClose}
-      urlPicture={BASE_URL + postInfos.picture}
-    >
-      <button className="close-btn" onClick={toggleSinglePost}>
-        <Io5Icons.IoClose />
-      </button>
-      <div className="post-container" id="single-post-background">
-        <div className="post-image" />
-        <div className="infos-post">
-          <div className="post-avatar">
-            <div className="post-author">
-              <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
-              <span className="username">
-                {postInfos.userId}
-              </span>
-              <DatePost datePost={postInfos.date} />
+      <SinglePostWrapper
+        onClick={handleClose}
+        urlPicture={BASE_URL + postInfos.picture}
+      >
+        <button className="close-btn" onClick={toggleSinglePost}>
+          <Io5Icons.IoClose />
+        </button>
+        <div className="post-container" id="single-post-background">
+          <div className="post-image" />
+          <div className="infos-post">
+            <div className="post-avatar">
+              <div className="post-author">
+                <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
+                <span className="username">{postInfos.userId}</span>
+                <DatePost datePost={postInfos.date} />
+              </div>
+              <DotsKebabButton postInfos={postInfos} />
             </div>
-            <DotsKebabButton postInfos={postInfos} />
+            <AllComments postInfos={postInfos} comments={comments} />
+            <ActionsBar postInfos={postInfos} />
+            <Likes
+              likes={postInfos.likesUsers}
+              likesCount={postInfos.likesCount}
+            />
+            <CommentInput
+              postInfos={postInfos}
+              updatebleComments={comments}
+              setUpdatebleComments={setComments}
+            />
           </div>
-          <AllComments postInfos={postInfos} comments={comments} />
-          <ActionsBar postInfos={postInfos} />
-          <Likes
-            likes={postInfos.likesUsers}
-            likesCount={postInfos.likesCount}
-          />
-          <CommentInput />
         </div>
-      </div>
-    </SinglePostWrapper>
+      </SinglePostWrapper>
     )
   );
 };
@@ -103,7 +105,6 @@ const SinglePostWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: contain;
     background-color: var(--black);
-    z-index: 3;
   }
 
   .infos-post {

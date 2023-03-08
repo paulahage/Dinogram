@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { BASE_URL } from "../utils";
 
@@ -11,6 +11,9 @@ import CommentInput from "../components/CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 
 const Posts = ({ post, postRef }) => {
+  const [updatebleComments, setUpdatebleComments] = useState(post.commentsPreview);
+  const [updatebleCommentsCount, setUpdatebleCommentsCount] = useState(post.commentsCount);
+
    return (
      post.id && (
        <PostsWrapper pictureUrl={BASE_URL + post.picture}>
@@ -24,8 +27,18 @@ const Posts = ({ post, postRef }) => {
          </div>
          <PreviewProfile postId={post.id} />
          <div className="post-img" />
-         <InteractionBar postInfos={post} />
-         <CommentInput />
+         <InteractionBar
+           postInfos={post}
+           updatebleComments={updatebleComments}
+           updatebleCommentsCount={updatebleCommentsCount}
+         />
+         <CommentInput
+           postInfos={post}
+           setUpdatebleComments={setUpdatebleComments}
+           updatebleComments={updatebleComments}
+           updatebleCommentsCount={updatebleCommentsCount}
+           setUpdatebleCommentsCount={setUpdatebleCommentsCount}
+         />
        </PostsWrapper>
      )
    );

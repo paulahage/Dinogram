@@ -3,7 +3,8 @@ import {
   URL_FEED,
   URL_INFINITE_FEED,
   URL_USER_PROFILE,
-  URL_POST_INFOS,
+  URL_POST,
+  URL_SEARCH_USERS,
   URL_LOGGED_USER,
 } from "../utils";
 
@@ -18,7 +19,7 @@ export const fetchFeed = async () => {
 };
 
 export const fetchPostInfos = async (postId) => {
-  const response = await axios.get(URL_POST_INFOS + postId);
+  const response = await axios.get(URL_POST + postId);
   return response.data;
 };
 
@@ -32,7 +33,12 @@ export const fetchUserProfile = async (userId) => {
   return response.data;
 };
 
+export const postComment = async (url, comment) => {
+  const response = await axios.post(url, comment);
+  return response;
+};
 
-
-
-
+export const fetchSearchedUsers = async (search) => {
+  const response = await axios.get(URL_SEARCH_USERS + search);
+  return response;
+};

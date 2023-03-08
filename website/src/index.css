@@ -23,6 +23,7 @@
   --bold: 600;
 
   /* fonts size */
+  --fs_xsmall: 12px;
   --fs_small: 13px;
   --fs_regular: 14px;
   --fs_regular_plus: 14.5px;

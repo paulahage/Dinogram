@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
 import SearchInput from "./SearchInput";
+import SearchSideWindow from "./SearchSideWindow";
 
 const TopNavbarMobile = () => {
   return (
-    <TopNavbarMobileWrapper>
-      <NavLink to="/">
-        <p className="logo-mobile">Dinogram</p>
-      </NavLink>
-      <SearchInput />
-    </TopNavbarMobileWrapper>
+    <>
+      <TopNavbarMobileWrapper >
+        <NavLink to="/">
+          <p className="logo-mobile">Dinogram</p>
+        </NavLink>
+        <SearchInput />
+      </TopNavbarMobileWrapper>
+      <SearchSideWindow />
+    </>
   );
 };
 
@@ -23,7 +26,7 @@ const TopNavbarMobileWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 6;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,5 +47,3 @@ const TopNavbarMobileWrapper = styled.div`
     padding-top: 15px;
   }
 `;
-
-

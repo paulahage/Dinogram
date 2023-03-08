@@ -6,7 +6,11 @@ import ActionsBar from "./ActionsBar";
 import FirstComment from "./FirstComment";
 import { UsernameOnComments } from "./UsernameOnComments";
 
-const InteractionBar = ({ postInfos }) => {
+const InteractionBar = ({
+  postInfos,
+  updatebleComments,
+  updatebleCommentsCount,
+}) => {
   return (
     <InteractionBarWrapper postInfos={postInfos}>
       <ActionsBar postInfos={postInfos} />
@@ -23,12 +27,15 @@ const InteractionBar = ({ postInfos }) => {
           <span className="normal-text">{postInfos.text}</span>
         </div>
       )}
-      {postInfos.commentsCount > 1 ? (
-        <ViewAllComments postInfos={postInfos} />
+      {postInfos.commentsCount > 1 || updatebleComments.length > 1 ? (
+        <ViewAllComments
+          postInfos={postInfos}
+          updatebleCommentsCount={updatebleCommentsCount}
+        />
       ) : (
         ""
       )}
-      <FirstComment previewComments={postInfos.commentsPreview} />
+      <FirstComment previewComments={updatebleComments} />
     </InteractionBarWrapper>
   );
 };

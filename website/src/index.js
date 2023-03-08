@@ -10,6 +10,8 @@ import { SinglePostProvider } from "./context/SinglePostContext";
 import { PreviewProfileProvider } from "./context/PreviewProfileContext";
 import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
+import { CommentProvider } from "./context/CommentContext";
+import { SearchUserProvider } from "./context/SearchUserContext";
 import { UserLoggedProvider } from "./context/UserLoggedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -20,13 +22,17 @@ root.render(
         <LikesProvider>
           <SavedPostProvider>
             <SidebarProvider>
-              <PreviewProfileProvider>
-                <SinglePostProvider>
-                  <PostOptionsMenuProvider>
-                    <App />
-                  </PostOptionsMenuProvider>
-                </SinglePostProvider>
-              </PreviewProfileProvider>
+              <SearchUserProvider>
+                <PreviewProfileProvider>
+                  <CommentProvider>
+                    <SinglePostProvider>
+                      <PostOptionsMenuProvider>
+                        <App />
+                      </PostOptionsMenuProvider>
+                    </SinglePostProvider>
+                  </CommentProvider>
+                </PreviewProfileProvider>
+              </SearchUserProvider>
             </SidebarProvider>
           </SavedPostProvider>
         </LikesProvider>

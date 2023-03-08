@@ -8,9 +8,11 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import ProfileInfos from "../components/ProfileInfos";
 import ProfilePosts from "../components/ProfilePosts";
 import SinglePost from "../components/SinglePost";
+import { useSidebarContext } from "../context/SidebarContext";
 
 const Profile = () => {
   const { isSinglePostOpen } = useSinglePostContext();
+  const { closeSideMenus } = useSidebarContext();
   const [user, setUser] = useState({ user: {}, posts: [] });
 
   let { userId } = useParams();
@@ -26,7 +28,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <ProfileWrapper>
+    <ProfileWrapper onClick={closeSideMenus}>
       <div className="profile-info-container">
         <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">

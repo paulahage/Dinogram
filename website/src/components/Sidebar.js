@@ -7,16 +7,15 @@ import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
 
-import SidebarNotifications from "./SidebarNotifications";
+import SearchSideWindow from "./SearchSideWindow";
 import SavedPostsBtn from "./SavedPostsBtn";
 
 const Sidebar = () => {
   const {
     closeSideMenus,
-    showNotifications,
+    showSearchSideWindow,
     showSavedPostsBtn,
     openSavedPostsBtn,
-    openSidebarNotifications,
   } = useSidebarContext();
 
   const { loggedUser } = useUserLoggedContext();
@@ -48,10 +47,10 @@ const Sidebar = () => {
           </div>
           {/* --------SEARCH BTN-------- */}
           <div className="background-icon">
-            <NavLink to="/search" onClick={closeSideMenus}>
+            <button onClick={showSearchSideWindow}>
               <FiIcons.FiSearch className="nav-icon icon-position" />
               <span className="page-title">Search</span>
-            </NavLink>
+            </button>
           </div>
           {/* --------DM BTN-------- */}
           <div className="background-icon">
@@ -62,7 +61,7 @@ const Sidebar = () => {
           </div>
           {/* --------NOTIFICATIONS BTN-------- */}
           <div className="background-icon">
-            <button onClick={showNotifications}>
+            <button>
               <FiIcons.FiHeart className="nav-icon icon-position" />
               <span className="page-title">Notifications</span>
             </button>
@@ -89,12 +88,8 @@ const Sidebar = () => {
           {openSavedPostsBtn ? <SavedPostsBtn /> : ""}
         </div>
       </SidebarWrapper>
-      {/* --------SIDE NOTIFICATIONS-------- */}
-      {openSidebarNotifications ? (
-        <SidebarNotifications open={openSidebarNotifications} />
-      ) : (
-        ""
-      )}
+      {/* --------SEARCH SIDE WINDOW-------- */}
+      <SearchSideWindow />
     </>
   );
 };
@@ -112,7 +107,7 @@ const SidebarWrapper = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  z-index: 1;
+  z-index: 3;
 
   .logo {
     font-family: "Leckerli One", cursive;

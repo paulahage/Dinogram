@@ -1,26 +1,87 @@
-import React, {  useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
+import * as RiIcons from "react-icons/ri";
+import { useSidebarContext } from "../context/SidebarContext";
+import { useSearchUserContext } from "../context/SearchUserContext";
+import { useWindowSize } from "../services/WindowSizeService";
 
 const SearchInput = () => {
-  const [mySearch, setMySearch] = useState("");
+  const {
+    mySearch,
+    updateMySearch,
+    loadingSearch,
+    changeInputFocusState,
+    isInputFocused,
+  } = useSearchUserContext();
+  const { toggleSearchSideWindow, setToggleSearchSideWindow } = useSidebarContext();
+  const screenSize = useWindowSize();
+  const searchValue = useRef("");
+  const form = useRef();
+
+  const isSearchSideWindowOpen = toggleSearchSideWindow;
 
   const handleSubmitSearch = (e) => {
     e.prevent.Default();
-    setMySearch("");
   };
 
+  const handleSearch = () => {
+    updateMySearch(searchValue.current.value);
+  };
+
+  const enableSearch = () => {
+    changeInputFocusState(true);
+
+    if (screenSize < 765) {
+      setToggleSearchSideWindow(true);
+    }
+  };
+
+  const clearInput = () => {
+    updateMySearch("");
+    changeInputFocusState(false);
+
+    if (screenSize < 765) {
+      setToggleSearchSideWindow(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isSearchSideWindowOpen) {
+      searchValue.current.focus();
+      changeInputFocusState(true);
+    } else {
+      changeInputFocusState(false);
+    }
+    //eslint-disable-next-line
+  }, []);
+
   return (
-    <SearchInputWrapper>
+    <SearchInputWrapper
+      isSearchSideWindowOpen={isSearchSideWindowOpen}
+      loadingSearch={loadingSearch}
+      isFocused={isInputFocused}
+    >
       <FiIcons.FiSearch className="search-icon-input" />
-      <form onSubmit={handleSubmitSearch}>
+      <form onSubmit={handleSubmitSearch} ref={form}>
         <input
           className="search-area"
           placeholder="Search"
+          ref={searchValue}
           value={mySearch}
-          onChange={(e) => setMySearch(e.target.value)}
-        ></input>
+          onChange={handleSearch}
+          onBlur={() => changeInputFocusState(false)}
+          onClick={enableSearch}
+        />
       </form>
+      <div className="handle-icons" onClick={clearInput}>
+        <RiIcons.RiCloseCircleFill className="close-icon-input" />
+        <img
+          className="loading-icon"
+          src="../loading-1s-200px.gif"
+          alt="loading icon"
+        />
+      </div>
     </SearchInputWrapper>
   );
 };
@@ -34,13 +95,14 @@ const SearchInputWrapper = styled.div`
   border-radius: 6px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-left: 15px;
+  justify-content: space-between;
+  margin-left: ${(props) => (props.isSearchWindowOpen ? "25px" : "15px")};
 
   .search-icon-input {
     font-size: 16px;
     color: var(--dark_grey);
     margin-left: 10px;
+    display: ${(props) => (props.isFocused ? "none" : "block")};
   }
 
   .search-area {
@@ -52,5 +114,25 @@ const SearchInputWrapper = styled.div`
     background: transparent;
     margin-left: 10px;
     outline: none;
+  }
+
+  .handle-icons {
+    width: 38px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loading-icon {
+    width: 38px;
+    display: ${(props) => (props.loadingSearch ? "block" : "none")};
+  }
+
+  .close-icon-input {
+    width: 38px;
+    color: var(--dark_grey);
+    cursor: pointer;
+    display: ${(props) => (props.isFocused ? "block" : "none")};
   }
 `;

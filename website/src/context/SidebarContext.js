@@ -3,16 +3,16 @@ import React, { useContext, useState } from "react";
 const SidebarContext = React.createContext();
 
 export const SidebarProvider = ({ children }) => {
-  const [openSidebarNotifications, setOpenSidebarNotifications] = useState(false);
+  const [toggleSearchSideWindow, setToggleSearchSideWindow] = useState(false);
   const [openSavedPostsBtn, setOpenSavedPostsBtn] = useState(false);
 
-  const showNotifications = () => {
-    setOpenSidebarNotifications(!openSidebarNotifications);
+  const showSearchSideWindow = () => {
+    setToggleSearchSideWindow(!toggleSearchSideWindow);
     setOpenSavedPostsBtn(false);
   };
 
   const closeSideMenus = () => {
-    setOpenSidebarNotifications(false);
+    setToggleSearchSideWindow(false);
     setOpenSavedPostsBtn(false);
   };
 
@@ -24,10 +24,11 @@ export const SidebarProvider = ({ children }) => {
     <SidebarContext.Provider
       value={{
         closeSideMenus,
-        showNotifications,
+        showSearchSideWindow,
         showSavedPostsBtn,
         openSavedPostsBtn,
-        openSidebarNotifications,
+        toggleSearchSideWindow,
+        setToggleSearchSideWindow,
       }}
     >
       {children}
