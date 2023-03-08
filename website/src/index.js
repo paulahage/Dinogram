@@ -12,28 +12,31 @@ import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
 import { CommentProvider } from "./context/CommentContext";
 import { SearchUserProvider } from "./context/SearchUserContext";
+import { UserLoggedProvider } from "./context/UserLoggedContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <FeedAndPostsProvider>
-      <LikesProvider>
-        <SavedPostProvider>
-          <SidebarProvider>
-            <SearchUserProvider>
-              <PreviewProfileProvider>
-                <CommentProvider>
-                  <SinglePostProvider>
-                    <PostOptionsMenuProvider>
-                      <App />
-                    </PostOptionsMenuProvider>
-                  </SinglePostProvider>
-                </CommentProvider>
-              </PreviewProfileProvider>
-            </SearchUserProvider>
-          </SidebarProvider>
-        </SavedPostProvider>
-      </LikesProvider>
-    </FeedAndPostsProvider>
+    <UserLoggedProvider>
+      <FeedAndPostsProvider>
+        <LikesProvider>
+          <SavedPostProvider>
+            <SidebarProvider>
+              <SearchUserProvider>
+                <PreviewProfileProvider>
+                  <CommentProvider>
+                    <SinglePostProvider>
+                      <PostOptionsMenuProvider>
+                        <App />
+                      </PostOptionsMenuProvider>
+                    </SinglePostProvider>
+                  </CommentProvider>
+                </PreviewProfileProvider>
+              </SearchUserProvider>
+            </SidebarProvider>
+          </SavedPostProvider>
+        </LikesProvider>
+      </FeedAndPostsProvider>
+    </UserLoggedProvider>
   </React.StrictMode>
 );

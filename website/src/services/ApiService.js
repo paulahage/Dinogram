@@ -5,7 +5,13 @@ import {
   URL_USER_PROFILE,
   URL_POST,
   URL_SEARCH_USERS,
+  URL_LOGGED_USER,
 } from "../utils";
+
+export const fetchLoggedUser = async () => {
+  const response = await axios.get(URL_LOGGED_USER);
+  return response.data;
+};
 
 export const fetchFeed = async () => {
   const response = await axios.get(URL_FEED);
