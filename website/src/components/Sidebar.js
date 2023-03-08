@@ -23,55 +23,43 @@ const Sidebar = () => {
   return (
     <>
       <SidebarWrapper userAvatar={BASE_URL + loggedUser.avatar}>
-        {/* --------LOGO-------- */}
-        <div className="logo-container">
-          <div className="full-logo">
-            <NavLink to="/" onClick={closeSideMenus}>
-              <p className="logo">Dinogram</p>
-            </NavLink>
+        <div>
+          {/* --------LOGO-------- */}
+          <div className="logo-container">
+            <div className="full-logo">
+              <NavLink to="/" onClick={closeSideMenus}>
+                <p className="logo">Dinogram</p>
+              </NavLink>
+            </div>
+            {/* --------LOGO BTN-------- */}
+            <div className="logo-btn">
+              <NavLink to="/" onClick={closeSideMenus}>
+                <img src="/favicon-32x32.png" alt="dinogram logo" />
+              </NavLink>
+            </div>
           </div>
-          {/* --------LOGO BTN-------- */}
-          <div className="logo-btn">
-            <NavLink to="/" onClick={closeSideMenus}>
-              <img src="/favicon-32x32.png" alt="dinogram logo" />
-            </NavLink>
-          </div>
-        </div>
-        <div className="icon-btns">
-          {/* --------HOME BTN-------- */}
-          <div className="home-btn background-icon">
-            <NavLink to="/" onClick={closeSideMenus}>
-              <AiIcons.AiFillHome className="nav-icon icon-position" />
-              <span className="page-title">Home</span>
-            </NavLink>
-          </div>
-          {/* --------SEARCH BTN-------- */}
-          <div className="background-icon">
-            <button onClick={showSearchSideWindow}>
-              <FiIcons.FiSearch className="nav-icon icon-position" />
-              <span className="page-title">Search</span>
-            </button>
-          </div>
-          {/* --------DM BTN-------- */}
-          <div className="background-icon">
-            <NavLink to="/direct/inbox" onClick={closeSideMenus}>
-              <FiIcons.FiSend className="nav-icon send-icon" />
-              <span className="page-title">Messages</span>
-            </NavLink>
-          </div>
-          {/* --------NOTIFICATIONS BTN-------- */}
-          <div className="background-icon">
-            <button>
-              <FiIcons.FiHeart className="nav-icon icon-position" />
-              <span className="page-title">Notifications</span>
-            </button>
-          </div>
-          {/* --------PROFILE BTN-------- */}
-          <div className="background-icon">
-            <NavLink to={`${loggedUser.id}`} onClick={closeSideMenus}>
-              <div className="my-profile-avatar" />
-              <span className="page-title title-avatar-position">Profile</span>
-            </NavLink>
+          <div className="icon-btns">
+            {/* --------HOME BTN-------- */}
+            <div className="home-btn background-icon">
+              <NavLink to="/" onClick={closeSideMenus}>
+                <AiIcons.AiFillHome className="nav-icon icon-position" />
+                <span className="page-title">Home</span>
+              </NavLink>
+            </div>
+            {/* --------SEARCH BTN-------- */}
+            <div className="background-icon">
+              <button onClick={showSearchSideWindow}>
+                <FiIcons.FiSearch className="nav-icon icon-position" />
+                <span className="page-title">Search</span>
+              </button>
+            </div>
+            {/* --------PROFILE BTN-------- */}
+            <div className="background-icon">
+              <NavLink to={`${loggedUser.id}`} onClick={closeSideMenus}>
+                <div className="my-profile-avatar" />
+                <span className="page-title title-avatar-position">Profile</span>
+              </NavLink>
+            </div>
           </div>
         </div>
         {/* --------SETTINGS BTN-------- */}
@@ -148,6 +136,7 @@ const SidebarWrapper = styled.nav`
 
   .icon-container {
     width: 200px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -212,11 +201,6 @@ const SidebarWrapper = styled.nav`
     right: 1px;
   }
 
-  .settings-btn {
-    margin-top: 125px;
-    margin-bottom: 50px;
-  }
-
   .my-profile-avatar {
     width: 29px;
     height: 29px;
@@ -225,7 +209,7 @@ const SidebarWrapper = styled.nav`
     top: 3px;
     border-radius: 50%;
     border: 2px solid var(--grey);
-    background-image: url(${(props)=>props.userAvatar});
+    background-image: url(${(props) => props.userAvatar});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
