@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLikesContext } from "../context/LikesContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { useSavedPostContext } from "../context/SavedPostContext";
+import { postLikeOnSinglePost } from "../services/ApiService";
+import { deleteLikeOnSinglePost } from "../services/ApiService";
 import * as HiIcons from "react-icons/hi";
 import * as FiIcons from "react-icons/fi";
-
 import styled from "styled-components";
-import { useSavedPostContext } from "../context/SavedPostContext";
 
 const ActionsBar = ({ postInfos }) => {
   const { isSinglePostOpen, handleMakeComment } = useSinglePostContext();
@@ -35,16 +36,21 @@ const ActionsBar = ({ postInfos }) => {
     setIsPostSaved(false);
   };
 
-  const handleLikePost = () => {
+  const handleLikePost = async () => {
     const hasLikedPostOnStorage = getLikedPostOnStorage();
 
     if (!hasLikedPostOnStorage) {
       likePost(postInfos);
       setIsLikedPost(true);
+
+      const likeSinglePost = await postLikeOnSinglePost(postInfos.id);
+      console.log("actions bar post is liked", likeSinglePost);
       return;
     }
     removeLikeOnPost(postInfos);
     setIsLikedPost(false);
+    const deleteLikePost = await deleteLikeOnSinglePost(postInfos.id);
+    console.log("actions bar post is deleted", deleteLikePost);
   };
 
   useEffect(() => {
@@ -96,7 +102,7 @@ const ActionsBarWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: ${(props) => props.isSinglePostOpen && "20px 15px 20px 15px"};
-  border-top: ${(props)=> props.isSinglePostOpen && "1px solid var(--grey)"};
+  border-top: ${(props) => props.isSinglePostOpen && "1px solid var(--grey)"};
 
   .interaction-bar {
     width: 70px;

@@ -6,6 +6,7 @@ import {
   URL_POST,
   URL_SEARCH_USERS,
   URL_LOGGED_USER,
+  URL_LIKE_POST,
 } from "../utils";
 
 export const fetchLoggedUser = async () => {
@@ -40,5 +41,15 @@ export const postComment = async (url, comment) => {
 
 export const fetchSearchedUsers = async (search) => {
   const response = await axios.get(URL_SEARCH_USERS + search);
+  return response;
+};
+
+export const postLikeOnSinglePost = async (postId) => {
+  const response = await axios.post(URL_LIKE_POST + postId);
+  return response;
+};
+
+export const deleteLikeOnSinglePost = async (postId) => {
+  const response = await axios.delete(URL_LIKE_POST + postId);
   return response;
 };
