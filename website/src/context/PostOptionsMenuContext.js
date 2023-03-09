@@ -12,10 +12,10 @@ export const PostOptionsMenuProvider = ({ children }) => {
 
   let usersOnStorage = JSON.parse(localStorage.getItem("unfollowIds")) || [];
 
-  const openMenu = (post) => {
+  const openMenu = (postInfos) => {
     setIsOptionsMenuOpen(true);
-    setUserId(post.user.id);
-    setPostId(post.post.id);
+    setUserId(postInfos.userWithPostsPreview.id);
+    setPostId(postInfos.id);
   };
 
   const handleCloseMenu = () => {

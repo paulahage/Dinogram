@@ -5,6 +5,10 @@ import LikesAvatar from "./LikesAvatar";
 export const Likes = ({ likes, likesCount }) => {
   const { isSinglePostOpen } = useSinglePostContext();
 
+  if (!likesCount) {
+    return <LikesWrapper isSinglePostOpen={isSinglePostOpen} />;
+  }
+
   return (
     <LikesWrapper isSinglePostOpen={isSinglePostOpen}>
       <div className="show-avatar">
@@ -30,6 +34,6 @@ const LikesWrapper = styled.div`
   }
 
   .text-likes {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 `;

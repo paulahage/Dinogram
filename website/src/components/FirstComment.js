@@ -3,26 +3,28 @@ import styled from "styled-components";
 import * as HiIcons from "react-icons/hi";
 import { UsernameOnComments } from "./UsernameOnComments";
 
-const FirstComment = ({ comments }) => {
+const FirstComment = ({ previewComments }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return comments.map((comment, index) => {
-    return (
-      <FirstCommentWrapper key={index}>
-        <div>
-          <UsernameOnComments user={comment.user} postId={comment.postId} />
-          <span className="normal-text">{comment.text}</span>
-        </div>
-        <button onClick={handleLikeComment}>
-          {isLikedComment ? (
-            <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
-          ) : (
-            <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
-          )}
-        </button>
-      </FirstCommentWrapper>
-    );
-  });
+  return previewComments.length
+    ? previewComments.slice(0, 3).map((comment, index) => {
+        return (
+          <FirstCommentWrapper key={index}>
+            <div>
+              <UsernameOnComments user={comment.user} postId={comment.id} />
+              <span className="normal-text">{comment.text}</span>
+            </div>
+            <button onClick={handleLikeComment}>
+              {isLikedComment ? (
+                <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
+              ) : (
+                <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
+              )}
+            </button>
+          </FirstCommentWrapper>
+        );
+      })
+    : "";
 };
 
 export default FirstComment;

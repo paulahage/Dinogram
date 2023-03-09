@@ -4,12 +4,7 @@ import { BASE_URL } from "../utils";
 
 const PreviewProfilePosts = ({ posts }) => {
   return posts.map((post) => {
-    return (
-      <PreviewProfilePostsWrapper
-        post={post}
-        key={post.id}
-      ></PreviewProfilePostsWrapper>
-    );
+    return <PreviewProfilePostsWrapper post={post} key={post.id} />;
   });
 };
 

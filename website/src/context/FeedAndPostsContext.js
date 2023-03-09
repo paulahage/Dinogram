@@ -1,41 +1,42 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { fetchMorePosts, fetchPosts } from "../services/ApiService";
+import { fetchMorePosts, fetchFeed } from "../services/ApiService";
 
-const FeedPostsContext = React.createContext({});
+const FeedAndPostsContext = React.createContext({});
 
-export const FeedPostsProvider = ({ children }) => {
-  const [feedPosts, setFeedPosts] = useState([]);
+export const FeedAndPostsProvider = ({ children }) => {
+  const [feed, setFeed] = useState([]);
+
   const [lastPostId, setLastPostId] = useState("");
 
   const focusRef = useRef();
 
   const getLastPostId = (posts) => {
     const lastPost = posts.at(-1);
-    const lastPostId = lastPost.post.id;
+    const lastPostId = lastPost.id;
     setLastPostId(lastPostId);
   };
 
-  const getPosts = async () => {
-    const posts = await fetchPosts();
-    setFeedPosts(posts);
+  const getFeed = async () => {
+    const posts = await fetchFeed();
+    setFeed(posts);
     getLastPostId(posts);
   };
 
   const getMorePosts = async (lastPostId) => {
     const morePosts = await fetchMorePosts(lastPostId);
-    setFeedPosts(feedPosts.concat(morePosts));
+    setFeed(feed.concat(morePosts));
     getLastPostId(morePosts);
   };
 
   useEffect(() => {
-    getPosts();
+    getFeed();
     //eslint-disable-next-line
   }, []);
 
   return (
-    <FeedPostsContext.Provider
+    <FeedAndPostsContext.Provider
       value={{
-        feedPosts,
+        feed,
         getMorePosts,
         lastPostId,
         setLastPostId,
@@ -43,10 +44,10 @@ export const FeedPostsProvider = ({ children }) => {
       }}
     >
       {children}
-    </FeedPostsContext.Provider>
+    </FeedAndPostsContext.Provider>
   );
 };
 
-export const useFeedPostsContext = () => {
-  return useContext(FeedPostsContext);
+export const useFeedAndPostsContext = () => {
+  return useContext(FeedAndPostsContext);
 };

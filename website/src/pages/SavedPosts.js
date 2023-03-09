@@ -1,34 +1,34 @@
-import React from "react";
-//import { useParams } from "react-router-dom";
+import React, {useEffect} from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 
 import styled from "styled-components";
 import { BASE_URL } from "../utils";
 import ProfilePostHoverEffect from "../components/ProfilePostHoverEffect";
 import SinglePost from "../components/SinglePost";
-
+import { useSidebarContext } from "../context/SidebarContext";
 
 const SavedPosts = () => {
-  //const { userId } = useParams();
   const { isSinglePostOpen } = useSinglePostContext();
+  const { closeSideMenus } = useSidebarContext();
 
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));
 
+  useEffect(() => {
+    document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
+  }, [isSinglePostOpen]);
+
   return (
-    <SavedPostsWrapper>
+    <SavedPostsWrapper onClick={closeSideMenus}>
       <p className="saved-title">All saved Posts</p>
       <div className="saved-posts">
         {savedPostsList?.map((savedPost) => {
           return (
-            <div className="picture-container" key={savedPost.post.id}>
+            <div className="picture-container" key={savedPost.id}>
               <SavedPostPicture
                 className="post"
-                src={BASE_URL + savedPost.post.picture}
+                src={BASE_URL + savedPost?.picture}
               />
-              <ProfilePostHoverEffect
-                post={savedPost.post}
-                userInfo={savedPost}
-              />
+              <ProfilePostHoverEffect post={savedPost} />
             </div>
           );
         })}
@@ -66,7 +66,7 @@ const SavedPostsWrapper = styled.div`
     gap: 23px;
     place-items: center;
     place-content: center;
-    margin-top: 45px;
+    margin: 45px 0px;
   }
 
   .picture-container {
@@ -79,8 +79,22 @@ const SavedPostsWrapper = styled.div`
     padding: 40px 40px;
   }
 
-  @media screen and (max-width: 800px) {
-    padding: 40px 20px;
+  @media screen and (max-width: 765px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 60px;
+    margin-bottom: 15px;
+
+    .saved-posts {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .saved-posts {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 `;
 
