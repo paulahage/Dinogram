@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
-
-import styled from "styled-components";
+import { useSidebarContext } from "../context/SidebarContext";
+import { singlePostPageScroll } from "../services/PageScrollService";
 import { BASE_URL } from "../utils";
+import styled from "styled-components";
 import ProfilePostHoverEffect from "../components/ProfilePostHoverEffect";
 import SinglePost from "../components/SinglePost";
-import { useSidebarContext } from "../context/SidebarContext";
 
 const SavedPosts = () => {
   const { isSinglePostOpen } = useSinglePostContext();
@@ -14,7 +14,7 @@ const SavedPosts = () => {
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));
 
   useEffect(() => {
-    document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
+    singlePostPageScroll(isSinglePostOpen);
   }, [isSinglePostOpen]);
 
   return (

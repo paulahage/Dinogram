@@ -2,13 +2,13 @@ import React, { useCallback, useRef, useEffect } from "react";
 import { useFeedAndPostsContext } from "../context/FeedAndPostsContext";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
+import { useSidebarContext } from "../context/SidebarContext";
+import { optionsMenuPageScroll, singlePostPageScroll,} from "../services/PageScrollService";
 import styled from "styled-components";
-
 import Posts from "../components/Posts";
 import SinglePost from "../components/SinglePost";
 import PostOptionsMenu from "../components/PostOptionsMenu";
 import AlertMessage from "../components/AlertMessage";
-import { useSidebarContext } from "../context/SidebarContext";
 
 const Home = () => {
   const { isSinglePostOpen } = useSinglePostContext();
@@ -38,11 +38,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isSinglePostOpen ? "hidden" : "unset";
+    singlePostPageScroll(isSinglePostOpen);
   }, [isSinglePostOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = isOptionsMenuOpen ? "hidden" : "auto";
+    optionsMenuPageScroll(isOptionsMenuOpen);
   }, [isOptionsMenuOpen]);
 
   return (
