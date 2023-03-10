@@ -20,13 +20,13 @@ export default AlertMessage;
 
 const AlertMessageWrapper = styled.div`
   width: 300px;
-  height: 38px;
+  height: 36px;
   z-index: 6;
   background-color: var(--mainBackgroundColor);
   border-radius: 15px;
   box-shadow: 0px 0px 14px 4px rgba(0, 0, 0, 0.69);
-  position: sticky;
-  top: 10px;
+  position: fixed;
+  top: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,4 +57,7 @@ const AlertMessageWrapper = styled.div`
     top: 2px;
   }
 
+  @media screen and (max-width: 765px) {
+    top: 80px;
+  }
 `;
