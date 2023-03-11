@@ -8,7 +8,7 @@ export const UsernameOnComments = ({ user, postId }) => {
 
   return (
     <UsernameOnCommentsWrapper onMouseOver={(e) => handleMouseEnter(e, user, postId)}>
-      <NavLink to={`/${user.id}`} className="username">
+      <NavLink to={`/${user.id}`} className="username-comments">
         {user.id}
       </NavLink>
     </UsernameOnCommentsWrapper>
@@ -21,7 +21,7 @@ const UsernameOnCommentsWrapper = styled.span`
   margin-right: 10px;
   margin-bottom: 5px;
 
-  .username {
+  .username-comments {
     color: var(--icons);
   }
 `;

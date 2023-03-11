@@ -32,7 +32,7 @@ const Profile = () => {
       <div className="profile-info-container">
         <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
-          <p className="username">{user.id}</p>
+          <p className="username-profile-page">{user.id}</p>
           <ProfileInfos user={user} />
         </div>
       </div>
@@ -68,7 +68,7 @@ const ProfileWrapper = styled.div`
     margin-left: 80px;
   }
 
-  .username {
+  .username-profile-page {
     font-size: var(--fs_xxl);
     font-weight: var(--light);
     margin-bottom: 20px;

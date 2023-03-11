@@ -26,7 +26,7 @@ const PreviewProfile = (props) => {
           <NavLink to={`/${user.id}`} className="username">
             {user.id}
           </NavLink>
-          <span className="username"></span>
+          <span className="username-preview-profile"></span>
         </div>
         <PreviewProfileInfos user={user} />
         <div className="preview-posts">
@@ -65,7 +65,7 @@ const PreviewProfileWrapper = styled.div`
     justify-content: flex-start;
   }
 
-  .username {
+  .username-preview-profile {
     color: var(--icons);
     font-weight: var(--bold);
     font-size: var(--fs_regular);

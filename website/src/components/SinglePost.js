@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { fetchPostInfos } from "../services/ApiService";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import * as Io5Icons from "react-icons/io5";
-import { fetchPostInfos } from "../services/ApiService";
-
 import ProfileAvatar from "./ProfileAvatar";
 import DatePost from "./DatePost";
 import AllComments from "./AllComments";
@@ -47,7 +46,7 @@ const SinglePost = () => {
             <div className="post-avatar">
               <div className="post-author">
                 <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
-                <span className="username">{postInfos.userId}</span>
+                <span className="username-single-post">{postInfos.userId}</span>
                 <DatePost datePost={postInfos.date} />
               </div>
               <DotsKebabButton postInfos={postInfos} />
@@ -135,7 +134,7 @@ const SinglePostWrapper = styled.div`
     justify-content: flex-start;
   }
 
-  .username {
+  .username-single-post {
     font-weight: var(--bold);
     font-size: var(--fs_regular);
     margin-left: 15px;
