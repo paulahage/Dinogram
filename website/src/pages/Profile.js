@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { useSidebarContext } from "../context/SidebarContext";
+import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import { useParams } from "react-router-dom";
 import { fetchUserProfile } from "../services/ApiService";
 import { singlePostPageScroll } from "../services/PageScrollService";
@@ -9,10 +10,13 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import ProfileInfos from "../components/ProfileInfos";
 import ProfilePosts from "../components/ProfilePosts";
 import SinglePost from "../components/SinglePost";
+import PostOptionsMenu from "../components/PostOptionsMenu";
+import AlertMessage from "../components/AlertMessage";
 
 const Profile = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { closeSideMenus } = useSidebarContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
   const [user, setUser] = useState({ user: {}, posts: [] });
 
   let { userId } = useParams();
@@ -33,6 +37,7 @@ const Profile = () => {
 
   return (
     <ProfileWrapper onClick={closeSideMenus}>
+      {isCopiedToClipboard && <AlertMessage />}
       <div className="profile-info-container">
         <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
@@ -42,6 +47,7 @@ const Profile = () => {
       </div>
       <ProfilePosts userInfo={user} />
       {isSinglePostOpen && <SinglePost />}
+      {isOptionsMenuOpen && <PostOptionsMenu />}
     </ProfileWrapper>
   );
 };
