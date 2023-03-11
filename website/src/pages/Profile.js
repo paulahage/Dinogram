@@ -8,11 +8,15 @@ import ProfileAvatar from "../components/ProfileAvatar";
 import ProfileInfos from "../components/ProfileInfos";
 import ProfilePosts from "../components/ProfilePosts";
 import SinglePost from "../components/SinglePost";
+import PostOptionsMenu from "../components/PostOptionsMenu";
+import AlertMessage from "../components/AlertMessage";
 import { useSidebarContext } from "../context/SidebarContext";
+import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 
 const Profile = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { closeSideMenus } = useSidebarContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
   const [user, setUser] = useState({ user: {}, posts: [] });
 
   let { userId } = useParams();
@@ -29,6 +33,7 @@ const Profile = () => {
 
   return (
     <ProfileWrapper onClick={closeSideMenus}>
+      {isCopiedToClipboard && <AlertMessage />}
       <div className="profile-info-container">
         <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
@@ -38,6 +43,7 @@ const Profile = () => {
       </div>
       <ProfilePosts userInfo={user} />
       {isSinglePostOpen && <SinglePost />}
+      {isOptionsMenuOpen && <PostOptionsMenu />}
     </ProfileWrapper>
   );
 };
