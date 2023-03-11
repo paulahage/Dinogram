@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { useSidebarContext } from "../context/SidebarContext";
+import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import { useParams } from "react-router-dom";
 import { fetchUserProfile } from "../services/ApiService";
+import { singlePostPageScroll } from "../services/PageScrollService";
 import styled from "styled-components";
-
 import ProfileAvatar from "../components/ProfileAvatar";
 import ProfileInfos from "../components/ProfileInfos";
 import ProfilePosts from "../components/ProfilePosts";
 import SinglePost from "../components/SinglePost";
 import PostOptionsMenu from "../components/PostOptionsMenu";
 import AlertMessage from "../components/AlertMessage";
-import { useSidebarContext } from "../context/SidebarContext";
-import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 
 const Profile = () => {
   const { isSinglePostOpen } = useSinglePostContext();
@@ -27,9 +27,13 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    singlePostPageScroll(isSinglePostOpen);
+  }, [isSinglePostOpen]);
+
+  useEffect(() => {
     getUserProfile(userId);
     //eslint-disable-next-line
-  }, []);
+  }, [userId]);
 
   return (
     <ProfileWrapper onClick={closeSideMenus}>
@@ -37,7 +41,7 @@ const Profile = () => {
       <div className="profile-info-container">
         <ProfileAvatar url={user.avatar} userProfile={user} />
         <div className="info-container">
-          <p className="username">{user.id}</p>
+          <p className="username-profile-page">{user.id}</p>
           <ProfileInfos user={user} />
         </div>
       </div>
@@ -74,7 +78,7 @@ const ProfileWrapper = styled.div`
     margin-left: 80px;
   }
 
-  .username {
+  .username-profile-page {
     font-size: var(--fs_xxl);
     font-weight: var(--light);
     margin-bottom: 20px;

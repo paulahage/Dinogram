@@ -57,8 +57,8 @@ const SearchSideWindowWrapper = styled.div`
   border-top-right-radius: 3%;
   border-bottom-right-radius: 3%;
   z-index: 2;
-  transition: all 3s linear;
-  animation: openSearchWindow 1s linear;
+  transition: all 0.5s linear;
+  animation: openSearchWindow 0.5s linear;
 
   -webkit-box-shadow: 4px 0px 30px -4px rgba(142, 142, 142, 1);
   -moz-box-shadow: 4px 0px 30px -4px rgba(142, 142, 142, 1);

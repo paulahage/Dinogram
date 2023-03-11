@@ -1,33 +1,37 @@
 import React from "react";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { BASE_URL } from "../utils";
+import { useUserLoggedContext } from "../context/UserLoggedContext";
+import styled from "styled-components";
 import * as AiIcons from "react-icons/ai";
 import * as FiIcons from "react-icons/fi";
 
 const BottomNavbarMobile = () => {
+  const { loggedUser } = useUserLoggedContext();
+
   return (
-    <BottomNavbarMobileWrapper>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "icon-active" : "")}
-          end
-        >
-          <AiIcons.AiFillHome className="nav-icon-mobile" />
-        </NavLink>
-        <NavLink
-          to="/:user"
-          className={({ isActive }) => (isActive ? "icon-active" : "")}
-          end
-        >
+    <BottomNavbarMobileWrapper userAvatar={BASE_URL + loggedUser.avatar}>
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? "icon-active" : "")}
+        end
+      >
+        <AiIcons.AiFillHome className="nav-icon-mobile" />
+      </NavLink>
+      <NavLink
+        to={`${loggedUser.id}`}
+        className={({ isActive }) => (isActive ? "icon-active" : "")}
+        end
+      >
         <div className="my-profile-avatar-mobile" />
-        </NavLink>
-        <NavLink
-          to="/settings/saved"
-          className={({ isActive }) => (isActive ? "icon-active" : "")}
-          end
-        >
-          <FiIcons.FiBookmark className="nav-icon-mobile" />
-        </NavLink>
+      </NavLink>
+      <NavLink
+        to="/settings/saved"
+        className={({ isActive }) => (isActive ? "icon-active" : "")}
+        end
+      >
+        <FiIcons.FiBookmark className="nav-icon-mobile" />
+      </NavLink>
     </BottomNavbarMobileWrapper>
   );
 };
@@ -67,10 +71,9 @@ const BottomNavbarMobileWrapper = styled.div`
     height: 35px;
     border-radius: 50%;
     border: 2px solid var(--grey);
-    background-image: url("../images/dino_avatar.png");
+    background-image: url(${(props) => props.userAvatar});
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 30px;
-    background-color: var(--white);
+    background-size: cover;
   }
 `;
