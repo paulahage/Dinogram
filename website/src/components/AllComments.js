@@ -11,6 +11,10 @@ const AllComments = ({ postInfos, comments }) => {
     user: {
       id: postInfos?.userId,
       avatar: postInfos?.userWithPostsPreview?.avatar,
+      postsPreview: postInfos.userWithPostsPreview.postsPreview,
+      postsCount: postInfos.userWithPostsPreview.postsCount,
+      followersCount: postInfos.userWithPostsPreview.followersCount,
+      followingCount: postInfos.userWithPostsPreview.followingCount,
     },
   };
 
@@ -29,7 +33,7 @@ const AllComments = ({ postInfos, comments }) => {
 
   return (
     <AllCommentsWrapper>
-      {allComments.map((comment, index) =>  (
+      {allComments.map((comment, index) => (
         <div className="all-comments-container" key={index}>
           <SingleComment comment={comment} postInfos={postInfos} />
           {comment.comments.length ? <ViewReplies comment={comment} /> : ""}
