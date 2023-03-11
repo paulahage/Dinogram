@@ -23,10 +23,9 @@ const PreviewProfile = (props) => {
       >
         <div className="header">
           <ProfileAvatar url={user.avatar} />
-          <NavLink to={`/${user.id}`} className="username">
+          <NavLink to={`/${user.id}`} className="username-preview-profile">
             {user.id}
           </NavLink>
-          <span className="username-preview-profile"></span>
         </div>
         <PreviewProfileInfos user={user} />
         <div className="preview-posts">

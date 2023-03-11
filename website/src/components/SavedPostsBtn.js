@@ -8,10 +8,8 @@ import { useSidebarContext } from "../context/SidebarContext";
 const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
-  const windowHeight = window.innerHeight;
-
   return (
-    <SavedPostsBtnWrapper windowSize={windowHeight}>
+    <SavedPostsBtnWrapper >
       <NavLink
         to="/settings/saved"
         onClick={closeSideMenus}
