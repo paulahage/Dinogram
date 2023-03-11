@@ -25,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     getUserProfile(userId);
     //eslint-disable-next-line
-  }, []);
+  }, [userId]);
 
   return (
     <ProfileWrapper onClick={closeSideMenus}>
