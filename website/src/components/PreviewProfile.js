@@ -6,20 +6,21 @@ import PreviewProfileInfos from "./PreviewProfileInfos";
 import PreviewProfilePosts from "./PreviewProfilePosts";
 import ProfileAvatar from "./ProfileAvatar";
 
-const PreviewProfile = (props) => {
-  const { user, handleMouseLeave, mousePosition, postId, hoverOver } = usePreviewProfileContext();
+const PreviewProfile = () => {
+  const { user, mousePosition, hoverOver, handleMouseEnter, handleMouseLeave } =
+    usePreviewProfileContext();
   const { top, left } = mousePosition;
 
   const postsPreview = user.postsPreview;
 
   return (
-    props.postId === postId &&
     hoverOver && (
       <PreviewProfileWrapper
         id="preview_profile"
-        onMouseLeave={handleMouseLeave}
         top={top}
         left={left}
+        onMouseOver={() => handleMouseEnter(user)}
+        onMouseLeave={handleMouseLeave}
       >
         <div className="header">
           <ProfileAvatar url={user.avatar} />

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BASE_URL } from "../utils";
 
 const PreviewProfilePosts = ({ posts }) => {
-  return posts.map((post) => {
+  return posts?.map((post) => {
     return <PreviewProfilePostsWrapper post={post} key={post.id} />;
   });
 };

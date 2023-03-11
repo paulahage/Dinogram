@@ -7,7 +7,6 @@ import { SidebarProvider } from "./context/SidebarContext";
 import { FeedAndPostsProvider } from "./context/FeedAndPostsContext";
 import { LikesProvider } from "./context/LikesContext";
 import { SinglePostProvider } from "./context/SinglePostContext";
-import { PreviewProfileProvider } from "./context/PreviewProfileContext";
 import { PostOptionsMenuProvider } from "./context/PostOptionsMenuContext";
 import { SavedPostProvider } from "./context/SavedPostContext";
 import { CommentProvider } from "./context/CommentContext";
@@ -23,7 +22,6 @@ root.render(
           <SavedPostProvider>
             <SidebarProvider>
               <SearchUserProvider>
-                <PreviewProfileProvider>
                   <CommentProvider>
                     <SinglePostProvider>
                       <PostOptionsMenuProvider>
@@ -31,7 +29,6 @@ root.render(
                       </PostOptionsMenuProvider>
                     </SinglePostProvider>
                   </CommentProvider>
-                </PreviewProfileProvider>
               </SearchUserProvider>
             </SidebarProvider>
           </SavedPostProvider>

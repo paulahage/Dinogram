@@ -4,16 +4,17 @@ import styled from 'styled-components'
 import * as HiIcons from "react-icons/hi";
 
 import ProfileAvatar from './ProfileAvatar';
+import { UsernameOnComments } from './UsernameOnComments';
 
 const SingleComment = ({ comment, postInfos }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  return (
+  return comment.text && (
     <SingleCommentWrapper>
       <ProfileAvatar url={comment.user?.avatar} />
       <div className="comments-info">
         <p className="normal-text">
-          <span className="text-bold name-user">{comment.user.id}</span>
+          <UsernameOnComments user={comment.user} postId={comment.postId} />
           {comment.text}
         </p>
         {postInfos?.userId !== comment.user.id ? (
