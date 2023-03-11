@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
+import { useSidebarContext } from "../context/SidebarContext";
 import { useParams } from "react-router-dom";
 import { fetchUserProfile } from "../services/ApiService";
+import { singlePostPageScroll } from "../services/PageScrollService";
 import styled from "styled-components";
-
 import ProfileAvatar from "../components/ProfileAvatar";
 import ProfileInfos from "../components/ProfileInfos";
 import ProfilePosts from "../components/ProfilePosts";
 import SinglePost from "../components/SinglePost";
-import { useSidebarContext } from "../context/SidebarContext";
 
 const Profile = () => {
   const { isSinglePostOpen } = useSinglePostContext();
@@ -21,6 +21,10 @@ const Profile = () => {
     const userProfile = await fetchUserProfile(userId);
     setUser(userProfile);
   };
+
+  useEffect(() => {
+    singlePostPageScroll(isSinglePostOpen);
+  }, [isSinglePostOpen]);
 
   useEffect(() => {
     getUserProfile(userId);
