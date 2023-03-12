@@ -9,7 +9,6 @@ import { UsernameOnComments } from './UsernameOnComments';
 const SingleComment = ({ comment, postInfos }) => {
   const { isLikedComment, handleLikeComment } = useLikesContext();
 
-  console.log('comment single comment', comment);
   return comment.text && (
     <SingleCommentWrapper>
       <ProfileAvatar url={comment.user?.avatar} />

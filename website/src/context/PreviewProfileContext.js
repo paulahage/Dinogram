@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useSinglePostContext } from "./SinglePostContext";
 
 const PreviewProfileContext = React.createContext();
 
@@ -6,6 +7,8 @@ export const PreviewProfileProvider = ({ children }) => {
   const [hoverOver, setHoverOver] = useState(false);
   const [user, setUser] = useState({});
   const [mousePosition, setMousePosition] = useState({ top: 0, left: 0 });
+
+  const { isSinglePostOpen } = useSinglePostContext();
 
   const handleMouseEnter = (user, e) => {
     setHoverOver(true);
@@ -21,21 +24,15 @@ export const PreviewProfileProvider = ({ children }) => {
       const elementScreenVerticalPosition = e.clientY;
       const elementScreenHorizontalPosition = e.target.offsetLeft;
 
-      let top = e.target.offsetTop + 18;
+      let top = isSinglePostOpen ? elementScreenVerticalPosition : e.target.offsetTop + 18;
       let left = e.target.offsetLeft;
 
-      if (
-        elementScreenVerticalPosition + previewProfileHeightSize >
-        windowHeightSize
-      ) {
-        top = previewProfileHeightSize * -1 + e.target.offsetTop;
+      if ( elementScreenVerticalPosition + previewProfileHeightSize > windowHeightSize ) {
+        top = isSinglePostOpen ? previewProfileHeightSize * -1 + elementScreenVerticalPosition : previewProfileHeightSize * -1 + e.target.offsetTop;
       }
 
-      if (
-        elementScreenHorizontalPosition + previewProfileWidthSize >
-        windowWidthSize
-      ) {
-        left = 0;
+      if ( elementScreenHorizontalPosition + previewProfileWidthSize > windowWidthSize ) {
+        left = e.target.offsetLeft - previewProfileWidthSize / 2;
       }
 
       setMousePosition({ top, left });
