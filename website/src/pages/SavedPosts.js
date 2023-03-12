@@ -1,15 +1,19 @@
 import React, {useEffect} from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { useSidebarContext } from "../context/SidebarContext";
+import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import { singlePostPageScroll } from "../services/PageScrollService";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import ProfilePostHoverEffect from "../components/ProfilePostHoverEffect";
 import SinglePost from "../components/SinglePost";
+import PostOptionsMenu from "../components/PostOptionsMenu";
+import AlertMessage from "../components/AlertMessage";
 
 const SavedPosts = () => {
   const { isSinglePostOpen } = useSinglePostContext();
   const { closeSideMenus } = useSidebarContext();
+  const { isOptionsMenuOpen, isCopiedToClipboard } = usePostOptionsMenuContext();
 
   const savedPostsList = JSON.parse(localStorage.getItem("savedPosts"));
 
@@ -19,6 +23,7 @@ const SavedPosts = () => {
 
   return (
     <SavedPostsWrapper onClick={closeSideMenus}>
+      {isCopiedToClipboard && <AlertMessage />}
       <p className="saved-title">All saved Posts</p>
       <div className="saved-posts">
         {savedPostsList?.map((savedPost) => {
@@ -34,6 +39,7 @@ const SavedPosts = () => {
         })}
       </div>
       {isSinglePostOpen && <SinglePost />}
+      {isOptionsMenuOpen && <PostOptionsMenu />}
     </SavedPostsWrapper>
   );
 };
