@@ -7,14 +7,14 @@
   --grey: #dbdbdb;
   --grey_transparent: #dbdbdbb4;
   --dark_grey: #8e8e8e;
-  --search_input:#EFEFEF;
+  --search_input: #efefef;
   --background_transparent: rgba(9, 9, 9, 0.677);
   --mainBackgroundColor: #fafafa;
   --icons: #262626;
-  --heart: #ED4956;
+  --heart: #ed4956;
   --post_btn: #007bedc8;
-  --post_btn_disabled:#007aed92;
-  --hover_post: #02396C;
+  --post_btn_disabled: #007aed92;
+  --hover_post: #02396c;
   --alert_success: #1b9b04;
 
   /* fonts weight */
@@ -28,9 +28,8 @@
   --fs_regular: 14px;
   --fs_regular_plus: 14.5px;
   --fs_large: 15px;
-  --fs_xl:20px;
-  --fs_xxl:26px;
-
+  --fs_xl: 20px;
+  --fs_xxl: 26px;
 }
 
 /* GLOBAL STYLES */
@@ -80,6 +79,7 @@ hr {
   font-weight: var(--light);
   color: var(--icons);
   font-size: var(--fs_regular);
+  word-break: break-word;
 }
 
 .text-bold {
@@ -104,4 +104,10 @@ hr {
 
 .interaction-icons.active:hover {
   color: var(--icons);
+}
+
+@media screen and (max-width: 550px) {
+  .normal-text {
+    font-size: var(--fs_xsmall);
+  }
 }

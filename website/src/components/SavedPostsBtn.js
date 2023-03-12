@@ -7,10 +7,8 @@ import * as FiIcons from "react-icons/fi";
 const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
-  const windowHeight = window.innerHeight;
-
   return (
-    <SavedPostsBtnWrapper windowSize={windowHeight}>
+    <SavedPostsBtnWrapper >
       <NavLink
         to="/settings/saved"
         onClick={closeSideMenus}
