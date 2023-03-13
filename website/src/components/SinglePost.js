@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSinglePostContext } from "../context/SinglePostContext";
 import { fetchPostInfos } from "../services/ApiService";
+import { useWindowSize } from "../services/WindowSizeService";
 import { BASE_URL } from "../utils";
 import styled from "styled-components";
 import * as Io5Icons from "react-icons/io5";
@@ -8,7 +9,7 @@ import ProfileAvatar from "./ProfileAvatar";
 import DatePost from "./DatePost";
 import AllComments from "./AllComments";
 import ActionsBar from "./ActionsBar";
-import {Likes} from "./Likes";
+import { Likes } from "./Likes";
 import CommentInput from "./CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
 import PreviewProfile from "./PreviewProfile";
@@ -16,6 +17,7 @@ import { PreviewProfileProvider } from "../context/PreviewProfileContext";
 
 const SinglePost = () => {
   const { toggleSinglePost, clickedPost, handleClose } = useSinglePostContext();
+  const screenSize = useWindowSize();
 
   const [postInfos, setPostInfos] = useState({});
   const [comments, setComments] = useState([]);
@@ -33,7 +35,43 @@ const SinglePost = () => {
     //eslint-disable-next-line
   }, []);
 
-  return (
+  return postInfos.id && screenSize > 765 ? (
+    <PreviewProfileProvider>
+      <SinglePostWrapper
+        onClick={handleClose}
+        urlPicture={BASE_URL + postInfos.picture}
+      >
+        <button className="close-btn" onClick={toggleSinglePost}>
+          <Io5Icons.IoClose />
+        </button>
+        <div className="post-container" id="single-post-background">
+          <PreviewProfile />
+          <div className="post-image" />
+          <div className="infos-post">
+            <div className="post-avatar">
+              <div className="post-author">
+                <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
+                <span className="username-single-post">{postInfos.userId}</span>
+                <DatePost datePost={postInfos.date} />
+              </div>
+              <DotsKebabButton postInfos={postInfos} />
+            </div>
+            <AllComments postInfos={postInfos} comments={comments} />
+            <ActionsBar postInfos={postInfos} />
+            <Likes
+              likes={postInfos.likesUsers}
+              likesCount={postInfos.likesCount}
+            />
+            <CommentInput
+              postInfos={postInfos}
+              updatebleComments={comments}
+              setUpdatebleComments={setComments}
+            />
+          </div>
+        </div>
+      </SinglePostWrapper>
+    </PreviewProfileProvider>
+  ) : (
     postInfos.id && (
       <PreviewProfileProvider>
         <SinglePostWrapper
@@ -50,7 +88,9 @@ const SinglePost = () => {
               <div className="post-avatar">
                 <div className="post-author">
                   <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
-                <span className="username-single-post">{postInfos.userId}</span>
+                  <span className="username-single-post">
+                    {postInfos.userId}
+                  </span>
                   <DatePost datePost={postInfos.date} />
                 </div>
                 <DotsKebabButton postInfos={postInfos} />
@@ -163,5 +203,28 @@ const SinglePostWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  @media screen and (max-width: 765px) {
+    .infos-post {
+      width: 70%;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .post-avatar {
+      justify-content: center;
+    }
+
+    .title-single-post {
+      font-weight: var(--bold);
+      font-size: var(--fs_large);
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .infos-post {
+      width: 100%;
+    }
   }
 `;

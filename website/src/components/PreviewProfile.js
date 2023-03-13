@@ -5,13 +5,19 @@ import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 import PreviewProfileInfos from "./PreviewProfileInfos";
 import PreviewProfilePosts from "./PreviewProfilePosts";
 import ProfileAvatar from "./ProfileAvatar";
+import { useSinglePostContext } from "../context/SinglePostContext";
 
 const PreviewProfile = () => {
-  const { user, mousePosition, hoverOver, handleMouseEnter, handleMouseLeave } =
-    usePreviewProfileContext();
+  const { user, mousePosition, hoverOver, handleMouseEnter, handleMouseLeave } = usePreviewProfileContext();
+  const { isSinglePostOpen, handleClose} = useSinglePostContext();
   const { top, left } = mousePosition;
-
   const postsPreview = user.postsPreview;
+
+  const handleCloseSinglePost = (e) => {
+    if (isSinglePostOpen) {
+      handleClose(e);
+    }
+  };
 
   return (
     hoverOver && (
@@ -24,10 +30,9 @@ const PreviewProfile = () => {
       >
         <div className="header">
           <ProfileAvatar url={user.avatar} />
-          <NavLink to={`/${user.id}`} className="username">
+          <NavLink to={`/${user.id}`} className="username-preview-profile" id="preview-profile-user" onClick={handleCloseSinglePost}>
             {user.id}
           </NavLink>
-          <span className="username-preview-profile"></span>
         </div>
         <PreviewProfileInfos user={user} />
         <div className="preview-posts">

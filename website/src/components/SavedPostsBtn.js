@@ -1,17 +1,14 @@
 import React from "react";
+import { useSidebarContext } from "../context/SidebarContext";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import * as FiIcons from "react-icons/fi";
 
-import { useSidebarContext } from "../context/SidebarContext";
-
 const SavedPostsBtn = () => {
   const { closeSideMenus } = useSidebarContext();
 
-  const windowHeight = window.innerHeight;
-
   return (
-    <SavedPostsBtnWrapper windowSize={windowHeight}>
+    <SavedPostsBtnWrapper >
       <NavLink
         to="/settings/saved"
         onClick={closeSideMenus}
@@ -32,7 +29,7 @@ const SavedPostsBtnWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 0px 2px 18px 3px rgba(179, 179, 179, 1);
   position: absolute;
-  bottom: 100px;
+  bottom: 50px;
   text-align: center;
   background: var(--white);
   display: flex;
