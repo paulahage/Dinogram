@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { BASE_URL } from "../utils";
-
 import ProfileAvatar from "./ProfileAvatar";
 import InteractionBar from "./InteractionBar";
 import DatePost from "./DatePost";
