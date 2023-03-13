@@ -5,25 +5,32 @@ import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 import PreviewProfileInfos from "./PreviewProfileInfos";
 import PreviewProfilePosts from "./PreviewProfilePosts";
 import ProfileAvatar from "./ProfileAvatar";
+import { useSinglePostContext } from "../context/SinglePostContext";
 
-const PreviewProfile = (props) => {
-  const { user, handleMouseLeave, mousePosition, postId, hoverOver } = usePreviewProfileContext();
+const PreviewProfile = () => {
+  const { user, mousePosition, hoverOver, handleMouseEnter, handleMouseLeave } = usePreviewProfileContext();
+  const { isSinglePostOpen, handleClose} = useSinglePostContext();
   const { top, left } = mousePosition;
-
   const postsPreview = user.postsPreview;
 
+  const handleCloseSinglePost = (e) => {
+    if (isSinglePostOpen) {
+      handleClose(e);
+    }
+  };
+
   return (
-    props.postId === postId &&
     hoverOver && (
       <PreviewProfileWrapper
         id="preview_profile"
-        onMouseLeave={handleMouseLeave}
         top={top}
         left={left}
+        onMouseOver={() => handleMouseEnter(user)}
+        onMouseLeave={handleMouseLeave}
       >
         <div className="header">
           <ProfileAvatar url={user.avatar} />
-          <NavLink to={`/${user.id}`} className="username-preview-profile">
+          <NavLink to={`/${user.id}`} className="username-preview-profile" id="preview-profile-user" onClick={handleCloseSinglePost}>
             {user.id}
           </NavLink>
         </div>

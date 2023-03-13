@@ -12,6 +12,8 @@ import ActionsBar from "./ActionsBar";
 import { Likes } from "./Likes";
 import CommentInput from "./CommentInput";
 import DotsKebabButton from "./DotsKebabButton";
+import PreviewProfile from "./PreviewProfile";
+import { PreviewProfileProvider } from "../context/PreviewProfileContext";
 
 const SinglePost = () => {
   const { toggleSinglePost, clickedPost, handleClose } = useSinglePostContext();
@@ -34,40 +36,7 @@ const SinglePost = () => {
   }, []);
 
   return postInfos.id && screenSize > 765 ? (
-    <SinglePostWrapper
-      onClick={handleClose}
-      urlPicture={BASE_URL + postInfos.picture}
-    >
-      <button className="close-btn" onClick={toggleSinglePost}>
-        <Io5Icons.IoClose />
-      </button>
-      <div className="post-container" id="single-post-background">
-        <div className="post-image" />
-        <div className="infos-post">
-          <div className="post-avatar">
-            <div className="post-author">
-              <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
-              <span className="username-single-post">{postInfos.userId}</span>
-              <DatePost datePost={postInfos.date} />
-            </div>
-            <DotsKebabButton postInfos={postInfos} />
-          </div>
-          <AllComments postInfos={postInfos} comments={comments} />
-          <ActionsBar postInfos={postInfos} />
-          <Likes
-            likes={postInfos.likesUsers}
-            likesCount={postInfos.likesCount}
-          />
-          <CommentInput
-            postInfos={postInfos}
-            updatebleComments={comments}
-            setUpdatebleComments={setComments}
-          />
-        </div>
-      </div>
-    </SinglePostWrapper>
-  ) : (
-    postInfos.id && (
+    <PreviewProfileProvider>
       <SinglePostWrapper
         onClick={handleClose}
         urlPicture={BASE_URL + postInfos.picture}
@@ -76,9 +45,16 @@ const SinglePost = () => {
           <Io5Icons.IoClose />
         </button>
         <div className="post-container" id="single-post-background">
+          <PreviewProfile />
+          <div className="post-image" />
           <div className="infos-post">
-              <div className="post-avatar">
-                <p className="title-single-post">Comments</p>
+            <div className="post-avatar">
+              <div className="post-author">
+                <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
+                <span className="username-single-post">{postInfos.userId}</span>
+                <DatePost datePost={postInfos.date} />
+              </div>
+              <DotsKebabButton postInfos={postInfos} />
             </div>
             <AllComments postInfos={postInfos} comments={comments} />
             <ActionsBar postInfos={postInfos} />
@@ -94,6 +70,46 @@ const SinglePost = () => {
           </div>
         </div>
       </SinglePostWrapper>
+    </PreviewProfileProvider>
+  ) : (
+    postInfos.id && (
+      <PreviewProfileProvider>
+        <SinglePostWrapper
+          onClick={handleClose}
+          urlPicture={BASE_URL + postInfos.picture}
+        >
+          <button className="close-btn" onClick={toggleSinglePost}>
+            <Io5Icons.IoClose />
+          </button>
+          <div className="post-container" id="single-post-background">
+            <PreviewProfile />
+            <div className="post-image" />
+            <div className="infos-post">
+              <div className="post-avatar">
+                <div className="post-author">
+                  <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
+                  <span className="username-single-post">
+                    {postInfos.userId}
+                  </span>
+                  <DatePost datePost={postInfos.date} />
+                </div>
+                <DotsKebabButton postInfos={postInfos} />
+              </div>
+              <AllComments postInfos={postInfos} comments={comments} />
+              <ActionsBar postInfos={postInfos} />
+              <Likes
+                likes={postInfos.likesUsers}
+                likesCount={postInfos.likesCount}
+              />
+              <CommentInput
+                postInfos={postInfos}
+                updatebleComments={comments}
+                setUpdatebleComments={setComments}
+              />
+            </div>
+          </div>
+        </SinglePostWrapper>
+      </PreviewProfileProvider>
     )
   );
 };

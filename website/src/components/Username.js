@@ -4,13 +4,12 @@ import styled from "styled-components";
 import { usePreviewProfileContext } from "../context/PreviewProfileContext";
 
 const Username = ({ postInfos }) => {
-  const { handleMouseEnter } = usePreviewProfileContext();
+  const { handleMouseEnter, handleMouseLeave } = usePreviewProfileContext();
 
   return (
     <UsernameWrapper
-      onMouseOver={(e) =>
-        handleMouseEnter(e, postInfos.userWithPostsPreview, postInfos.id)
-      }
+      onMouseOver={(e) => handleMouseEnter( postInfos.userWithPostsPreview, e)}
+      onMouseLeave={handleMouseLeave}
     >
       <NavLink
         to={`/${postInfos.userWithPostsPreview.id}`}

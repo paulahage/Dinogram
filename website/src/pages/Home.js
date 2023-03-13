@@ -5,7 +5,7 @@ import { usePostOptionsMenuContext } from "../context/PostOptionsMenuContext";
 import { useSidebarContext } from "../context/SidebarContext";
 import { optionsMenuPageScroll, singlePostPageScroll,} from "../services/PageScrollService";
 import styled from "styled-components";
-import Posts from "../components/Posts";
+import Post from "../components/Post";
 import SinglePost from "../components/SinglePost";
 import PostOptionsMenu from "../components/PostOptionsMenu";
 import AlertMessage from "../components/AlertMessage";
@@ -54,9 +54,9 @@ const Home = () => {
       {isCopiedToClipboard && <AlertMessage />}
       {feed.map((post, index) => {
         if (index === feed.length - 1) {
-          return <Posts key={index} post={post} postRef={lastPostRef} />;
+          return <Post key={index} post={post} postRef={lastPostRef} />;
         }
-        return <Posts key={index} post={post} />;
+        return <Post key={index} post={post} />;
       })}
       {isSinglePostOpen && <SinglePost />}
       {isOptionsMenuOpen && <PostOptionsMenu />}
