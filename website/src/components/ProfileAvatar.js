@@ -19,7 +19,7 @@ const ProfileAvatarWrapper = styled.div`
   background-size: cover;
 
   @media screen and (max-width: 570px) {
-    width: ${(props) => (props.userProfile ? "80px" : "35px")};
-    height: ${(props) => (props.userProfile ? "80px" : "35px")};
+    width: ${(props) => (props.userProfile ? "70px" : "35px")};
+    height: ${(props) => (props.userProfile ? "70px" : "35px")};
   }
 `;

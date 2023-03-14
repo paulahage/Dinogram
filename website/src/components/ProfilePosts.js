@@ -37,7 +37,6 @@ const ProfilePostsWrapper = styled.div`
 
   @media screen and (max-width: 765px) {
     grid-gap: 1px;
-
   }
 `;
 
@@ -45,4 +44,5 @@ const PostPicture = styled.img`
   width: 100%;
   object-fit: cover;
   cursor: pointer;
+  display: table-header-group;
 `;
