@@ -1,11 +1,7 @@
-import { useLikesContext } from "../context/LikesContext";
 import styled from "styled-components";
-import * as HiIcons from "react-icons/hi";
 import { UsernameOnComments } from "./UsernameOnComments";
 
 const FirstComment = ({ previewComments }) => {
-  const { isLikedComment, handleLikeComment } = useLikesContext();
-
   return previewComments.length
     ? previewComments.slice(0, 3).map((comment, index) => {
         return (
@@ -14,13 +10,6 @@ const FirstComment = ({ previewComments }) => {
               <UsernameOnComments user={comment.user} postId={comment.postId} />
               <span className="normal-text">{comment.text}</span>
             </div>
-            <button onClick={handleLikeComment}>
-              {isLikedComment ? (
-                <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
-              ) : (
-                <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
-              )}
-            </button>
           </FirstCommentWrapper>
         );
       })

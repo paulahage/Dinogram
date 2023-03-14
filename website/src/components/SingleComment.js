@@ -1,35 +1,62 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useLikesContext } from "../context/LikesContext";
 import styled from 'styled-components'
 import * as HiIcons from "react-icons/hi";
-
 import ProfileAvatar from './ProfileAvatar';
 import { UsernameOnComments } from './UsernameOnComments';
 
 const SingleComment = ({ comment, postInfos }) => {
-  const { isLikedComment, handleLikeComment } = useLikesContext();
+  const {
+    likeComment,
+    likedCommentOnStorage,
+    removeLikeOnComment,
+    getLikedCommentOnStorage,
+  } = useLikesContext();
 
-  return comment.text && (
-    <SingleCommentWrapper>
-      <ProfileAvatar url={comment.user?.avatar} />
-      <div className="comments-info">
-        <p className="normal-text">
-          <UsernameOnComments user={comment.user} postId={comment.postId} />
-          {comment.text}
-        </p>
-        {postInfos?.userId !== comment.user.id ? (
-          <button onClick={handleLikeComment}>
-            {isLikedComment ? (
-              <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
-            ) : (
-              <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
-            )}
-          </button>
-        ) : (
-          ""
-        )}
-      </div>
-    </SingleCommentWrapper>
+  const [isLikedCommentOnPostOpen, setIsLikedCommentOnPostOpen] = useState(false);
+
+  const handleLikeCommentOnPostOpen = ()=> {
+    const hasLikedCommentOnStorage = getLikedCommentOnStorage(comment);
+
+    if (!hasLikedCommentOnStorage) {
+      likeComment(comment);
+      setIsLikedCommentOnPostOpen(true);
+      return;
+    }
+    removeLikeOnComment(comment);
+    setIsLikedCommentOnPostOpen(false);
+  }
+
+  useEffect(() => {
+    if (likedCommentOnStorage.length) {
+      setIsLikedCommentOnPostOpen(getLikedCommentOnStorage(comment));
+    }
+    //eslint-disable-next-line
+  },[])
+
+  return (
+    comment.text && (
+      <SingleCommentWrapper>
+        <ProfileAvatar url={comment.user?.avatar} />
+        <div className="comments-info">
+          <p className="normal-text">
+            <UsernameOnComments user={comment.user} postId={comment.postId} />
+            {comment.text}
+          </p>
+          {postInfos?.userId !== comment.user.id ? (
+            <button onClick={handleLikeCommentOnPostOpen}>
+              {isLikedCommentOnPostOpen ? (
+                <HiIcons.HiHeart className="interaction-icons like-btn like-btn-color" />
+              ) : (
+                <HiIcons.HiOutlineHeart className="interaction-icons like-btn" />
+              )}
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+      </SingleCommentWrapper>
+    )
   );
 }
 
