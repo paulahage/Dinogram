@@ -83,17 +83,9 @@ const SinglePost = () => {
           </button>
           <div className="post-container" id="single-post-background">
             <PreviewProfile />
-            <div className="post-image" />
             <div className="infos-post">
               <div className="post-avatar">
-                <div className="post-author">
-                  <ProfileAvatar url={postInfos.userWithPostsPreview?.avatar} />
-                  <span className="username-single-post">
-                    {postInfos.userId}
-                  </span>
-                  <DatePost datePost={postInfos.date} />
-                </div>
-                <DotsKebabButton postInfos={postInfos} />
+                <p className="title-single-post">Comments</p>
               </div>
               <AllComments postInfos={postInfos} comments={comments} />
               <ActionsBar postInfos={postInfos} />
