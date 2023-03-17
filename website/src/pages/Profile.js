@@ -70,12 +70,13 @@ const ProfileWrapper = styled.div`
     border-bottom: 1px solid var(--grey);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-bottom: 45px;
     margin-bottom: 45px;
   }
 
   .info-container {
+    width: calc(100% - 200px);
     margin-left: 80px;
   }
 
@@ -95,16 +96,27 @@ const ProfileWrapper = styled.div`
     width: 100%;
     margin-left: 0px;
     margin-top: 60px;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    .profile-info-container {
+      margin-bottom: 0px;
+      padding-left: 10px;
+    }
   }
 
-  @media screen and (max-width: 570px) {
-    .profile-info-container {
-      justify-content: space-around;
+  @media screen and (max-width: 550px) {
+    .info-container {
+      margin-left: 40px;
     }
 
-    .info-container {
-      margin-left: 20px;
+    .profile-info-container {
+      padding-top: 25px;
+    }
+
+    .username-profile-page {
+      font-size: var(--fs_xl);
     }
   }
 `;
