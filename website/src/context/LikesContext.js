@@ -1,11 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 
 const LikesContext = React.createContext();
 
 export const LikesProvider = ({ children }) => {
   const likedPostsOnStorage = JSON.parse(localStorage.getItem("likedPosts")) || [];
+  const likedCommentOnStorage = JSON.parse(localStorage.getItem("likedComment")) || [];
 
-  const [isLikedComment, setIsLikedComment] = useState(false);
+  const likeComment = (comment) => {
+    likedCommentOnStorage.push(comment);
+    localStorage.setItem("likedComment", JSON.stringify(likedCommentOnStorage));
+  };
+
+  const removeLikeOnComment = (comment) => {
+    const commentToRemoveIndex = likedCommentOnStorage.findIndex(
+      (likedComment) => likedComment.id === comment.id
+    );
+
+    if (commentToRemoveIndex > -1) {
+      likedCommentOnStorage.splice(commentToRemoveIndex, 1);
+      localStorage.setItem("likedComment",JSON.stringify(likedCommentOnStorage));
+    }
+  };
 
   const likePost = (post) => {
     likedPostsOnStorage.push(post);
@@ -23,18 +38,22 @@ export const LikesProvider = ({ children }) => {
     }
   };
 
-  const handleLikeComment = () => {
-    setIsLikedComment(!isLikedComment);
+  const getLikedCommentOnStorage = (comment) => {
+    return likedCommentOnStorage.find(
+      (userComment) => userComment.id === comment.id
+    );
   };
 
   return (
     <LikesContext.Provider
       value={{
-        isLikedComment,
-        handleLikeComment,
         likePost,
         removeLikeOnPost,
         likedPostsOnStorage,
+        likeComment,
+        likedCommentOnStorage,
+        removeLikeOnComment,
+        getLikedCommentOnStorage,
       }}
     >
       {children}
