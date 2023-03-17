@@ -87,7 +87,11 @@ const SinglePost = () => {
               <div className="post-avatar">
                 <p className="title-single-post">Comments</p>
               </div>
-              <AllComments postInfos={postInfos} comments={comments} />
+              {comments.length ? (
+                <AllComments postInfos={postInfos} comments={comments} />
+              ) : (
+                <div className="comments-alert-message">no comments yet</div>
+              )}
               <ActionsBar postInfos={postInfos} />
               <Likes
                 likes={postInfos.likesUsers}
@@ -211,6 +215,17 @@ const SinglePostWrapper = styled.div`
     .title-single-post {
       font-weight: var(--bold);
       font-size: var(--fs_large);
+    }
+
+    .comments-alert-message {
+      height: 67%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark_grey);
+      font-weight: var(--regular);
+      font-size: var(--fs_small);
     }
   }
 
