@@ -48,9 +48,11 @@ $ git clone git@github.com:paulahage/Dinogram.git
 $ cd website
 $ npm install
 $ npm start
+
 ```
-- You can check the project at http://localhost:3000/
 
 <br/>
 
 💻 Result: **in progress**
+![dinogram_gif](https://user-images.githubusercontent.com/84124999/228905111-f218f6db-23cf-4b83-afbe-750530fad8eb.gif)
+
