@@ -7,10 +7,13 @@ The project was based on an Agile Methodology in collaboration with [@leonardiwa
 <br/>
 
 The method consisted in: 
+- plan and develop the issues in collaboration
+- label each issue according to the time and difficulty of developing the task
+- organize the issues on a Kanban board
 - pick up an issue from the list 
 - develop the issue following the guidelines
 - commit all the workflow 
-- open a pull request to [@leonardiwagner](https://github.com/leonardiwagner) make the review
+- open a pull request to be reviewed by [@leonardiwagner](https://github.com/leonardiwagner)
 - after approval choose another issue and repeat the process
 
 <br/>
@@ -53,6 +56,6 @@ $ npm start
 
 <br/>
 
-💻 Result: **in progress**
+💻 Result: [Dinogram](http://website-dinogram.s3-website.eu-north-1.amazonaws.com/)
 ![dinogram_gif](https://user-images.githubusercontent.com/84124999/228905111-f218f6db-23cf-4b83-afbe-750530fad8eb.gif)
 
