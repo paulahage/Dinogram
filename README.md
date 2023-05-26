@@ -24,6 +24,7 @@ The method consisted in:
 - [React](https://reactjs.org/)
 - [React Router](https://reactrouter.com/en/main)
 - [Context API](https://reactjs.org/docs/context.html)
+- [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 - [Axios](https://axios-http.com/docs/intro)
 - [Styled Components](https://styled-components.com/)
 - [react-icons](https://react-icons.github.io/react-icons/)
