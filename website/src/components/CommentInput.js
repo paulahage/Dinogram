@@ -15,10 +15,17 @@ const CommentInput = ({
   const { isSinglePostOpen } = useSinglePostContext();
   const { handleCommentSubmit, handleComment, myComment } = useCommentContext();
 
+  const enterComment = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      event.target.form.requestSubmit();
+    }
+  }
+
   const submitComment = async (e) => {
     const singleComment = await handleCommentSubmit(e, postInfos.id);
     setUpdatebleComments([...updatebleComments, singleComment]);
-    setUpdatebleCommentsCount(updatebleCommentsCount + 1);
+    //setUpdatebleCommentsCount(updatebleCommentsCount + 1);
   };
 
   return (
@@ -33,8 +40,9 @@ const CommentInput = ({
           placeholder="Add a comment..."
           value={myComment}
           onChange={handleComment}
+          onKeyDown={enterComment}
         />
-        <button className="post-btn" disabled={!myComment}>
+        <button className="post-btn" disabled={!myComment} type="submit">
           Post
         </button>
       </form>
@@ -63,8 +71,9 @@ const CommentInputWrapper = styled.div`
     width: 100%;
     resize: none;
     outline: none;
-    overflow: hidden;
+    overflow: visible;
     font-family: "Poppins", sans-serif;
+    height: 32px;
   }
 
   .post-btn:disabled {
@@ -85,6 +94,7 @@ const CommentInputWrapper = styled.div`
   }
 
   @media screen and (max-width: 550px) {
-    border-top: ${(props)=> props.isSinglePostOpen ? "1px solid var(--grey)" : "none"};
+    border-top: ${(props) =>
+      props.isSinglePostOpen ? "1px solid var(--grey)" : "none"};
   }
 `;
