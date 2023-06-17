@@ -53,31 +53,33 @@ const Sidebar = () => {
           </div>
           <div className="icon-btns">
             {/* --------HOME BTN-------- */}
-            <div
-              title={isSmallScreen ? "Home" : ""}
-              className="home-btn background-icon"
-            >
-              <NavLink to="/" onClick={closeSideMenus}>
+            <div className="home-btn background-icon">
+              <NavLink
+                title={isSmallScreen ? "Home" : ""}
+                to="/"
+                onClick={closeSideMenus}
+              >
                 <AiIcons.AiFillHome className="nav-icon icon-position" />
                 <span className="page-title">Home</span>
               </NavLink>
             </div>
             {/* --------SEARCH BTN-------- */}
-            <div
-              title={isSmallScreen ? "Search" : ""}
-              className="background-icon"
-            >
-              <button onClick={showSearchSideWindow}>
+            <div className="background-icon">
+              <button
+                title={isSmallScreen ? "Search" : ""}
+                onClick={showSearchSideWindow}
+              >
                 <FiIcons.FiSearch className="nav-icon icon-position" />
                 <span className="page-title">Search</span>
               </button>
             </div>
             {/* --------PROFILE BTN-------- */}
-            <div
-              title={isSmallScreen ? "Profile" : ""}
-              className="background-icon"
-            >
-              <NavLink to={`${loggedUser.id}`} onClick={closeSideMenus}>
+            <div className="background-icon">
+              <NavLink
+                title={isSmallScreen ? "Profile" : ""}
+                to={`${loggedUser.id}`}
+                onClick={closeSideMenus}
+              >
                 <div className="my-profile-avatar" />
                 <span className="page-title title-avatar-position">
                   Profile
@@ -88,11 +90,11 @@ const Sidebar = () => {
         </div>
         {/* --------SETTINGS BTN-------- */}
         <div className="icon-container">
-          <div
-            title={isSmallScreen ? "Settings" : ""}
-            className="background-icon settings-btn"
-          >
-            <button onClick={showSavedPostsBtn}>
+          <div className="background-icon settings-btn">
+            <button
+              title={isSmallScreen ? "Settings" : ""}
+              onClick={showSavedPostsBtn}
+            >
               <FiIcons.FiSettings
                 className="nav-icon icon-position"
                 onClick={closeSideMenus}
