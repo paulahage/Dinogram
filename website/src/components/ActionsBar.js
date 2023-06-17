@@ -61,7 +61,7 @@ const ActionsBar = ({ postInfos }) => {
   return (
     <ActionsBarWrapper isSinglePostOpen={isSinglePostOpen}>
       <div className="interaction-bar">
-        <button onClick={handleLikePost}>
+        <button title="Like" onClick={handleLikePost}>
           <HiIcons.HiOutlineHeart
             className={
               isLikedPost
@@ -70,11 +70,11 @@ const ActionsBar = ({ postInfos }) => {
             }
           />
         </button>
-        <button onClick={() => handleMakeComment(postInfos)}>
+        <button title="Comment" onClick={() => handleMakeComment(postInfos)}>
           <FiIcons.FiMessageCircle className="interaction-icons" />
         </button>
       </div>
-      <button onClick={handleSavePost}>
+      <button title="Save" onClick={handleSavePost}>
         <FiIcons.FiBookmark
           className={
             isPostSaved
