@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSidebarContext } from "../context/SidebarContext";
 import { useUserLoggedContext } from "../context/UserLoggedContext";
@@ -9,6 +9,7 @@ import * as FiIcons from "react-icons/fi";
 
 import SearchSideWindow from "./SearchSideWindow";
 import SavedPostsBtn from "./SavedPostsBtn";
+import { useWindowSize } from "../services/WindowSizeService";
 
 const Sidebar = () => {
   const {
@@ -18,7 +19,19 @@ const Sidebar = () => {
     openSavedPostsBtn,
   } = useSidebarContext();
 
+  const screenSize = useWindowSize();
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
   const { loggedUser } = useUserLoggedContext();
+
+  useEffect(() => {
+    if (screenSize < 1220) {
+      setIsSmallScreen(true);
+    } else {
+      setIsSmallScreen(false);
+    }
+  }, [screenSize]);
 
   return (
     <>
@@ -40,31 +53,45 @@ const Sidebar = () => {
           </div>
           <div className="icon-btns">
             {/* --------HOME BTN-------- */}
-            <div className="home-btn background-icon">
+            <div
+              title={isSmallScreen ? "Home" : ""}
+              className="home-btn background-icon"
+            >
               <NavLink to="/" onClick={closeSideMenus}>
                 <AiIcons.AiFillHome className="nav-icon icon-position" />
                 <span className="page-title">Home</span>
               </NavLink>
             </div>
             {/* --------SEARCH BTN-------- */}
-            <div className="background-icon">
+            <div
+              title={isSmallScreen ? "Search" : ""}
+              className="background-icon"
+            >
               <button onClick={showSearchSideWindow}>
                 <FiIcons.FiSearch className="nav-icon icon-position" />
                 <span className="page-title">Search</span>
               </button>
             </div>
             {/* --------PROFILE BTN-------- */}
-            <div className="background-icon">
+            <div
+              title={isSmallScreen ? "Profile" : ""}
+              className="background-icon"
+            >
               <NavLink to={`${loggedUser.id}`} onClick={closeSideMenus}>
                 <div className="my-profile-avatar" />
-                <span className="page-title title-avatar-position">Profile</span>
+                <span className="page-title title-avatar-position">
+                  Profile
+                </span>
               </NavLink>
             </div>
           </div>
         </div>
         {/* --------SETTINGS BTN-------- */}
         <div className="icon-container">
-          <div className="background-icon settings-btn">
+          <div
+            title={isSmallScreen ? "Settings" : ""}
+            className="background-icon settings-btn"
+          >
             <button onClick={showSavedPostsBtn}>
               <FiIcons.FiSettings
                 className="nav-icon icon-position"
@@ -117,8 +144,7 @@ const SidebarWrapper = styled.nav`
 
   .full-logo {
     opacity: 1;
-      animation: fade 1s ease-out;
-    }
+    animation: fade 1s ease-out;
 
     @keyframes fade {
       0% {

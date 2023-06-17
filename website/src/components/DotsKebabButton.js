@@ -7,7 +7,7 @@ const DotsKebabButton = ({postInfos}) => {
   const { openMenu } = usePostOptionsMenuContext();
 
   return (
-    <DotsKebabButtonWrapper onClick={()=> openMenu(postInfos)}>
+    <DotsKebabButtonWrapper title="More Options" onClick={()=> openMenu(postInfos)}>
       <BsIcons.BsThreeDots className="dots-btn " />
     </DotsKebabButtonWrapper>
   );
